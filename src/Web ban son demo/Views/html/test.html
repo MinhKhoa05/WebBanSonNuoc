@@ -1,0 +1,530 @@
+<!-- Add this right after the opening of main-content div -->
+<div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+  <!-- Top navbar (unchanged) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 rounded">
+    <!-- Navbar content remains the same -->
+  </nav>
+  
+  <!-- Dashboard Section -->
+  <div id="tachometer-alt-section" class="content-section">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Tổng quan</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Chia sẻ</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Xuất</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <i class="fas fa-calendar me-1"></i>
+            Tuần này
+          </button>
+        </div>
+      </div>
+      
+      <!-- Stats cards and other dashboard content - keep the same -->
+      <!-- ... -->
+    </div>
+  </div>
+  
+  <!-- Products Section -->
+  <div id="box-section" class="content-section" style="display:none">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Quản lý sản phẩm</h1>
+        <button class="btn btn-primary">
+          <i class="fas fa-plus me-1"></i> Thêm sản phẩm mới
+        </button>
+      </div>
+      
+      <!-- Product Management Form -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="productName" class="form-label">Tên sản phẩm</label>
+                <input type="text" class="form-control" id="productName" placeholder="Nhập tên sản phẩm">
+              </div>
+              <div class="col-md-6">
+                <label for="productCode" class="form-label">Mã sản phẩm</label>
+                <input type="text" class="form-control" id="productCode" placeholder="Nhập mã sản phẩm">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="productType" class="form-label">Loại sản phẩm</label>
+                <select class="form-select" id="productType">
+                  <option selected>Chọn loại sản phẩm</option>
+                  <option>Sơn nội thất</option>
+                  <option>Sơn ngoại thất</option>
+                  <option>Sơn chống thấm</option>
+                  <option>Sơn lót</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="productBrand" class="form-label">Thương hiệu</label>
+                <select class="form-select" id="productBrand">
+                  <option selected>Chọn thương hiệu</option>
+                  <option>Dulux</option>
+                  <option>Jotun</option>
+                  <option>TOA</option>
+                  <option>Nippon</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="productColor" class="form-label">Màu sắc</label>
+                <select class="form-select" id="productColor">
+                  <option selected>Chọn màu sắc</option>
+                  <option>Trắng ngà</option>
+                  <option>Xanh nhạt</option>
+                  <option>Vàng chanh</option>
+                  <option>Hồng pastel</option>
+                  <option>Tím nhạt</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="productPrice" class="form-label">Giá bán (VNĐ)</label>
+                <input type="number" class="form-control" id="productPrice" placeholder="Nhập giá bán">
+              </div>
+              <div class="col-md-4">
+                <label for="productCost" class="form-label">Giá nhập (VNĐ)</label>
+                <input type="number" class="form-control" id="productCost" placeholder="Nhập giá nhập">
+              </div>
+              <div class="col-md-4">
+                <label for="productQuantity" class="form-label">Số lượng</label>
+                <input type="number" class="form-control" id="productQuantity" placeholder="Nhập số lượng">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="productDescription" class="form-label">Mô tả sản phẩm</label>
+              <textarea class="form-control" id="productDescription" rows="3" placeholder="Nhập mô tả sản phẩm"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="productImage" class="form-label">Hình ảnh sản phẩm</label>
+              <input class="form-control" type="file" id="productImage">
+            </div>
+            <div class="text-end">
+              <button type="reset" class="btn btn-secondary me-2">Hủy</button>
+              <button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Product List Table -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
+        </div>
+        <div class="card-body">
+          <!-- Same as product management table in the original code -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Orders Section -->
+  <div id="shopping-cart-section" class="content-section" style="display:none">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Quản lý đơn hàng</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Xuất Excel</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">In danh sách</button>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="fas fa-filter me-1"></i>
+              Lọc theo trạng thái
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Tất cả</a></li>
+              <li><a class="dropdown-item" href="#">Chờ xác nhận</a></li>
+              <li><a class="dropdown-item" href="#">Đã xác nhận</a></li>
+              <li><a class="dropdown-item" href="#">Đang giao</a></li>
+              <li><a class="dropdown-item" href="#">Hoàn thành</a></li>
+              <li><a class="dropdown-item" href="#">Đã hủy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Order Management Interface -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Danh sách đơn hàng</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Mã đơn</th>
+                  <th>Khách hàng</th>
+                  <th>Ngày đặt</th>
+                  <th>Tổng tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Thanh toán</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#ORD-2023</td>
+                  <td>Nguyễn Văn A</td>
+                  <td>05/04/2025</td>
+                  <td>3,560,000 đ</td>
+                  <td><span class="badge bg-success">Hoàn thành</span></td>
+                  <td><span class="badge bg-primary">Đã thanh toán</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-info"><i class="fas fa-print"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#ORD-2022</td>
+                  <td>Trần Thị B</td>
+                  <td>04/04/2025</td>
+                  <td>2,800,000 đ</td>
+                  <td><span class="badge bg-warning text-dark">Đang giao</span></td>
+                  <td><span class="badge bg-primary">Đã thanh toán</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-success"><i class="fas fa-check"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#ORD-2021</td>
+                  <td>Lê Văn C</td>
+                  <td>04/04/2025</td>
+                  <td>1,720,000 đ</td>
+                  <td><span class="badge bg-info">Đã xác nhận</span></td>
+                  <td><span class="badge bg-warning text-dark">Chờ thanh toán</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-warning"><i class="fas fa-truck"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#ORD-2020</td>
+                  <td>Phạm Thị D</td>
+                  <td>03/04/2025</td>
+                  <td>4,150,000 đ</td>
+                  <td><span class="badge bg-danger">Đã hủy</span></td>
+                  <td><span class="badge bg-secondary">Không áp dụng</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal"><i class="fas fa-eye"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#ORD-2019</td>
+                  <td>Hoàng Văn E</td>
+                  <td>02/04/2025</td>
+                  <td>2,340,000 đ</td>
+                  <td><span class="badge bg-success">Hoàn thành</span></td>
+                  <td><span class="badge bg-primary">Đã thanh toán</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-info"><i class="fas fa-print"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <nav>
+              <ul class="pagination">
+                <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Order Detail Modal -->
+      <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderModalLabel">Chi tiết đơn hàng #ORD-2023</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <h6>Thông tin khách hàng</h6>
+                  <p><strong>Tên:</strong> Nguyễn Văn A</p>
+                  <p><strong>SĐT:</strong> 0987654321</p>
+                  <p><strong>Email:</strong> nguyenvana@example.com</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Thông tin giao hàng</h6>
+                  <p><strong>Địa chỉ:</strong> 123 Đường ABC, Quận 1, TP.HCM</p>
+                  <p><strong>Ngày đặt:</strong> 05/04/2025</p>
+                  <p><strong>Ghi chú:</strong> Giao hàng giờ hành chính</p>
+                </div>
+              </div>
+              <h6>Danh sách sản phẩm</h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Sản phẩm</th>
+                      <th>Đơn giá</th>
+                      <th>Số lượng</th>
+                      <th>Thành tiền</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Sơn Dulux Weathershield - 5L - Trắng ngà</td>
+                      <td>850,000 đ</td>
+                      <td>2</td>
+                      <td>1,700,000 đ</td>
+                    </tr>
+                    <tr>
+                      <td>Sơn Jotun Essence Easy Clean - 5L - Xanh nhạt</td>
+                      <td>920,000 đ</td>
+                      <td>2</td>
+                      <td>1,840,000 đ</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3" class="text-end"><strong>Tổng tiền sản phẩm:</strong></td>
+                      <td>3,540,000 đ</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-end"><strong>Phí vận chuyển:</strong></td>
+                      <td>20,000 đ</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-end"><strong>Tổng thanh toán:</strong></td>
+                      <td>3,560,000 đ</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <h6>Lịch sử đơn hàng</h6>
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <div>
+                        <span class="fw-bold">Đặt hàng</span>
+                        <br><small>05/04/2025 08:15</small>
+                      </div>
+                      <span class="badge bg-primary rounded-pill">Hệ thống</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <div>
+                        <span class="fw-bold">Xác nhận đơn hàng</span>
+                        <br><small>05/04/2025 09:30</small>
+                      </div>
+                      <span class="badge bg-info rounded-pill">admin@sonnuoc.com</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <div>
+                        <span class="fw-bold">Đang giao hàng</span>
+                        <br><small>05/04/2025 13:45</small>
+                      </div>
+                      <span class="badge bg-info rounded-pill">admin@sonnuoc.com</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <div>
+                        <span class="fw-bold">Giao hàng thành công</span>
+                        <br><small>05/04/2025 16:20</small>
+                      </div>
+                      <span class="badge bg-success rounded-pill">Shipper</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h6>Cập nhật trạng thái</h6>
+                  <div class="mb-3">
+                    <select class="form-select">
+                      <option selected>-- Chọn trạng thái --</option>
+                      <option>Đã xác nhận</option>
+                      <option>Đang giao</option>
+                      <option>Hoàn thành</option>
+                      <option>Đã hủy</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="statusNote" class="form-label">Ghi chú</label>
+                    <textarea class="form-control" id="statusNote" rows="3"></textarea>
+                  </div>
+                  <button class="btn btn-primary">Cập nhật</button>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+              <button type="button" class="btn btn-info"><i class="fas fa-print me-1"></i> In đơn hàng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Customers Section -->
+  <div id="users-section" class="content-section" style="display:none">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Quản lý khách hàng</h1>
+        <button class="btn btn-primary">
+          <i class="fas fa-plus me-1"></i> Thêm khách hàng
+        </button>
+      </div>
+      
+      <!-- Customer Management Interface -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+          <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng</h6>
+          <div class="input-group" style="width: 300px;">
+            <input type="text" class="form-control" placeholder="Tìm khách hàng...">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Mã KH</th>
+                  <th>Họ và tên</th>
+                  <th>Số điện thoại</th>
+                  <th>Email</th>
+                  <th>Địa chỉ</th>
+                  <th>Đơn hàng</th>
+                  <th>Tổng chi tiêu</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>KH001</td>
+                  <td>Nguyễn Văn A</td>
+                  <td>0987654321</td>
+                  <td>nguyenvana@example.com</td>
+                  <td>123 Đường ABC, Quận 1, TP.HCM</td>
+                  <td>5</td>
+                  <td>12,450,000 đ</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary me-1"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-info me-1"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>KH002</td>
+                  <td>Trần Thị B</td>
+                  <td>0912345678</td>
+                  <td>tranthib@example.com</td>
+                  <td>456 Đường XYZ, Quận 2, TP.HCM</td>
+                  <td>3</td>
+                  <td>8,730,000 đ</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary me-1"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-info me-1"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>KH003</td>
+                  <td>Lê Văn C</td>
+                  <td>0976543210</td>
+                  <td>levanc@example.com</td>
+                  <td>789 Đường DEF, Quận 3, TP.HCM</td>
+                  <td>2</td>
+                  <td>5,640,000 đ</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary me-1"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-info me-1"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>KH004</td>
+                  <td>Phạm Thị D</td>
+                  <td>0965432187</td>
+                  <td>phamthid@example.com</td>
+                  <td>101 Đường GHI, Quận 4, TP.HCM</td>
+                  <td>1</td>
+                  <td>4,150,000 đ</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary me-1"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-info me-1"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>KH005</td>
+                  <td>Hoàng Văn E</td>
+                  <td>0954321098</td>
+                  <td>hoangvane@example.com</td>
+                  <td>202 Đường JKL, Quận 5, TP.HCM</td>
+                  <td>4</td>
+                  <td>9,870,000 đ</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary me-1"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-info me-1"><i class="fas fa-eye"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <nav>
+              <ul class="pagination">
+                <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Color Categories Section -->
+  <!-- <div id="palette-section" class="content-section" style="display:none">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Quản lý danh mục màu</h1>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addColorModal">
+          <i class="fas fa-plus me-1"></i> Thêm màu mới
+        </button>
+      </div>
+    </div>
+  </div> -->
+
+      
+      <!-- Color Management -->
+      <!-- <div class="row">
+        <div class="col-lg-8 mb-4">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Bảng màu</h6>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                

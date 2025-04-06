@@ -5,7 +5,7 @@ const products = [
         id: 1,
         name: "Sơn nội thất cao cấp",
         price: 850000,
-        image: "../assets/images/Son-1.jpg",
+        image: "Views/images/Son-1.jpg",
         category: "interior",
         discount: 10,
         description: "Sơn nội thất cao cấp kháng khuẩn, chống bám bẩn"
@@ -14,7 +14,7 @@ const products = [
         id: 2,
         name: "Sơn ngoại thất chống thấm",
         price: 920000,
-        image: "../assets/images/Son-2.jpg",
+        image: "Views/images/Son-2.jpg",
         category: "exterior",
         discount: 0,
         description: "Sơn ngoại thất chống thấm, chịu được mọi thời tiết"
@@ -23,7 +23,7 @@ const products = [
         id: 3,
         name: "Sơn lót đa năng",
         price: 550000,
-        image: "../assets/images/Son-3.jpg",
+        image: "Views/images/Son-3.jpg",
         category: "interior",
         discount: 5,
         description: "Sơn lót đa năng cho cả nội thất và ngoại thất"
@@ -32,7 +32,7 @@ const products = [
         id: 4,
         name: "Sơn kim loại chống gỉ",
         price: 780000,
-        image: "../assets/images/Son-4.jpg",
+        image: "Views/images/Son-4.jpg",
         category: "special",
         discount: 0,
         description: "Sơn chuyên dụng cho bề mặt kim loại, chống gỉ sét"
@@ -41,7 +41,7 @@ const products = [
         id: 5,
         name: "Sơn chống nóng",
         price: 1200000,
-        image: "../assets/images/Son-5.jpg",
+        image: "Views/images/Son-5.jpg",
         category: "special",
         discount: 15,
         description: "Sơn đặc biệt giúp giảm nhiệt độ bề mặt"
@@ -50,12 +50,90 @@ const products = [
         id: 6,
         name: "Sơn ngoại thất bền màu",
         price: 980000,
-        image: "../assets/images/Son-6.jpg",
+        image: "Views/images/Son-6.jpg",
         category: "exterior",
         discount: 0,
         description: "Sơn ngoại thất cao cấp với độ bền màu lên đến 10 năm"
     },
 ];
+
+document.addEventListener('DOMContentLoaded', () => {
+            const sliderContainer = document.getElementById('image-slider');
+            const slider = sliderContainer.querySelector('.slider');
+            const slides = slider.querySelectorAll('.slide');
+            const prevBtn = sliderContainer.querySelector('.prev');
+            const nextBtn = sliderContainer.querySelector('.next');
+            const totalSlides = slides.length;
+            
+            let currentIndex = 0;
+            let autoSlideInterval;
+            
+            // Khởi tạo slider
+            function initSlider() {
+                // Thêm sự kiện cho các nút
+                prevBtn.addEventListener('click', () => navigateSlide(-1));
+                nextBtn.addEventListener('click', () => navigateSlide(1));
+                
+                // Bắt đầu tự động chuyển slide
+                startAutoSlide();
+                
+                // Dừng tự động chuyển khi hover vào slider
+                sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+                sliderContainer.addEventListener('mouseleave', startAutoSlide);
+                
+                // Thêm hỗ trợ swipe cho thiết bị cảm ứng
+                setupTouchEvents();
+            }
+            
+            // Điều hướng đến slide cụ thể
+            function showSlide(index) {
+                currentIndex = (index + totalSlides) % totalSlides;
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            // Điều hướng tiến/lùi
+            function navigateSlide(direction) {
+                showSlide(currentIndex + direction);
+            }
+            
+            // Bắt đầu tự động chuyển slide
+            function startAutoSlide() {
+                stopAutoSlide(); // Tránh nhiều interval chạy đồng thời
+                autoSlideInterval = setInterval(() => navigateSlide(1), 5000);
+            }
+            
+            // Dừng tự động chuyển slide
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+            
+            // Thiết lập sự kiện swipe cho thiết bị cảm ứng
+            function setupTouchEvents() {
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                sliderContainer.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                
+                sliderContainer.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+                
+                function handleSwipe() {
+                    const SWIPE_THRESHOLD = 50;
+                    if (touchStartX - touchEndX > SWIPE_THRESHOLD) {
+                        navigateSlide(1); // Swipe trái -> slide tiếp theo
+                    } else if (touchEndX - touchStartX > SWIPE_THRESHOLD) {
+                        navigateSlide(-1); // Swipe phải -> slide trước
+                    }
+                }
+            }
+            
+            // Khởi tạo slider
+            initSlider();
+        });
 
 // Sample data for testimonials
 const testimonials = [
@@ -63,19 +141,19 @@ const testimonials = [
         name: "Anh Long Neuvillete",
         role: "Chủ nhà",
         content: "Tôi rất hài lòng với chất lượng sơn và dịch vụ tư vấn tận tình của ColorMaster. Căn nhà của tôi trông như mới sau khi sơn.",
-        image: "../assets/images/Neuvillete.jpeg"
+        image: "Views/images/Neuvillete.jpeg"
     },
     {
         name: "Kaveh Trần",
         role: "Kiến trúc sư",
         content: "Là một kiến trúc sư, tôi luôn tìm kiếm những sản phẩm chất lượng cao cho khách hàng. ColorMaster luôn là sự lựa chọn hàng đầu của tôi.",
-        image: "../assets/images/Kaveh.jpeg"
+        image: "Views/images/Kaveh.jpeg"
     },
     {
         name: "Kamisato Ayaka",
         role: "Nhà thầu",
         content: "Đã hợp tác với ColorMaster trong nhiều dự án và luôn hài lòng với chất lượng sản phẩm và dịch vụ giao hàng đúng hẹn.",
-        image: "../assets/images/Ayaka.jpeg"
+        image: "Views/images/Ayaka.jpeg"
     }
 ];
 
@@ -155,6 +233,7 @@ $(document).ready(function() {
             $(this).html('<i class="fas fa-moon"></i> Chế độ tối');
         }
     });
+
     
     // Example 4: Remove HTML elements - Remove product cards
     $(document).on('click', '.add-to-cart', function(e) {
@@ -291,7 +370,7 @@ function displaySavedColors() {
         container.append(colorElement);
     });
     
-    // Thêm eventáp dụng màu đã lưu
+    // Thêm event áp dụng màu đã lưu
     $('.saved-color div').on('click', function() {
         const hex = $(this).data('hex');
         const rgb = hexToRgb(hex);

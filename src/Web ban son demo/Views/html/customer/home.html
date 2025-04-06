@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../css/style-home.css">
     
 </head>
 <body>
@@ -60,6 +60,249 @@
             </button>
         </div>
     </section>
+
+    <!-- Slide Section -->
+    <section class="slider-container container text-center py-5" id="image-slider">
+        <div>
+            <h2>Sự kiện</h2>
+            <button class="slider-btn prev" aria-label="Hình ảnh trước">&#10094;</button>
+            <div class="slider py-2">
+                <a href="https://example.com/product1" class="slide"><img src="../images/Background.png" alt="Sự kiện 1" loading="lazy"></a>
+                <a href="https://example.com/product2" class="slide"><img src="../images/Background.png" alt="Sự kiện 2" loading="lazy"></a>
+                <a href="https://example.com/product3" class="slide"><img src="../images/Background.png" alt="Sự kiện 3" loading="lazy"></a>
+            </div>
+            <button class="slider-btn next" aria-label="Hình ảnh tiếp theo">&#10095;</button>
+        </div>
+    </section>
+
+
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Sản phẩm nổi bật</h2>
+            
+            <div class="row">
+                <!-- Sidebar Menu - Danh mục sản phẩm -->
+                <div class="col-lg-3 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">DANH MỤC SẢN PHẨM</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="son-dulux">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN DULUX
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="son-jotun">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN JOTUN
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="son-maxilite">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN MAXILITE
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="son-kova">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN KOVA
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="bot-nippon">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN NIPPON
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="son-toa">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN TOA
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="son-mykolor">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN MYKOLOR
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="son-expo">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN EXPO
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="son-da-hoa-binh">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> SƠN ĐÁ HÒA BÌNH
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="sidebar-link" data-filter="trong-tham">
+                                        <i class="fa fa-angle-double-right text-danger me-2"></i> TRỐNG THẤM SIKA
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Price Filter -->
+                    <div class="card border-0 shadow-sm mt-4">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">Lọc theo giá</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="priceRange">Khoảng giá:</label>
+                                <input type="range" class="form-range" id="priceRange" min="0" max="10000000" step="100000">
+                                <div class="d-flex justify-content-between">
+                                    <span>0đ</span>
+                                    <span id="priceValue">5,000,000đ</span>
+                                    <span>10,000,000đ</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-danger w-100 mt-2">Áp dụng</button>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- Main Content - Products -->
+                <div class="col-lg-9">
+                    <!-- Filter Buttons -->
+                    <!-- <div class="text-center mb-4">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-danger active filter-btn" data-filter="all">Tất cả</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="dulux">Sơn DULUX</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="jotun">Sơn JOTUN</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="maxilite">Sơn MAXILITE</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="kova">Sơn KOVA</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="nippon">Sơn NIPPON</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="toa">Sơn TOA</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="mykolor">Sơn MYKOLOR</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="expo">Sơn EXPO</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="da-hoa-binh">Sơn ĐÁ HÒA BÌNH</button>
+                            <button type="button" class="btn btn-outline-danger filter-btn" data-filter="trong-tham">TRỐNG THẤM</button>
+                        </div>
+                    </div> -->
+                    
+                    <!-- Sort Options -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <span class="me-2">Hiển thị <span id="productCount">12</span> sản phẩm</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <label class="me-2">Sắp xếp theo:</label>
+                            <select class="form-select form-select-sm" style="width: auto">
+                                <option value="newest">Mới nhất</option>
+                                <option value="price-asc">Giá: Thấp đến cao</option>
+                                <option value="price-desc">Giá: Cao đến thấp</option>
+                                <option value="popular">Phổ biến nhất</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="productsList">
+                        <!-- Product Cards - Will be filled dynamically -->
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav aria-label="Product pagination" class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Trước</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Sau</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <style>
+        .sidebar-link {
+            color: #222;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .sidebar-link:hover, .sidebar-link.active {
+            color: #0056b3;
+        }
+        
+        .list-group-item:hover, .list-group-item.active, .list-group-item:focus {
+            background-color: #E9ECEF;
+        }
+        
+        .card-header,
+        .btn-outline-danger,
+        .btn-danger,
+        .pagination .page-item.active .page-link {
+            background-color: #007BFF !important;
+            border-color: #007BFF;
+        }
+        
+        .btn-outline-danger,
+        .btn-danger,
+        .pagination .page-link {
+            color: #007BFF;
+        }
+        
+        .btn-outline-danger:hover, 
+        .btn-outline-danger.active, 
+        .btn-danger:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        @media (max-width: 991.98px) {
+            .col-lg-3.mb-4 { order: 1; }
+            .col-lg-9 { order: 0; margin-bottom: 30px; }
+        }
+    </style>
+    
+    <script>
+        // Price range slider
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+        
+        priceRange.addEventListener('input', function() {
+            const value = parseInt(this.value).toLocaleString('vi-VN');
+            priceValue.textContent = value + 'đ';
+        });
+        
+        // Filter functionality
+        document.querySelectorAll('.sidebar-link, .filter-btn').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active state for sidebar links
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Update active state for filter buttons if clicked from sidebar
+                const filter = this.getAttribute('data-filter');
+
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (['dulux', 'jotun', 'maxilite', 'kova', 'nippon', 'toa', 'mykolor', 'expo', 'da-hoabinh', 'trong-tham'].includes(filter) && btn.getAttribute('data-filter') === filter) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Filter products logic would go here
+                console.log('Filtering by:', filter);
+            });
+        });
+    </script>
 
     <!-- Products Section -->
     <section id="products" class="py-5">
@@ -165,7 +408,7 @@
                     <button class="btn btn-outline-primary mt-3" id="readMoreBtn">Tìm hiểu thêm</button>
                 </div>
                 <div class="col-lg-6">
-                    <img src="../assets/images/Debirun.jpg" alt="Về PaintMaster" class="img-fluid rounded shadow">
+                    <img src="../images/Debirun.jpg" alt="Về PaintMaster" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
@@ -332,6 +575,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     
      <!-- Gọi file script -->
-  <script src="../assets/js/script.js"></script>
+  <script src="../js/script.js"></script>
 </body>
 </html>
