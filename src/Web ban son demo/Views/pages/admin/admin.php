@@ -113,7 +113,7 @@
         <div class="container-fluid">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2 mb-0">Tổng quan</h1>
-              <div class="btn-group">
+              <div class="button-group">
                 <button type="button" class="btn btn-outline-secondary me-2">
                   <i class="fas fa-share me-1"></i> Chia sẻ
                 </button>
@@ -121,7 +121,7 @@
                   <i class="fas fa-download me-1"></i> Xuất
                 </button>
 
-                <select class="form-select border-secondary" name="" id="">
+                <select class="btn btn-outline-secondary me-2" name="" id="">
                   <option value="" selected>Tuần này</option>
                   <option value="">1 tuần trước</option>
                   <option value="">2 tuần trước</option>

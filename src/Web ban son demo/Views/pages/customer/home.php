@@ -1,8 +1,9 @@
-<link rel="stylesheet" href="Views/css/style-products.css">
-<link rel="stylesheet" href="Views/js/js-products.js">
+<link rel="stylesheet" href="../assets/css/customer/style-products.css">
+<link rel="stylesheet" href="../assets/css/customer/style-home.css">
+<script src="../assets/customer/js/home.js"></script>
 
 <!-- Hero Section -->
-<section class="hero-section text-center">
+<!-- <section class="hero-section text-center">
     <div class="container">
         <h1 class="display-4">Màu sắc cho không gian của bạn</h1>
         <p class="lead">Khám phá bộ sưu tập sơn chất lượng cao cho mọi không gian</p>
@@ -10,7 +11,7 @@
             Khám phá ngay <i class="fas fa-paint-roller ms-2"></i>
         </button>
     </div>
-</section>
+</section> -->
 
 <!-- banner section -->
 <section class="slider-container container text-center py-5" id="image-slider">
@@ -18,9 +19,9 @@
         <h2>Sự kiện</h2>
         <button class="slider-btn prev" aria-label="Hình ảnh trước">&#10094;</button>
         <div class="slider py-2">
-            <a href="https://example.com/product1" class="slide"><img src="Views/images/Background.png" alt="Sự kiện 1" loading="lazy"></a>
-            <a href="https://example.com/product2" class="slide"><img src="Views/images/Background.png" alt="Sự kiện 2" loading="lazy"></a>
-            <a href="https://example.com/product3" class="slide"><img src="Views/images/Background.png" alt="Sự kiện 3" loading="lazy"></a>
+            <a href="https://example.com/product1" class="slide"><img src="../assets/images/Background.png" alt="Sự kiện 1" loading="lazy"></a>
+            <a href="https://example.com/product2" class="slide"><img src="../assets/images/Background.png" alt="Sự kiện 2" loading="lazy"></a>
+            <a href="https://example.com/product3" class="slide"><img src="../assets/images/Background.png" alt="Sự kiện 3" loading="lazy"></a>
         </div>
         <button class="slider-btn next" aria-label="Hình ảnh tiếp theo">&#10095;</button>
     </div>
@@ -180,7 +181,7 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card text-center h-100">
-                    <div class="card-body">
+                    <div class="card-body shadow">
                         <i class="fas fa-palette fa-3x mb-3 text-primary"></i>
                         <h4 class="card-title">Tư vấn màu sắc</h4>
                         <p class="card-text">Chuyên gia của chúng tôi sẽ giúp bạn chọn màu sắc phù hợp cho không gian của bạn.</p>
@@ -189,7 +190,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card text-center h-100">
-                    <div class="card-body">
+                    <div class="card-body shadow">
                         <i class="fas fa-paint-roller fa-3x mb-3 text-primary"></i>
                         <h4 class="card-title">Dịch vụ sơn</h4>
                         <p class="card-text">Đội ngũ thợ sơn chuyên nghiệp với nhiều năm kinh nghiệm.</p>
@@ -198,7 +199,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card text-center h-100">
-                    <div class="card-body">
+                    <div class="card-body shadow">
                         <i class="fas fa-truck fa-3x mb-3 text-primary"></i>
                         <h4 class="card-title">Giao hàng tận nơi</h4>
                         <p class="card-text">Miễn phí giao hàng cho đơn hàng trên 1 triệu đồng trong nội thành.</p>
@@ -215,7 +216,7 @@
         <h2 class="text-center mb-5">Công cụ chọn màu</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-body text-center">
                         <h5 class="card-title">Thử màu sắc</h5>
                         <div id="colorPreview"></div>
@@ -256,7 +257,7 @@
                 <button class="btn btn-outline-primary mt-3" id="readMoreBtn">Tìm hiểu thêm</button>
             </div>
             <div class="col-lg-6">
-                <img src="Views/images/Debirun.jpg" alt="Về PaintMaster" class="img-fluid rounded shadow">
+                <img src="../assets/images/Debirun.jpg" alt="Về PaintMaster" class="img-fluid rounded shadow">
             </div>
         </div>
     </div>

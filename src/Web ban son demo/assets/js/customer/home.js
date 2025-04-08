@@ -5,7 +5,7 @@ const products = [
         id: 1,
         name: "Sơn nội thất cao cấp",
         price: 850000,
-        image: "Views/images/Son-1.jpg",
+        image: "../assets/images/Son-1.jpg",
         category: "interior",
         discount: 10,
         description: "Sơn nội thất cao cấp kháng khuẩn, chống bám bẩn"
@@ -14,7 +14,7 @@ const products = [
         id: 2,
         name: "Sơn ngoại thất chống thấm",
         price: 920000,
-        image: "Views/images/Son-2.jpg",
+        image: "../assets/images/Son-2.jpg",
         category: "exterior",
         discount: 0,
         description: "Sơn ngoại thất chống thấm, chịu được mọi thời tiết"
@@ -23,7 +23,7 @@ const products = [
         id: 3,
         name: "Sơn lót đa năng",
         price: 550000,
-        image: "Views/images/Son-3.jpg",
+        image: "../assets/images/Son-3.jpg",
         category: "interior",
         discount: 5,
         description: "Sơn lót đa năng cho cả nội thất và ngoại thất"
@@ -32,7 +32,7 @@ const products = [
         id: 4,
         name: "Sơn kim loại chống gỉ",
         price: 780000,
-        image: "Views/images/Son-4.jpg",
+        image: "../assets/images/Son-4.jpg",
         category: "special",
         discount: 0,
         description: "Sơn chuyên dụng cho bề mặt kim loại, chống gỉ sét"
@@ -41,7 +41,7 @@ const products = [
         id: 5,
         name: "Sơn chống nóng",
         price: 1200000,
-        image: "Views/images/Son-5.jpg",
+        image: "../assets/images/Son-5.jpg",
         category: "special",
         discount: 15,
         description: "Sơn đặc biệt giúp giảm nhiệt độ bề mặt"
@@ -50,7 +50,7 @@ const products = [
         id: 6,
         name: "Sơn ngoại thất bền màu",
         price: 980000,
-        image: "Views/images/Son-6.jpg",
+        image: "../assets/images/Son-6.jpg",
         category: "exterior",
         discount: 0,
         description: "Sơn ngoại thất cao cấp với độ bền màu lên đến 10 năm"
@@ -141,19 +141,19 @@ const testimonials = [
         name: "Anh Long Neuvillete",
         role: "Chủ nhà",
         content: "Tôi rất hài lòng với chất lượng sơn và dịch vụ tư vấn tận tình của ColorMaster. Căn nhà của tôi trông như mới sau khi sơn.",
-        image: "Views/images/Neuvillete.jpeg"
+        image: "../assets/images/Neuvillete.jpeg"
     },
     {
         name: "Kaveh Trần",
         role: "Kiến trúc sư",
         content: "Là một kiến trúc sư, tôi luôn tìm kiếm những sản phẩm chất lượng cao cho khách hàng. ColorMaster luôn là sự lựa chọn hàng đầu của tôi.",
-        image: "Views/images/Kaveh.jpeg"
+        image: "../assets/images/Kaveh.jpeg"
     },
     {
         name: "Kamisato Ayaka",
         role: "Nhà thầu",
         content: "Đã hợp tác với ColorMaster trong nhiều dự án và luôn hài lòng với chất lượng sản phẩm và dịch vụ giao hàng đúng hẹn.",
-        image: "Views/images/Ayaka.jpeg"
+        image: "../assets/images/Ayaka.jpeg"
     }
 ];
 
@@ -217,22 +217,22 @@ $(document).ready(function() {
     });
     
     // Example 3: Change CSS styles - Theme toggle
-    $('#themeToggle').on('click', function() {
-        // Toggle dark mode
-        $('body').toggleClass('bg-dark text-white');
-        $('.card').toggleClass('bg-dark text-white border-light');
-        $('.bg-light').toggleClass('bg-secondary');
+    // $('#themeToggle').on('click', function() {
+    //     // Toggle dark mode
+    //     $('body').toggleClass('bg-dark text-white');
+    //     $('.card').toggleClass('bg-dark text-white border-light');
+    //     $('.bg-light').toggleClass('bg-secondary');
         
-        // Change the icon and text
-        const icon = $(this).find('i');
-        if (icon.hasClass('fa-moon')) {
-            icon.removeClass('fa-moon').addClass('fa-sun');
-            $(this).html('<i class="fas fa-sun"></i> Chế độ sáng');
-        } else {
-            icon.removeClass('fa-sun').addClass('fa-moon');
-            $(this).html('<i class="fas fa-moon"></i> Chế độ tối');
-        }
-    });
+    //     // Change the icon and text
+    //     const icon = $(this).find('i');
+    //     if (icon.hasClass('fa-moon')) {
+    //         icon.removeClass('fa-moon').addClass('fa-sun');
+    //         $(this).html('<i class="fas fa-sun"></i> Chế độ sáng');
+    //     } else {
+    //         icon.removeClass('fa-sun').addClass('fa-moon');
+    //         $(this).html('<i class="fas fa-moon"></i> Chế độ tối');
+    //     }
+    // });
 
     
     // Example 4: Remove HTML elements - Remove product cards
