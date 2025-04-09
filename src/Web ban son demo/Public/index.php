@@ -28,63 +28,63 @@ $pageParam = $parsedUrl['path'] ?? '';
   <link rel="stylesheet" href="../assets/css/customer/style-home.css">
   
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../assets/js/customer/home.js"></script>
+  <!-- <script src="../assets/js/customer/home.js"></script> -->
 
 </head>
-<div class="container bg-white" style="margin-top: 108px;">
+<!-- <div class="container bg-white" style="margin-top: 108px;"> -->
 <body>
 <?php
   switch ($pageParam) {
       case 'myprofile':
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/myprofile.php';
       break;
+      case 'home':
+          require_once '../Views/layout/customer/header.php';
+          include '../Views/pages/customer/home.php';
+      break;
       case 'product':
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/products.php';
       break;
       case 'checkout':
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/checkout.php';
       break;
-      case 'home':
-          require_once '../Views/layout/customer/header.ph';
-          include '../Views/pages/customer/home.php';
-      break;
-      case 'wishlist':
-          require_once '../Views/layout/customer/header.ph';
-          include '../Views/pages/customer/wishlist.php';
+      case 'service':
+          require_once '../Views/layout/customer/header.php';
+          include '../Views/pages/customer/services.php';
       break;
       case 'cart':
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/carts.php';
       break;
       case 'login':
-          include '../Views/middlewares/RedirectIfAuthenticatedMiddleware.php';
-          require_once '../Views/layout/customer/header.ph';
+        //   include '../Views/middlewares/RedirectIfAuthenticatedMiddleware.php';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/login.php';
           break;
       case 'sign-up':
           include '../Views/middlewares/RedirectIfAuthenticatedMiddleware.php';
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/register.php';
           break;
       case 'users':
           include '../Views/middlewares/AuthMiddleware.php';
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/users.php';
           break;
       case 'about-us':
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/about.php';
           break;
       case 'contact':
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/contact.php';
           break;
       case 'dashboard':
           include '../Views/middlewares/AuthMiddleware.php';
-          require_once '../Views/layout/customer/header.ph';
+          require_once '../Views/layout/customer/header.php';
           include '../Views/pages/customer/dashboard.php';
           break;
       default:
@@ -94,7 +94,7 @@ $pageParam = $parsedUrl['path'] ?? '';
           break;
   }
   ?>
-</div>
+<!-- </div> -->
 </body>
 </html>
 

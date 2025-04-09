@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5>PaintMaster</h5>
+                    <h5>ColorHomes Paint</h5>
                     <p>Chuyên cung cấp sơn chất lượng cao cho mọi không gian.</p>
                     <p>
                         <i class="fas fa-map-marker-alt me-2"></i> Tân Phong, Quận 7, TP. HCM<br>
@@ -49,7 +49,7 @@
             </div>
             <hr class="my-4 bg-light">
             <div class="text-center">
-                <p class="mb-0">&copy; 2025 PaintMaster. Tất cả quyền được bảo lưu.</p>
+                <p class="mb-0">&copy; 2025 ColorHomes Paint. Tất cả quyền được bảo lưu.</p>
             </div>
         </div>
     </footer>

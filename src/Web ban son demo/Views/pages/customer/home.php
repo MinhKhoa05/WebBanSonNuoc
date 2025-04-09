@@ -1,17 +1,6 @@
 <link rel="stylesheet" href="../assets/css/customer/style-products.css">
 <link rel="stylesheet" href="../assets/css/customer/style-home.css">
-<script src="../assets/customer/js/home.js"></script>
-
-<!-- Hero Section -->
-<!-- <section class="hero-section text-center">
-    <div class="container">
-        <h1 class="display-4">Màu sắc cho không gian của bạn</h1>
-        <p class="lead">Khám phá bộ sưu tập sơn chất lượng cao cho mọi không gian</p>
-        <button class="btn btn-primary btn-lg mt-3" id="heroButton">
-            Khám phá ngay <i class="fas fa-paint-roller ms-2"></i>
-        </button>
-    </div>
-</section> -->
+<script src="../assets/js/customer/home.js"></script>
 
 <!-- banner section -->
 <section class="slider-container container text-center py-5" id="image-slider">

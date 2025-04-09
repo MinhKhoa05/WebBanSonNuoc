@@ -17,3 +17,9 @@ $pageParam = $parsedUrl['path'] ?? '';
 
   <link rel="stylesheet" href="../assets/css/admin/style-admin.css">
 </head>
+<body>
+  <?php
+  
+  ?>
+</body>
+</html>
