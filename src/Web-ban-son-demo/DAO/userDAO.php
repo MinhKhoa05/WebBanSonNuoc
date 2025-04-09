@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/users.php';
+require_once '../models/User.php';
 require_once 'BaseDAO.php';
 
 class UserDAO extends BaseDAO {

@@ -1,5 +1,5 @@
 <?php
-require_once '../models/products.php';
+require_once '../models/Product.php';
 require_once 'BaseDAO.php';
 
 class ProductDAO extends BaseDAO
