@@ -231,7 +231,7 @@
             <div class="col-md-6 mb-3">
                 <div class="d-flex">
                     <input type="text" class="form-control shadow" id="discount-code" placeholder="Mã giảm giá">
-                    <button class="btn btn-outline-secondary ms-2" id="apply-discount">Áp dụng</button>
+                    <button class="btn btn-outline-secondary ms-2 shadow" id="apply-discount">Áp dụng</button>
                 </div>
                 <div id="discount-message" class="mt-2 text-success" style="display: none;"></div>
             </div>

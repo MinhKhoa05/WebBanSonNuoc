@@ -24,7 +24,7 @@
             <div class="row g-4">
                 <!-- Service 1 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100 border-0 shadow">
                         <div class="card-body p-4 text-center">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                                 <i class="bi bi-house-heart fs-1 text-paint-primary"></i>
@@ -38,7 +38,7 @@
                 
                 <!-- Service 2 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100 border-0 shadow">
                         <div class="card-body p-4 text-center">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                                 <i class="bi bi-rulers fs-1 text-paint-primary"></i>
@@ -52,7 +52,7 @@
                 
                 <!-- Service 3 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100 border-0 shadow">
                         <div class="card-body p-4 text-center">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                                 <i class="bi bi-paint-bucket fs-1 text-paint-primary"></i>
@@ -66,7 +66,7 @@
                 
                 <!-- Service 4 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100 border-0 shadow">
                         <div class="card-body p-4 text-center">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                                 <i class="bi bi-palette2 fs-1 text-paint-primary"></i>
@@ -80,7 +80,7 @@
                 
                 <!-- Service 5 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100 border-0 shadow">
                         <div class="card-body p-4 text-center">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                                 <i class="bi bi-buildings fs-1 text-paint-primary"></i>
@@ -94,7 +94,7 @@
                 
                 <!-- Service 6 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100 border-0 shadow">
                         <div class="card-body p-4 text-center">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                                 <i class="bi bi-shield-check fs-1 text-paint-primary"></i>
@@ -122,7 +122,7 @@
                     <div class="row g-4">
                         <!-- Step 1 -->
                         <div class="col-md-3">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body text-center p-4">
                                     <div class="bg-paint-primary rounded-circle text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
                                         <span class="fw-bold">1</span>
@@ -135,7 +135,7 @@
                         
                         <!-- Step 2 -->
                         <div class="col-md-3">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body text-center p-4">
                                     <div class="bg-paint-primary rounded-circle text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
                                         <span class="fw-bold">2</span>
@@ -148,7 +148,7 @@
                         
                         <!-- Step 3 -->
                         <div class="col-md-3">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body text-center p-4">
                                     <div class="bg-paint-primary rounded-circle text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
                                         <span class="fw-bold">3</span>
@@ -161,7 +161,7 @@
                         
                         <!-- Step 4 -->
                         <div class="col-md-3">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body text-center p-4">
                                     <div class="bg-paint-primary rounded-circle text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
                                         <span class="fw-bold">4</span>

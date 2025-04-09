@@ -117,7 +117,7 @@
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card shadow h-100 border-0 shadow">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
                                 <i class="bi bi-shield-check fs-2 text-paint-primary"></i>
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card shadow h-100 border-0 shadow">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
                                 <i class="bi bi-palette fs-2 text-paint-primary"></i>
@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card shadow h-100 border-0 shadow">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
                                 <i class="bi bi-leaf fs-2 text-paint-primary"></i>
@@ -150,7 +150,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card shadow h-100 border-0 shadow">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
                                 <i class="bi bi-headset fs-2 text-paint-primary"></i>
@@ -173,7 +173,7 @@
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="card border-0 shadow-sm h-100">
+                    <div class="card shadow border-0 shadow h-100">
                         <img src="/api/placeholder/300/300" class="card-img-top" alt="CEO">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Nguyễn Văn A</h5>
@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card border-0 shadow-sm h-100">
+                    <div class="card shadow border-0 shadow h-100">
                         <img src="/api/placeholder/300/300" class="card-img-top" alt="Technical Director">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Trần Thị B</h5>
@@ -201,7 +201,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card border-0 shadow-sm h-100">
+                    <div class="card shadow border-0 shadow h-100">
                         <img src="/api/placeholder/300/300" class="card-img-top" alt="Marketing Director">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Lê Văn C</h5>
@@ -215,7 +215,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card border-0 shadow-sm h-100">
+                    <div class="card shadow border-0 shadow h-100">
                         <img src="/api/placeholder/300/300" class="card-img-top" alt="Sales Director">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Phạm Thị D</h5>
@@ -243,7 +243,7 @@
                 <div class="col-lg-10 mx-auto">
                     <div class="row g-4">
                         <div class="col-md-6 mb-4">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex">
                                         <div class="me-3">
@@ -260,7 +260,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex">
                                         <div class="me-3">
@@ -277,7 +277,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex">
                                         <div class="me-3">
@@ -294,7 +294,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex">
                                         <div class="me-3">
@@ -311,7 +311,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-4 mb-md-0">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex">
                                         <div class="me-3">
@@ -328,7 +328,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card border-0 shadow-sm h-100">
+                            <div class="card border-0 shadow h-100">
                                 <div class="card-body p-4">
                                     <div class="d-flex">
                                         <div class="me-3">

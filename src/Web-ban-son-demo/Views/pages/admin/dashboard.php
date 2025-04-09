@@ -8,74 +8,12 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <link rel="stylesheet" href="../../css/admin/style-admin.css">
+  <link rel="stylesheet" href="../assets/css/admin/style-admin.css">
 </head>
+
 <body>
   <div class="container-fluid">
     <div class="row">
-      <!-- Sidebar -->
-      <div class="col-md-3 col-lg-2 sidebar p-0">
-        <div class="d-flex flex-column p-3">
-          <a href="#" class="navbar-brand d-flex align-items-center mb-3">
-            <i class="fas fa-paint-roller me-2"></i>
-            <span>Admin Sơn Nước</span>
-          </a>
-          <hr class="text-light">
-          <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-              <a href="#" class="nav-link active">
-                <i class="fas fa-tachometer-alt"></i> Tổng quan
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-box"></i> Sản phẩm
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-shopping-cart"></i> Đơn hàng
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-users"></i> Khách hàng
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-palette"></i> Danh mục màu
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-tags"></i> Khuyến mãi
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-truck"></i> Nhà cung cấp
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-clipboard-list"></i> Tồn kho
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-chart-line"></i> Báo cáo
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-cog"></i> Cài đặt
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
       <!-- Main content -->
       <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
         <!-- Top Bar -->
@@ -593,6 +531,6 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="../../js/js-admin.js"></script>
+  <script src="../../../assets/js/admin/general.js"></script>
 </body>
 </html>

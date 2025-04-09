@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="../assets/css/customer/style-products.css">
 <link rel="stylesheet" href="../assets/css/customer/style-home.css">
-<script src="../assets/js/customer/home.js"></script>
+<script src="../../../assets/js/customer/home.js"></script>
 
 <!-- banner section -->
 <section class="slider-container container text-center py-5" id="image-slider">
@@ -146,7 +146,7 @@
                 
                 <!-- Pagination -->
                 <nav aria-label="Product pagination" class="mt-4">
-                    <ul class="pagination justify-content-center">
+                    <ul class="pagination justify-content-center" id="pagination">
                         <li class="page-item disabled">
                             <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Trước</a>
                         </li>
