@@ -1,5 +1,5 @@
 <?php
-class Categories
+class Category
 {
     public int $id;
     public string $name;

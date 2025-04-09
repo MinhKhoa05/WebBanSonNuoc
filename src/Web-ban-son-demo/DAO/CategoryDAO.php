@@ -1,5 +1,5 @@
 <?php
-require_once '../models/Categories.php';
+require_once '../models/Category.php';
 require_once 'BaseDAO.php';
 
 class CategoryDAO extends BaseDAO
