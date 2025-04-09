@@ -1,43 +1,32 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giới thiệu - ColorHomes Paint</title>
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-    <style>
-        .bg-paint-primary {
-            background-color: #2563eb;
-        }
-        .text-paint-primary {
-            color: #2563eb;
-        }
-        .bg-paint-secondary {
-            background-color: #1e40af;
-        }
-        .paint-gradient {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
-        }
-        .hero-section {
-            background: url('/api/placeholder/1200/500') no-repeat center center;
-            background-size: cover;
-            position: relative;
-        }
-        .hero-overlay {
-            background: rgba(0, 0, 0, 0.6);
-        }
-        .color-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 3px;
-        }
-    </style>
-</head>
+<style>
+    .bg-paint-primary {
+        background-color: #2563eb;
+    }
+    .text-paint-primary {
+        color: #2563eb;
+    }
+    .bg-paint-secondary {
+        background-color: #1e40af;
+    }
+    .paint-gradient {
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+    }
+    .hero-section {
+        background: url('/api/placeholder/1200/500') no-repeat center center;
+        background-size: cover;
+        position: relative;
+    }
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    .color-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 3px;
+    }
+</style>
 <body>
     <!-- Hero Section -->
     <section class="hero-section">
