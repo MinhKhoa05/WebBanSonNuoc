@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../Models/users.php';
 
-class userDAO {
+class UserDAO {
     private $connection;
 
     public function __construct($database)

@@ -27,11 +27,6 @@ function hang_hoa_select_all(){
     $sql = "SELECT * FROM hang_hoa";
     return pdo_query($sql);
 }
-function hang_hoa_select_all(){
-    $sql = "SELECT * FROM hang_hoa";
-    return pdo_query($sql);
-}
-
 
 function hang_hoa_select_by_id($ma_hh){
     $sql = "SELECT * FROM hang_hoa WHERE ma_hh=?";

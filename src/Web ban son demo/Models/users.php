@@ -1,28 +1,27 @@
 <?php
-class user {
-    public $id;
-    public $username;
-    public $password;
-    public $email;
-    public $phone;
-    public $address;
-    public $role;
-    public $is_delete;
-    public $create_at;
-    public $update_at;
+class User {
+    public int $id;
+    public string $username;
+    public string $password;
+    public string $email;
+    public string $phone;
+    public string $address;
+    public string $role;
+    public int $is_delete;
+    public string $create_at;
+    public string $update_at;
 
-    public function __construct($id, $username, $password, $email, $phone, $address, $role, $is_delete, $create_at, $update_at) {
-        $this->id = $id;
-        $this->name = $username;
-        $this->password = $password;
-        $this->email = $email;
-        $this->phone = $phone;
-        $this->address = $address;
-        $this->role = $role;
-        $this->delete = $is_delete;
-        $this->created_at = $create_at;
-        $this->updated_at = $update_at;
+    public function __construct(array $data = []) {
+        $this->id = (int)($data['id'] ?? 0);
+        $this->username = $data['username'] ?? '';
+        $this->password = $data['password'] ?? '';
+        $this->email = $data['email'] ?? '';
+        $this->phone = $data['phone'] ?? '';
+        $this->address = $data['address'] ?? '';
+        $this->role = $data['role'] ?? '';
+        $this->is_delete = (int)($data['is_delete'] ?? 0);
+        $this->create_at = $data['create_at'] ?? '';
+        $this->update_at = $data['update_at'] ?? '';
     }
 }
-
 ?>

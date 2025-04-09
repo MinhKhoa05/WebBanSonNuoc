@@ -1,44 +1,31 @@
 <?php
 class Product {
-    public $id;
-    public $username;
-    public $description;
-    public $price;
-    public $discount;
-    public $stock;
-    public $status;
-    public $category_id;
-    public $thumbnail;
-    public $is_delete;
-    public $created_at;
-    public $updated_at;
+    public int $id;
+    public string $name;
+    public string $description;
+    public float $price;
+    public float $discount;
+    public int $stock;
+    public string $status;
+    public int $category_id;
+    public string $thumbnail;
+    public int $is_deleted;
+    public string $created_at;
+    public string $updated_atad;
 
-    public function __construct(
-        $id,
-        $username,
-        $description,
-        $price,
-        $discount,
-        $stock,
-        $status,
-        $category_id,
-        $thumbnail,
-        $is_delete,
-        $created_at,
-        $updated_at,
-    ) {
-        $this->id = $id;
-        $this->username = $username;
-        $this->description = $description;
-        $this->price = $price;
-        $this->discount = $discount;
-        $this->stock = $stock;
-        $this->status = $status;
-        $this->category_id = $category_id;
-        $this->thumbnail = $thumbnail;
-        $this->is_delete = $is_delete;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
+    public function __construct(array $data = []) {
+        $this->id = (int)($data['id'] ?? 0);
+        $this->name = $data['name'] ?? '';
+        $this->description = $data['description'] ?? '';
+        $this->price = (float)($data['price'] ?? 0);
+        $this->discount = (float)($data['discount'] ?? 0);
+        $this->stock = (int)($data['stock'] ?? 0);
+        $this->status = $data['status'] ?? '';
+        $this->category_id = (int)($data['category_id'] ?? 0);
+        $this->thumbnail = $data['thumbnail'] ?? '';
+        $this->is_deleted = (int)($data['is_deleted'] ?? 0);
+        $this->created_at = $data['created_at'] ?? '';
+        $this->updated_atad = $data['updated_at'] ?? '';
     }
 }
 ?>
