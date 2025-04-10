@@ -16,7 +16,7 @@
     }
 
     .hero-section {
-        background: url('/api/placeholder/1200/500') no-repeat center center;
+        background: url('views/assets/images/Background.png') no-repeat center center;
         background-size: cover;
         position: relative;
     }
@@ -57,7 +57,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="/api/placeholder/600/400" alt="Câu chuyện của chúng tôi" class="img-fluid rounded shadow">
+                    <img src="views/assets/images/Background.png" alt="Câu chuyện của chúng tôi" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6">
                     <div class="ms-lg-4">
@@ -199,7 +199,7 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="card border-0 shadow-sm h-100">
-                        <img src="/api/placeholder/300/300" class="card-img-top" alt="CEO">
+                        <img src="views/assets/images/Debirun.jpg" class="card-img-top" alt="CEO">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Nguyễn Văn A</h5>
                             <p class="text-muted small mb-3">Tổng Giám đốc</p>
@@ -214,7 +214,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="card border-0 shadow-sm h-100">
-                        <img src="/api/placeholder/300/300" class="card-img-top" alt="Technical Director">
+                        <img src="views/assets/images/Ayaka.jpeg" class="card-img-top" alt="Technical Director">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Trần Thị B</h5>
                             <p class="text-muted small mb-3">Giám đốc Kỹ thuật</p>
@@ -229,7 +229,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="card border-0 shadow-sm h-100">
-                        <img src="/api/placeholder/300/300" class="card-img-top" alt="Marketing Director">
+                        <img src="views/assets/images/Neuvillete.jpeg" class="card-img-top" alt="Marketing Director">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Lê Văn C</h5>
                             <p class="text-muted small mb-3">Giám đốc Marketing</p>
@@ -244,7 +244,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="card border-0 shadow-sm h-100">
-                        <img src="/api/placeholder/300/300" class="card-img-top" alt="Sales Director">
+                        <img src="views/assets/images/Kaveh.jpeg" class="card-img-top" alt="Sales Director">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Phạm Thị D</h5>
                             <p class="text-muted small mb-3">Giám đốc Kinh doanh</p>

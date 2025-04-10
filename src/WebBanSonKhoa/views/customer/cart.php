@@ -122,7 +122,7 @@
                         <div class="col-md-6">
                             <div class="d-flex align-items-center">
                                 <div class="position-relative me-3">
-                                    <img src="/api/placeholder/100/100" alt="Sơn Jotun Majestic" class="product-img rounded">
+                                    <img src="views/assets/images/Son-1.jpg" alt="Sơn Jotun Majestic" class="product-img rounded">
                                     <span class="discount-badge">-10%</span>
                                 </div>
                                 <div>
@@ -158,7 +158,7 @@
                         <div class="col-md-6">
                             <div class="d-flex align-items-center">
                                 <div class="position-relative me-3">
-                                    <img src="/api/placeholder/100/100" alt="Sơn TOA" class="product-img rounded">
+                                    <img src="views/assets/images/Son-2.jpg" alt="Sơn TOA" class="product-img rounded">
                                 </div>
                                 <div>
                                     <h5 class="product-name mb-1">Sơn nội thất cao cấp TOA</h5>
@@ -192,7 +192,7 @@
                         <div class="col-md-6">
                             <div class="d-flex align-items-center">
                                 <div class="position-relative me-3">
-                                    <img src="/api/placeholder/100/100" alt="Sơn lót đa năng" class="product-img rounded">
+                                    <img src="views/assets/images/Son-3.jpg" alt="Sơn lót đa năng" class="product-img rounded">
                                     <span class="discount-badge">-5%</span>
                                 </div>
                                 <div>

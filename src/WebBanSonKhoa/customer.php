@@ -24,7 +24,10 @@ switch ($pageParam) {
         include 'views/customer/services.php';
         break;
     case 'cart':
-        include 'views/customer/carts.php';
+        include 'views/customer/cart.php';
+        break;
+    case 'about-us':
+        include 'views/customer/about-us.php';
         break;
     default:
         include 'views/customer/layout/home.php';
