@@ -1,6 +1,6 @@
 <?php
 function GetAllProduct()
-{  
+{
     $DBH=connect();
     $query="select * from product";
     $STH = $DBH->query($query);
