@@ -5,8 +5,6 @@
 <?php
     include("banner.php");
     include("products_section.php");
-
-    // include("services.php");
 ?>
 
 <!-- Services Section -->

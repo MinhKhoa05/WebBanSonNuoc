@@ -1,7 +1,40 @@
 <?php
-    require_once __DIR__ . '/../../../models/category.php';
-    $categories = category_select_all(); // <- hàm này sẽ lấy danh sách Danh mục
+require_once __DIR__ . '/../../../models/product.php';
+require_once __DIR__ . '/../../../models/category.php';
+
+$categories = category_select_all();
+$products = product_select_all();
+
 ?>
+
+<style>
+    .product-img {
+        height: 220px;
+        width: 100%;
+        object-fit: contain;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover .product-img {
+        transform: scale(1.05);
+        z-index: 2;
+    }
+
+    .card {
+        border: none;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+</style>
+
 
 <!-- Products Section -->
 <section id="products" class="py-5">
@@ -68,8 +101,30 @@
 
                 <!-- Products List -->
                 <div class="row" id="productsList">
-                    <!-- Product Cards - Render here -->
-                    Hiển thị các sản phẩm ở đây
+                    <?php if (!empty($products) && is_array($products)): ?>
+                        <?php foreach ($products as $product): ?>
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="uploads/<?= htmlspecialchars($product['thumbnail']) ?>"
+                                        class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']) ?>">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
+                                        <p class="card-text text-danger fw-bold">
+                                            <?= number_format($product['price'], 0, ',', '.') ?>₫
+                                        </p>
+                                        <a href="product-detail.php?id=<?= $product['id'] ?>"
+                                            class="btn btn-outline-primary mt-auto">
+                                            Xem chi tiết
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="col-12">
+                            <p class="text-muted text-center">Không có sản phẩm nào để hiển thị.</p>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Pagination -->

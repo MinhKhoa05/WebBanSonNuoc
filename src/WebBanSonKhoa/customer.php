@@ -15,7 +15,7 @@ switch ($pageParam) {
         include 'views/customer/layout/home.php';
         break;
     case 'product':
-        include 'views/customer/products.php';
+        include 'views/customer/layout/products.php';
         break;
     case 'checkout':
         include 'views/customer/checkout.php';
