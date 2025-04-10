@@ -1,4 +1,3 @@
-
 // Sample data for products
 const products = [
     {
@@ -14,7 +13,7 @@ const products = [
         id: 2,
         name: "Sơn ngoại thất chống thấm",
         price: 920000,
-        image: "../assets/images/Son-2.jpg",
+        image: "../assets/images/Son-1.jpg",
         category: "exterior",
         discount: 0,
         description: "Sơn ngoại thất chống thấm, chịu được mọi thời tiết"
@@ -23,7 +22,7 @@ const products = [
         id: 3,
         name: "Sơn lót đa năng",
         price: 550000,
-        image: "../assets/images/Son-3.jpg",
+        image: "../assets/images/Son-1.jpg",
         category: "interior",
         discount: 5,
         description: "Sơn lót đa năng cho cả nội thất và ngoại thất"
@@ -32,7 +31,7 @@ const products = [
         id: 4,
         name: "Sơn kim loại chống gỉ",
         price: 780000,
-        image: "../assets/images/Son-4.jpg",
+        image: "../assets/images/Son-1.jpg",
         category: "special",
         discount: 0,
         description: "Sơn chuyên dụng cho bề mặt kim loại, chống gỉ sét"
@@ -41,7 +40,7 @@ const products = [
         id: 5,
         name: "Sơn chống nóng",
         price: 1200000,
-        image: "../assets/images/Son-5.jpg",
+        image: "../assets/images/Son-1.jpg",
         category: "special",
         discount: 15,
         description: "Sơn đặc biệt giúp giảm nhiệt độ bề mặt"
@@ -50,207 +49,237 @@ const products = [
         id: 6,
         name: "Sơn ngoại thất bền màu",
         price: 980000,
-        image: "../assets/images/Son-6.jpg",
+        image: "../assets/images/Son-2.jpg",
         category: "exterior",
         discount: 0,
         description: "Sơn ngoại thất cao cấp với độ bền màu lên đến 10 năm"
     },
-];
-
-document.addEventListener('DOMContentLoaded', () => {
-            const sliderContainer = document.getElementById('image-slider');
-            const slider = sliderContainer.querySelector('.slider');
-            const slides = slider.querySelectorAll('.slide');
-            const prevBtn = sliderContainer.querySelector('.prev');
-            const nextBtn = sliderContainer.querySelector('.next');
-            const totalSlides = slides.length;
-            
-            let currentIndex = 0;
-            let autoSlideInterval;
-            
-            // Khởi tạo slider
-            function initSlider() {
-                // Thêm sự kiện cho các nút
-                prevBtn.addEventListener('click', () => navigateSlide(-1));
-                nextBtn.addEventListener('click', () => navigateSlide(1));
-                
-                // Bắt đầu tự động chuyển slide
-                startAutoSlide();
-                
-                // Dừng tự động chuyển khi hover vào slider
-                sliderContainer.addEventListener('mouseenter', stopAutoSlide);
-                sliderContainer.addEventListener('mouseleave', startAutoSlide);
-                
-                // Thêm hỗ trợ swipe cho thiết bị cảm ứng
-                setupTouchEvents();
-            }
-            
-            // Điều hướng đến slide cụ thể
-            function showSlide(index) {
-                currentIndex = (index + totalSlides) % totalSlides;
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-            
-            // Điều hướng tiến/lùi
-            function navigateSlide(direction) {
-                showSlide(currentIndex + direction);
-            }
-            
-            // Bắt đầu tự động chuyển slide
-            function startAutoSlide() {
-                stopAutoSlide(); // Tránh nhiều interval chạy đồng thời
-                autoSlideInterval = setInterval(() => navigateSlide(1), 5000);
-            }
-            
-            // Dừng tự động chuyển slide
-            function stopAutoSlide() {
-                clearInterval(autoSlideInterval);
-            }
-            
-            // Thiết lập sự kiện swipe cho thiết bị cảm ứng
-            function setupTouchEvents() {
-                let touchStartX = 0;
-                let touchEndX = 0;
-                
-                sliderContainer.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                }, { passive: true });
-                
-                sliderContainer.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                }, { passive: true });
-                
-                function handleSwipe() {
-                    const SWIPE_THRESHOLD = 50;
-                    if (touchStartX - touchEndX > SWIPE_THRESHOLD) {
-                        navigateSlide(1); // Swipe trái -> slide tiếp theo
-                    } else if (touchEndX - touchStartX > SWIPE_THRESHOLD) {
-                        navigateSlide(-1); // Swipe phải -> slide trước
-                    }
-                }
-            }
-            
-            // Khởi tạo slider
-            initSlider();
-        });
-
-// Sample data for testimonials
-const testimonials = [
     {
-        name: "Anh Long Neuvillete",
-        role: "Chủ nhà",
-        content: "Tôi rất hài lòng với chất lượng sơn và dịch vụ tư vấn tận tình của ColorMaster. Căn nhà của tôi trông như mới sau khi sơn.",
-        image: "../assets/images/Neuvillete.jpeg"
+        id: 7,
+        name: "Sơn chống bám bụi",
+        price: 890000,
+        image: "../assets/images/Son-1.jpg",
+        category: "interior",
+        discount: 5,
+        description: "Sơn nội thất chống bám bụi, dễ lau chùi"
     },
     {
-        name: "Kaveh Trần",
-        role: "Kiến trúc sư",
-        content: "Là một kiến trúc sư, tôi luôn tìm kiếm những sản phẩm chất lượng cao cho khách hàng. ColorMaster luôn là sự lựa chọn hàng đầu của tôi.",
-        image: "../assets/images/Kaveh.jpeg"
+        id: 8,
+        name: "Sơn cách nhiệt",
+        price: 1350000,
+        image: "../assets/images/Son-1.jpg",
+        category: "special",
+        discount: 10,
+        description: "Sơn cách nhiệt giúp giảm nhiệt độ trong nhà"
     },
     {
-        name: "Kamisato Ayaka",
-        role: "Nhà thầu",
-        content: "Đã hợp tác với ColorMaster trong nhiều dự án và luôn hài lòng với chất lượng sản phẩm và dịch vụ giao hàng đúng hẹn.",
-        image: "../assets/images/Ayaka.jpeg"
+        id: 9,
+        name: "Sơn chống thấm cao cấp",
+        price: 1100000,
+        image: "../assets/images/Son-1.jpg",
+        category: "exterior",
+        discount: 0,
+        description: "Sơn chống thấm cao cấp, bảo vệ tường nhà"
+    },
+    {
+        id: 10,
+        name: "Sơn lót kháng kiềm",
+        price: 600000,
+        image: "../assets/images/Son-1.jpg", // Sửa lỗi đường dẫn
+        category: "interior",
+        discount: 5,
+        description: "Sơn lót kháng kiềm, bảo vệ lớp sơn phủ"
+    },
+    {
+        id: 11,
+        name: "Sơn phủ bóng",
+        price: 950000,
+        image: "../assets/images/Son-1.jpg", // Sửa lỗi đường dẫn
+        category: "special",
+        discount: 0,
+        description: "Sơn phủ bóng, tăng độ bền và thẩm mỹ"
+    },
+    {
+        id: 12,
+        name: "Sơn ngoại thất chống tia UV",
+        price: 1250000,
+        image: "../assets/images/Son-1.jpg", // Sửa lỗi đường dẫn
+        category: "exterior",
+        discount: 10,
+        description: "Sơn ngoại thất chống tia UV, bảo vệ màu sắc"
+    },
+    {
+        id: 13,
+        name: "Sơn ngoại thất bền màu",
+        price: 980000,
+        image: "../assets/images/Son-1.jpg",
+        category: "exterior",
+        discount: 0,
+        description: "Sơn ngoại thất cao cấp với độ bền màu lên đến 10 năm"
+    },
+    {
+        id: 14,
+        name: "Sơn chống bám bụi",
+        price: 890000,
+        image: "../assets/images/Son-1.jpg",
+        category: "interior",
+        discount: 5,
+        description: "Sơn nội thất chống bám bụi, dễ lau chùi"
+    },
+    {
+        id: 15,
+        name: "Sơn cách nhiệt",
+        price: 1350000,
+        image: "../assets/images/Son-1.jpg",
+        category: "special",
+        discount: 10,
+        description: "Sơn cách nhiệt giúp giảm nhiệt độ trong nhà"
+    },
+    {
+        id: 16,
+        name: "Sơn chống thấm cao cấp",
+        price: 1100000,
+        image: "../assets/images/Son-1.jpg",
+        category: "exterior",
+        discount: 0,
+        description: "Sơn chống thấm cao cấp, bảo vệ tường nhà"
+    },
+    {
+        id: 17,
+        name: "Sơn lót kháng kiềm",
+        price: 600000,
+        image: "../assets/images/Son-2.jpg", // Sửa lỗi đường dẫn
+        category: "interior",
+        discount: 5,
+        description: "Sơn lót kháng kiềm, bảo vệ lớp sơn phủ"
+    },
+    {
+        id: 18,
+        name: "Sơn phủ bóng",
+        price: 950000,
+        image: "../assets/images/Son-1.jpg", // Sửa lỗi đường dẫn
+        category: "special",
+        discount: 0,
+        description: "Sơn phủ bóng, tăng độ bền và thẩm mỹ"
+    },
+    {
+        id: 19,
+        name: "Sơn ngoại thất chống tia UV",
+        price: 1250000,
+        image: "../assets/images/Son-1.jpg", // Sửa lỗi đường dẫn
+        category: "exterior",
+        discount: 10,
+        description: "Sơn ngoại thất chống tia UV, bảo vệ màu sắc"
     }
 ];
 
-$(document).ready(function() {
-    // Example 1: Change all HTML elements - Dynamically adding products
-    function renderProducts(productList) {
-        const productContainer = $('#productsList');
-        productContainer.empty();
+// Pagination variables
+let currentPage = 1;
+const productsPerPage = 6;
+
+// Render products
+function renderProducts(productList, page = 1) {
+    const productContainer = $('#productsList');
+    productContainer.empty();
+
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const paginatedProducts = productList.slice(startIndex, endIndex);
+
+    paginatedProducts.forEach(product => {
+        const discountBadge = product.discount > 0 ? 
+            `<div class="promotion-badge">-${product.discount}%</div>` : '';
         
-        productList.forEach(product => {
-            const discountBadge = product.discount > 0 ? 
-                `<div class="promotion-badge">-${product.discount}%</div>` : '';
-            
-            const finalPrice = product.discount > 0 ? 
-                product.price * (1 - product.discount/100) : product.price;
-            
-            const productCard = `
-                <div class="col-md-4 product-item" data-category="${product.category}">
-                    <div class="card product-card position-relative">
-                        ${discountBadge}
-                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
-                        <div class="card-body">
-                            <h5 class="card-title">${product.name}</h5>
-                            <p class="card-text">${product.description}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    ${product.discount > 0 ? 
-                                        `<span class="text-muted text-decoration-line-through">${product.price.toLocaleString()}đ</span> ` : ''}
-                                    <span class="fw-bold text-primary">${finalPrice.toLocaleString()}đ</span>
-                                </div>
-                                <button class="btn btn-sm btn-outline-primary add-to-cart" data-product-id="${product.id}">
-                                    <i class="fas fa-cart-plus"></i> Thêm vào giỏ
-                                </button>
+        const finalPrice = product.discount > 0 ? 
+            product.price * (1 - product.discount / 100) : product.price;
+        
+        const productCard = `
+            <div class="col-md-3 product-item" data-category="${product.category}">
+                <div class="card product-card position-relative">
+                    ${discountBadge}
+                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">${product.description}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                ${product.discount > 0 ? 
+                                    `<span class="text-muted text-decoration-line-through">${product.price.toLocaleString()}đ</span> ` : ''}
+                                <span class="fw-bold text-primary">${finalPrice.toLocaleString()}đ</span>
                             </div>
+                            <button class="btn btn-sm btn-outline-primary add-to-cart" data-product-id="${product.id}">
+                                <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
                         </div>
                     </div>
                 </div>
-            `;
-            
-            productContainer.append(productCard);
-        });
+            </div>
+        `;
+        
+        productContainer.append(productCard);
+    });
+
+    renderPagination(productList.length, page);
+}
+
+// Render pagination
+function renderPagination(totalProducts, currentPage) {
+    const paginationContainer = $('#pagination');
+    paginationContainer.empty();
+
+    const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageItem = `
+            <li class="page-item ${i === currentPage ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>
+        `;
+        paginationContainer.append(pageItem);
     }
-    
-    // Initial product rendering
-    renderProducts(products);
-    
-    // Example 2: Change HTML attributes - Product filtering
+
+    // Add click event for pagination
+    $('.page-link').on('click', function (e) {
+        e.preventDefault();
+        const page = parseInt($(this).data('page'));
+        currentPage = page;
+        renderProducts(products, page);
+    });
+}
+
+// Initialize product rendering
+$(document).ready(function () {
+    renderProducts(products, currentPage);
+
+    // Filter products by category
     $('.filter-btn').on('click', function() {
-        // Change active class attribute
         $('.filter-btn').removeClass('active');
         $(this).addClass('active');
         
         const filter = $(this).data('filter');
-        
         if (filter === 'all') {
-            renderProducts(products);
+            renderProducts(products, 1);
         } else {
             const filteredProducts = products.filter(product => product.category === filter);
-            renderProducts(filteredProducts);
+            renderProducts(filteredProducts, 1);
         }
     });
-    
-    // Example 3: Change CSS styles - Theme toggle
-    // $('#themeToggle').on('click', function() {
-    //     // Toggle dark mode
-    //     $('body').toggleClass('bg-dark text-white');
-    //     $('.card').toggleClass('bg-dark text-white border-light');
-    //     $('.bg-light').toggleClass('bg-secondary');
-        
-    //     // Change the icon and text
-    //     const icon = $(this).find('i');
-    //     if (icon.hasClass('fa-moon')) {
-    //         icon.removeClass('fa-moon').addClass('fa-sun');
-    //         $(this).html('<i class="fas fa-sun"></i> Chế độ sáng');
-    //     } else {
-    //         icon.removeClass('fa-sun').addClass('fa-moon');
-    //         $(this).html('<i class="fas fa-moon"></i> Chế độ tối');
-    //     }
-    // });
 
-    
-    // Example 4: Remove HTML elements - Remove product cards
+    // Add to cart functionality
     $(document).on('click', '.add-to-cart', function(e) {
         e.preventDefault();
         const productId = $(this).data('product-id');
-        
- 
         const productName = products.find(p => p.id === productId).name;
+
         const notification = $(`
             <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert">
                 <strong>Đã thêm!</strong> ${productName} đã được thêm vào giỏ hàng.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         `);
-        
+
         $('body').append(notification);
-        
+
         // Auto remove after 3 seconds
         setTimeout(() => {
             notification.alert('close');
@@ -399,3 +428,16 @@ function hexToRgb(hex) {
 displaySavedColors();
 }
 )
+
+// ----------Cập nhật số lượng giỏ hàng----------------
+function updateCartCount() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+    
+    document.querySelectorAll('#cartCount, #mobileCartCount').forEach(element => {
+        element.textContent = totalItems;
+    });
+}
+
+// Gọi hàm này khi trang tải
+document.addEventListener('DOMContentLoaded', updateCartCount);

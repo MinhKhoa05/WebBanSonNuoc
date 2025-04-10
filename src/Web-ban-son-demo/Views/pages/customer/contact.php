@@ -11,7 +11,7 @@
     <div class="container mb-5">
         <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card h-100 text-center p-4">
+                <div class="card shadow h-100 text-center p-4">
                     <div class="card-body">
                         <i class="fas fa-map-marker-alt text-primary fs-1 mb-3"></i>
                         <h4>Địa Chỉ</h4>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100 text-center p-4">
+                <div class="card shadow h-100 text-center p-4">
                     <div class="card-body">
                         <i class="fas fa-phone-alt text-primary fs-1 mb-3"></i>
                         <h4>Điện Thoại</h4>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100 text-center p-4">
+                <div class="card shadow h-100 text-center p-4">
                     <div class="card-body">
                         <i class="fas fa-envelope text-primary fs-1 mb-3"></i>
                         <h4>Email</h4>
@@ -112,7 +112,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="card shadow h-100">
                     <div class="card-body">
                         <h5 class="card-title">Showroom TP.HCM</h5>
                         <p class="card-text">123 Đường Lê Lợi, Quận 1<br>TP. Hồ Chí Minh</p>
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="card shadow h-100">
                     <div class="card-body">
                         <h5 class="card-title">Showroom Hà Nội</h5>
                         <p class="card-text">456 Đường Trần Phú, Quận Ba Đình<br>Hà Nội</p>
@@ -130,7 +130,7 @@
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="card shadow h-100">
                     <div class="card-body">
                         <h5 class="card-title">Showroom Đà Nẵng</h5>
                         <p class="card-text">789 Đường Nguyễn Văn Linh, Quận Hải Châu<br>Đà Nẵng</p>
