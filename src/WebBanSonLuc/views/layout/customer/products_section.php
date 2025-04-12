@@ -24,6 +24,9 @@ $currentPage = max(1, min($currentPage, $totalPages)); // Đảm bảo trang n�
 $startIndex = ($currentPage - 1) * $productsPerPage;
 $productsOnPage = array_slice($products, $startIndex, $productsPerPage);
 
+// var_dump($productsOnPage);
+// die();
+
 ?>
 
 <!-- Products Section -->
@@ -49,7 +52,6 @@ $productsOnPage = array_slice($products, $startIndex, $productsPerPage);
                                 </li>
                             <?php endforeach; ?>
                         </ul>
-
                     </div>
                 </div>
 
@@ -73,12 +75,12 @@ $productsOnPage = array_slice($products, $startIndex, $productsPerPage);
                 </div>
             </div>
 
-            <!-- Main content -->
-            <div class="col-lg-8">
+            <!-- Main content - Fixed to use 9 columns to complete the 12-column grid -->
+            <div class="col-lg-9">
                 <!-- Sort Options -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
-                        <span class="me-2">Hiển thị <span id="productCount">12</span> sản phẩm</span>
+                        <span class="me-2">Hiển thị <span id="productCount"><?= count($productsOnPage) ?></span> sản phẩm</span>
                     </div>
                     <div class="d-flex align-items-center">
                         <label class="me-2">Sắp xếp theo:</label>
@@ -91,11 +93,12 @@ $productsOnPage = array_slice($products, $startIndex, $productsPerPage);
                     </div>
                 </div>
 
-                <!-- Products List -->
+                <!-- Products List - Row with properly sized columns -->
                 <div class="row" id="productsList">
                     <?php if (!empty($productsOnPage) && is_array($productsOnPage)): ?>
                         <?php foreach ($productsOnPage as $product): ?>
-                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <!-- Changed to col-lg-4 for 3 products per row on large screens -->
+                            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
                                 <div class="card h-100 shadow">
                                     <img src="uploads/<?= htmlspecialchars($product['thumbnail']) ?>"
                                         class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']) ?>">
