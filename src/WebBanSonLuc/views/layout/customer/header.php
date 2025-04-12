@@ -1,7 +1,7 @@
 <header>
-  <link rel="stylesheet" href="assets/css/style-home.css">
+  <link rel="stylesheet" href="views/assets/css/customer/home.css">
+  <script src="views/assets/js/customer/home.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- <script src="../assets/js/customer/home.js"></script> -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="position: fixed; width: 100%; z-index: 999;">
     <div class="container">
@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto active">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.php">Trang chủ</a>
+                    <a class="nav-link" href="index.php">Trang chủ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=cart">Sản phẩm</a>
@@ -28,9 +28,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=contact">Liên hệ</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=cart">Giỏ hàng</a>
-                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?page=myprofile">My profile</a>
+                </li>
             </ul>
             <div class="d-flex">
                 <button class="btn btn-primary me-2">

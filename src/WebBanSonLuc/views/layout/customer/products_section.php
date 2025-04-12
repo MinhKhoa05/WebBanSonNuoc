@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="views/assets/css/customer/products.css">
+<link rel="stylesheet" href="views/assets/css/customer/products-section.css">
 
 <?php
 require_once __DIR__ . '/../../../models/product.php';
@@ -107,8 +107,7 @@ $productsOnPage = array_slice($products, $startIndex, $productsPerPage);
                                         <p class="card-text text-danger fw-bold">
                                             <?= number_format($product['price'], 0, ',', '.') ?>₫
                                         </p>
-                                        <a href="product-detail.php?id=<?= $product['id'] ?>"
-                                            class="btn btn-outline-primary mt-auto">
+                                        <a href="index.php?page=product-detail&id=<?= $product['id'] ?>" class="btn btn-outline-primary mt-auto">
                                             Xem chi tiết
                                         </a>
                                     </div>

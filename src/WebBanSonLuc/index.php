@@ -61,6 +61,9 @@ switch ($pageParam) {
     case 'sign-in':
         include 'views/pages/customer/register.php';
         break;
+    case 'product-detail':
+        include 'views/pages/customer/product-details.php';
+        break;
     default:
         include 'views/pages/customer/home.php';
         break;
