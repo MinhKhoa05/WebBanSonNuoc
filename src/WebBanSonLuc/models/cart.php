@@ -74,4 +74,55 @@ function cart_delete_by_user($user_id)
     pdo_execute($sql, $user_id);
 }
 
+function get_cart_from_database($user_id) {
+    global $pdo;
+    $sql = "SELECT * FROM carts WHERE user_id = :user_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['user_id' => $user_id]);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result ? $result : []; // Trả về mảng rỗng nếu không có dữ liệu
+}
+
+function save_cart_to_database($cart, $user_id) {
+    global $pdo;
+
+    foreach ($cart as $item) {
+        // Kiểm tra sản phẩm đã tồn tại trong giỏ hàng của user chưa
+        $sql = "SELECT * FROM carts WHERE product_id = :product_id AND user_id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            'product_id' => $item['id'],
+            'user_id' => $user_id
+        ]);
+        $existingItem = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($existingItem) {
+            // Nếu sản phẩm đã có, cập nhật số lượng
+            $sql = "UPDATE carts 
+                    SET quantity = quantity + :quantity 
+                    WHERE product_id = :product_id AND user_id = :user_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'quantity' => $item['quantity'],
+                'product_id' => $item['id'],
+                'user_id' => $user_id
+            ]);
+        } else {
+            // Nếu chưa có, thêm mới
+            $sql = "INSERT INTO carts (user_id, product_id, name, price, thumbnail, quantity) 
+                    VALUES (:user_id, :product_id, :name, :price, :thumbnail, :quantity)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                'user_id' => $user_id,
+                'product_id' => $item['id'],
+                'name' => $item['name'],
+                'price' => $item['price'],
+                'thumbnail' => $item['thumbnail'],
+                'quantity' => $item['quantity']
+            ]);
+        }
+    }
+}
+
+
 ?>

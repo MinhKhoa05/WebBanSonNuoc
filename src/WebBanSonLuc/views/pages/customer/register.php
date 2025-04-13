@@ -26,7 +26,7 @@
                                         <p class="text-muted">Tạo tài khoản để trải nghiệm dịch vụ tốt nhất từ ColorHomes Paint</p>
                                     </div>
                                     <!-- Registration Form -->
-                                    <form>
+                                    <form action="controllers/userController.php?action=register" method="POST">
                                         <div class="row g-3">
                                             <!-- Họ tên -->
                                             <div class="col-md-6">
@@ -70,7 +70,7 @@
                                     </form>
                                     <!-- Đăng nhập link -->
                                     <div class="mt-4 text-center">
-                                        <p class="mb-0">Đã có tài khoản? <a href="#" class="text-primary">Đăng nhập</a></p>
+                                        <p class="mb-0">Đã có tài khoản? <a href="index.php?page=login" class="text-primary text-decoration-none fw-semibold">Đăng nhập</a></p>
                                     </div>
                                 </div>
                             </div>

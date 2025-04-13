@@ -1,6 +1,7 @@
 <?php
 // Bao gồm các file cần thiết cho trang customer
 require_once 'views/layout/customer/header.php';
+
 ?>
 <?php
 // Router
@@ -16,7 +17,7 @@ $pageParam = $parsedUrl['path'] ?? '';
     <title>PaintMaster</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -29,13 +30,14 @@ $pageParam = $parsedUrl['path'] ?? '';
 // Điều hướng đến các trang cụ thể
 switch ($pageParam) {
     case 'myprofile':
+        include 'controllers/userController.php?action=checkAuthen';
         include 'views/pages/customer/myprofile.php';
         break;
     case 'home':
         include 'views/pages/customer/home.php';
         break;
-    case 'product':
-        include 'views/pages/customer/products.php';
+    case 'product-detail':
+        include 'views/pages/customer/product-details.php';
         break;
     case 'checkout':
         include 'views/pages/customer/checkout.php';
@@ -52,17 +54,13 @@ switch ($pageParam) {
     case 'contact':
         include 'views/pages/customer/contact.php';
         break;
-    case 'cart':
-        include 'views/pages/customer/cart.php';
-        break;
     case 'login':
+        include 'controllers/userController.php?action=checkAuthen';
         include 'views/pages/customer/login.php';
         break;
     case 'sign-in':
+        include 'controllers/userController.php?action=checkAuthen';
         include 'views/pages/customer/register.php';
-        break;
-    case 'product-detail':
-        include 'views/pages/customer/product-details.php';
         break;
     default:
         include 'views/pages/customer/home.php';

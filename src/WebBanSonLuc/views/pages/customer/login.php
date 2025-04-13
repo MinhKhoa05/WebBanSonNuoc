@@ -38,7 +38,7 @@
                     <p class="text-muted">Vui lòng nhập thông tin tài khoản của bạn</p>
                 </div>
                 
-                <form>
+                <form action="controllers/userController.php?action=login" method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email hoặc số điện thoại</label>
                         <div class="input-group">
@@ -93,7 +93,7 @@
                     
                     <div class="text-center">
                         <p class="mb-0">Chưa có tài khoản? 
-                            <a href="customer.php?page=sign-up" class="text-decoration-none fw-semibold">Đăng ký ngay</a>
+                            <a href="index.php?page=sign-up" class="text-decoration-none fw-semibold">Đăng ký ngay</a>
                         </p>
                     </div>
                 </form>

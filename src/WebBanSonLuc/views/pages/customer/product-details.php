@@ -58,16 +58,13 @@ if (!$product) {
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-cart-plus me-2"></i> Thêm vào giỏ hàng
                     </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-cart-plus me-2"></i> Mua ngay
-                    </button>
                 </form>
             </div>
         </div>
 
         <!-- Mô tả chi tiết -->
          <div class="container product-description shadow">
-            <div class="">
+            <div>
                 <h3 class="text-primary">Mô tả sản phẩm</h3>
                 <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
             </div>
