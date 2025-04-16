@@ -1,6 +1,7 @@
 <?php
 // Bao gồm các file cần thiết cho trang customer
 require_once 'views/layout/customer/header.php';
+require_once 'controllers/userController.php';
 
 ?>
 <?php
@@ -30,7 +31,7 @@ $pageParam = $parsedUrl['path'] ?? '';
 // Điều hướng đến các trang cụ thể
 switch ($pageParam) {
     case 'myprofile':
-        include 'controllers/userController.php?action=checkAuthen';
+        include 'views/middlewares/checkAuthen.php';
         include 'views/pages/customer/myprofile.php';
         break;
     case 'home':
@@ -55,11 +56,11 @@ switch ($pageParam) {
         include 'views/pages/customer/contact.php';
         break;
     case 'login':
-        include 'controllers/userController.php?action=checkAuthen';
+        include 'views/middlewares/redirectIfAuthen.php';
         include 'views/pages/customer/login.php';
         break;
     case 'sign-in':
-        include 'controllers/userController.php?action=checkAuthen';
+        include 'views/middlewares/redirectIfAuthen.php';
         include 'views/pages/customer/register.php';
         break;
     default:

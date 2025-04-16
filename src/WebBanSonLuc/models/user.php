@@ -1,15 +1,15 @@
 <?php
-require_once '../models/User.php';
+// require_once '../models/User.php';
 require_once 'pdo.php';
 
-function user_insert($name, $email, $password, $phone, $address, $role)
+function user_insert($name, $email, $password, $phone, $role)
 {
     // Mã hóa mật khẩu người dùng trước khi lưu vào cơ sở dữ liệu
     $password = password_hash($password, PASSWORD_BCRYPT);
 
-    $sql = "INSERT INTO users (name, email, password, phone, address, role)
+    $sql = "INSERT INTO users (name, email, password, phone, role)
             VALUES (?, ?, ?, ?, ?, ?)";
-    pdo_execute($sql, $name, $email, $password, $phone, $address, $role);
+    pdo_execute($sql, $name, $email, $password, $phone, $role);
 }
 
 function user_update($id, $name, $email, $password, $phone, $address, $role)
@@ -24,7 +24,8 @@ function user_update($id, $name, $email, $password, $phone, $address, $role)
 function user_is_email_exists($email)
 {
     $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
-    return (int)pdo_query_value($sql, $email) > 0;
+    $count = pdo_query_value($sql, $email);
+    return $count > 0;
 }
 
 function user_get_by_email($email)

@@ -1,26 +1,43 @@
 <?php
-session_start();
-require_once __DIR__ . '/../models/db.php'; // Kết nối cơ sở dữ liệu
-
-// Hàm kiểm tra trạng thái đăng nhập
-function checkAuthen() {
-    if (!isset($_SESSION['user_id'])) {
-        header('Location: ../index.php?page=login');
-        exit;
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
+require_once __DIR__ . '/../models/config.php'; // Kết nối cơ sở dữ liệu
+
+$message = "";
+$toastClass = "";
 
 // Hàm xử lý đăng ký
-function registerUser($name, $email, $password, $confirmPassword) {
+function registerUser($name, $phone, $email, $password, $confirmPassword) {
     global $pdo;
 
     // Kiểm tra dữ liệu đầu vào
-    if (empty($name) || empty($email) || empty($password) || empty($confirmPassword)) {
-        die('Vui lòng điền đầy đủ thông tin.');
+    if (empty(trim($name)) || empty(trim($phone)) || empty(trim($email)) || empty(trim($password)) || empty(trim($confirmPassword))) {
+        return [
+            'message' => 'Vui lòng điền đầy đủ thông tin.',
+            'toastClass' => 'bg-danger'
+        ];
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return [
+            'message' => 'Email không hợp lệ.',
+            'toastClass' => 'bg-danger'
+        ];
+    }
+
+    if (!preg_match('/^[0-9]{10,11}$/', $phone)) {
+        return [
+            'message' => 'Số điện thoại không hợp lệ.',
+            'toastClass' => 'bg-danger'
+        ];
     }
 
     if ($password !== $confirmPassword) {
-        die('Mật khẩu xác nhận không khớp.');
+        return [
+            'message' => 'Mật khẩu xác nhận không khớp.',
+            'toastClass' => 'bg-danger'
+        ];
     }
 
     // Mã hóa mật khẩu
@@ -31,21 +48,26 @@ function registerUser($name, $email, $password, $confirmPassword) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['email' => $email]);
     if ($stmt->fetch()) {
-        die('Email đã được sử dụng.');
+        return [
+            'message' => 'Email đã được sử dụng.',
+            'toastClass' => 'bg-warning'
+        ];
     }
 
     // Thêm người dùng mới vào cơ sở dữ liệu
-    $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+    $sql = "INSERT INTO users (name, phone, email, password) VALUES (:name, :phone, :email, :password)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         'name' => $name,
+        'phone' => $phone,
         'email' => $email,
         'password' => $hashedPassword
     ]);
 
-    // Chuyển hướng đến trang đăng nhập
-    header('Location: ../index.php?page=login');
-    exit;
+    return [
+        'message' => 'Đăng ký thành công!',
+        'toastClass' => 'bg-success'
+    ];
 }
 
 // Hàm xử lý đăng nhập
@@ -54,7 +76,10 @@ function loginUser($email, $password) {
 
     // Kiểm tra dữ liệu đầu vào
     if (empty($email) || empty($password)) {
-        die('Vui lòng điền đầy đủ thông tin.');
+        return [
+            'message' => 'Vui lòng điền đầy đủ thông tin.',
+            'toastClass' => 'bg-danger'
+        ];
     }
 
     // Lấy thông tin người dùng từ cơ sở dữ liệu
@@ -64,16 +89,20 @@ function loginUser($email, $password) {
     $user = $stmt->fetch();
 
     if (!$user || !password_verify($password, $user['password'])) {
-        die('Email hoặc mật khẩu không đúng.');
+        return [
+            'message' => 'Email hoặc mật khẩu không đúng.',
+            'toastClass' => 'bg-danger'
+        ];
     }
 
     // Lưu thông tin người dùng vào session
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_name'] = $user['name'];
 
-    // Chuyển hướng đến trang chủ
-    header('Location: ../index.php');
-    exit;
+    return [
+        'message' => 'Đăng nhập thành công!',
+        'toastClass' => 'bg-success'
+    ];
 }
 
 // Hàm xử lý đăng xuất
@@ -90,33 +119,37 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 switch ($action) {
     case 'register':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            registerUser(
-                trim($_POST['name']),
-                trim($_POST['email']),
-                trim($_POST['password']),
-                trim($_POST['confirm_password'])
-            );
+            $name = isset($_POST['name']) ? trim($_POST['name']) : null;
+            $phone = isset($_POST['phone']) ? trim($_POST['phone']) : null;
+            $email = isset($_POST['email']) ? trim($_POST['email']) : null;
+            $password = isset($_POST['password']) ? trim($_POST['password']) : null;
+            $confirm_password = isset($_POST['confirm_password']) ? trim($_POST['confirm_password']) : null;
+
+            $result = registerUser($name, $phone, $email, $password, $confirm_password);
+            $message = $result['message'];
+            $toastClass = $result['toastClass'];
         }
         break;
 
     case 'login':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            loginUser(
-                trim($_POST['email']),
-                trim($_POST['password'])
-            );
+            $email = isset($_POST['email']) ? trim($_POST['email']) : null;
+            $password = isset($_POST['password']) ? trim($_POST['password']) : null;
+
+            $result = loginUser($email, $password);
+            $message = $result['message'];
+            $toastClass = $result['toastClass'];
+
+            // Chuyển hướng nếu đăng nhập thành công
+            if ($toastClass === 'bg-success') {
+                header('Location: ../index.php');
+                exit;
+            }
         }
         break;
 
     case 'logout':
         logoutUser();
         break;
-
-    case 'checkAuthen':
-        checkAuthen();
-        break;
-
-    default:
-        die('Hành động không hợp lệ.');
 }
 ?>

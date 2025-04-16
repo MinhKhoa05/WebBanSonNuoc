@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../models/db.php'; // Kết nối cơ sở dữ liệu
+require_once __DIR__ . '/../models/pdo.php'; // Kết nối cơ sở dữ liệu
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -11,22 +10,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Vui lòng điền đầy đủ thông tin.');
     }
 
-    // Lấy thông tin người dùng từ cơ sở dữ liệu
+    // Kiểm tra email và mật khẩu
     $sql = "SELECT * FROM users WHERE email = :email";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['email' => $email]);
     $user = $stmt->fetch();
 
-    if (!$user || !password_verify($password, $user['password'])) {
+    if ($user && password_verify($password, $user['password'])) {
+        // Lưu thông tin người dùng vào session
+        session_start();
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_name'] = $user['name'];
+
+        // Chuyển hướng đến trang chủ
+        header('Location: ../index.php');
+        exit;
+    } else {
         die('Email hoặc mật khẩu không đúng.');
     }
-
-    // Lưu thông tin người dùng vào session
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['user_name'] = $user['name'];
-
-    // Chuyển hướng đến trang chủ
-    header('Location: ../index.php');
-    exit;
 }
 ?>
