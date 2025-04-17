@@ -27,6 +27,11 @@ function user_is_email_exists($email)
     return $count > 0;
 }
 
+function user_get_by_id($user_id) {
+    $sql = "SELECT * FROM users WHERE id = ?";
+    return pdo_query_one($sql, $user_id);
+}
+
 function user_get_by_email($email)
 {
     $sql = "SELECT * FROM users WHERE email = ?";
