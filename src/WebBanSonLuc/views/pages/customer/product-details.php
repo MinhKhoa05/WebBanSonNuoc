@@ -6,7 +6,7 @@
 require_once __DIR__ . '/../../../models/product.php';
 
 // Lấy ID sản phẩm từ URL
-$productId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$productId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 // Lấy thông tin sản phẩm từ cơ sở dữ liệu
 $product = product_select_by_id($productId);
@@ -24,9 +24,8 @@ if (!$product) {
             <!-- Hình ảnh sản phẩm -->
             <div class="col-md-4">
                 <div class="card">
-                    <img id="mainImage" src="uploads/<?= htmlspecialchars($product['thumbnail']) ?>" 
-                         alt="<?= htmlspecialchars($product['name']) ?>" 
-                         class="card-img-top img-fluid">
+                    <img id="mainImage" src="uploads/<?= htmlspecialchars($product['thumbnail']) ?>"
+                        alt="<?= htmlspecialchars($product['name']) ?>" class="card-img-top img-fluid">
                 </div>
                 <!-- Gallery -->
                 <div class="mt-3 d-flex justify-content-center">
@@ -34,10 +33,8 @@ if (!$product) {
                     // Giả sử bạn có thêm các hình ảnh khác trong mảng `$product['gallery']`
                     $gallery = isset($product['gallery']) ? $product['gallery'] : [];
                     foreach ($gallery as $image): ?>
-                        <img src="uploads/<?= htmlspecialchars($image) ?>" 
-                             alt="Gallery Image" 
-                             class="img-thumbnail mx-2 gallery-image" 
-                             style="width: 80px; height: 80px; cursor: pointer;">
+                        <img src="uploads/<?= htmlspecialchars($image) ?>" alt="Gallery Image"
+                            class="img-thumbnail mx-2 gallery-image" style="width: 80px; height: 80px; cursor: pointer;">
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -49,11 +46,12 @@ if (!$product) {
                 <p class="text-muted"><?= htmlspecialchars($product['description']) ?></p>
 
                 <!-- Nút thêm vào giỏ hàng -->
-                <form action="index.php?page=cart&action=add" method="POST">
+                <form action="controllers/cartController.php?action=add" method="POST">
                     <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                     <div class="d-flex align-items-center mb-3">
                         <label for="quantity" class="me-2">Số lượng:</label>
-                        <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control" style="width: 80px;">
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control"
+                            style="width: 80px;">
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-cart-plus me-2"></i> Thêm vào giỏ hàng
@@ -63,13 +61,14 @@ if (!$product) {
         </div>
 
         <!-- Mô tả chi tiết -->
-         <div class="container product-description shadow">
+        <div class="container product-description shadow">
             <div>
                 <h3 class="text-primary">Mô tả sản phẩm</h3>
                 <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
             </div>
-         </div>
-         
+        </div>
+
     </div>
 </body>
+
 </html>

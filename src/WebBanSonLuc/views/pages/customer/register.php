@@ -1,6 +1,4 @@
 <?php
-// require_once __DIR__ . '/../../../controllers/userController.php'; // Kết nối với controller xử lý đăng ký
-// require_once __DIR__ . '/../../../controllers/loginController.php'; // Kết nối với controller xử lý đăng nhập
 require_once __DIR__ . '/../../../controllers/registerController.php'; // Kết nối với controller xử lý đăng ký
 ?>
 
@@ -32,7 +30,7 @@ require_once __DIR__ . '/../../../controllers/registerController.php'; // Kết 
                                         <p class="text-muted">Tạo tài khoản để trải nghiệm dịch vụ tốt nhất từ ColorHomes Paint</p>
                                     </div>
                                     <!-- Registration Form -->
-                                    <form method="POST" action="/WebBanSonLuc/controllers/registerController.php">
+                                    <form method="POST" action="controllers/registerController.php">
                                         <div class="row g-3">
                                             <!-- Họ tên -->
                                             <div class="col-md-6">
