@@ -83,21 +83,22 @@ function loginUser($email, $password) {
     }
 
     // Lấy thông tin người dùng từ cơ sở dữ liệu
-    $sql = "SELECT * FROM users WHERE email = :email";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['email' => $email]);
-    $user = $stmt->fetch();
+    // $sql = "SELECT * FROM users WHERE email = :email";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute(['email' => $email]);
+    // $user = $stmt->fetch();
 
-    if (!$user || !password_verify($password, $user['password'])) {
-        return [
-            'message' => 'Email hoặc mật khẩu không đúng.',
-            'toastClass' => 'bg-danger'
-        ];
-    }
+    // if (!$user || !password_verify($password, $user['password'])) {
+    //     return [
+    //         'message' => 'Email hoặc mật khẩu không đúng.',
+    //         'toastClass' => 'bg-danger'
+    //     ];
+    // }
+    $user = user_login($email, $password);
 
     // Lưu thông tin người dùng vào session
     $_SESSION['user_id'] = $user['id'];
-    $_SESSION['user_name'] = $user['name'];
+    $_SESSION['user_name'] = $user['username'];
 
     return [
         'message' => 'Đăng nhập thành công!',
