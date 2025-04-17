@@ -1,5 +1,3 @@
-
-
 <body class="bg-light">
     <div class="container login-height d-flex align-items-center justify-content-center py-5" style="min-height: 100vh;">
         <div class="row g-0 shadow rounded-4 overflow-hidden" style="max-width: 1000px;">
@@ -38,14 +36,14 @@
                     <p class="text-muted">Vui lòng nhập thông tin tài khoản của bạn</p>
                 </div>
                 
-                <form action="controllers/userController.php?action=login" method="POST">
+                <form action="controllers/loginController.php" method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email hoặc số điện thoại</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0">
                                 <i class="bi bi-envelope"></i>
                             </span>
-                            <input type="email" class="form-control border-start-0" id="email" placeholder="example@gmail.com" required>
+                            <input type="email" class="form-control border-start-0" name="email" placeholder="example@gmail.com" required>
                         </div>
                     </div>
                     
@@ -55,7 +53,7 @@
                             <span class="input-group-text bg-light border-end-0">
                                 <i class="bi bi-lock"></i>
                             </span>
-                            <input type="password" class="form-control border-start-0" id="password" placeholder="••••••••" required>
+                            <input type="password" class="form-control border-start-0" name="password" placeholder="••••••••" required>
                         </div>
                     </div>
                     

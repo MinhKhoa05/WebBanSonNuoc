@@ -6,7 +6,7 @@ function user_insert($name, $email, $password, $phone, $role)
     // Mã hóa mật khẩu người dùng trước khi lưu vào cơ sở dữ liệu
     $password = password_hash($password, PASSWORD_BCRYPT);
 
-    $sql = "INSERT INTO users (username, email, password, phone, role)
+    $sql = "INSERT INTO users (name, email, password, phone, role)
             VALUES (?, ?, ?, ?, ?)";
     pdo_execute($sql, $name, $email, $password, $phone, $role);
 }
@@ -16,7 +16,7 @@ function user_update($id, $name, $email, $password, $phone, $address, $role)
     // Mã hóa lại mật khẩu nếu người dùng thay đổi mật khẩu
     $password = password_hash($password, PASSWORD_BCRYPT);
 
-    $sql = "UPDATE users SET username = ?, email = ?, password = ?, phone = ?, address = ?, role = ? WHERE id = ?";
+    $sql = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, address = ?, role = ? WHERE id = ?";
     pdo_execute($sql, $name, $email, $password, $phone, $address, $role, $id);
 }
 

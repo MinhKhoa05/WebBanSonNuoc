@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once __DIR__ . '/../models/config.php'; // Kết nối cơ sở dữ liệu
+require_once __DIR__ . '/../models/user.php';
 
 $message = "";
 $toastClass = "";
@@ -40,30 +41,30 @@ function registerUser($name, $phone, $email, $password, $confirmPassword) {
         ];
     }
 
+    
+
     // Mã hóa mật khẩu
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    // Kiểm tra email đã tồn tại
-    $sql = "SELECT * FROM users WHERE email = :email";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['email' => $email]);
-    if ($stmt->fetch()) {
+    // // Kiểm tra email đã tồn tại
+    if (user_is_email_exists($email)) {
         return [
             'message' => 'Email đã được sử dụng.',
             'toastClass' => 'bg-warning'
         ];
     }
+    
+   // Thêm người dùng mới vào cơ sở dữ liệu
+    user_insert($name, $email, $hashedPassword, $phone, 'user');
 
-    // Thêm người dùng mới vào cơ sở dữ liệu
-    $sql = "INSERT INTO users (name, phone, email, password) VALUES (:name, :phone, :email, :password)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        'name' => $name,
-        'phone' => $phone,
-        'email' => $email,
-        'password' => $hashedPassword
-    ]);
-
+    // $sql = "INSERT INTO users (name, phone, email, password) VALUES (:name, :phone, :email, :password)";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute([
+    //     'name' => $name,
+    //     'phone' => $phone,
+    //     'email' => $email,
+    //     'password' => $hashedPassword
+    // ]);
     return [
         'message' => 'Đăng ký thành công!',
         'toastClass' => 'bg-success'

@@ -1,7 +1,9 @@
 <?php
 session_start(); // Bắt đầu session để kiểm tra trạng thái đăng nhập
-$isLoggedIn = isset($_SESSION['user']); // Kiểm tra nếu người dùng đã đăng nhập
-$userName = $isLoggedIn ? $_SESSION['user']['name'] : ''; // Lấy tên người dùng nếu đã đăng nhập
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+$userName = $isLoggedIn ? $_SESSION['user_name'] : ''; // Lấy tên người dùng nếu đã đăng nhập
+
 ?>
 <header>
   <link rel="stylesheet" href="views/assets/css/customer/home.css">

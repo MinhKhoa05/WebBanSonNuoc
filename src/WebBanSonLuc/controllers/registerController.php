@@ -1,13 +1,13 @@
 <?php
 require_once __DIR__ . '/../models/user.php'; // Include file chứa hàm user_insert
-require_once __DIR__ . '/../models/pdo.php';
+// require_once __DIR__ . '/../models/pdo.php';
 
-try {
-    $conn = pdo_get_connection();
-    echo 'Kết nối cơ sở dữ liệu thành công!';
-} catch (PDOException $e) {
-    die('Lỗi kết nối: ' . $e->getMessage());
-}
+// try {
+//     $conn = pdo_get_connection();
+//     echo 'Kết nối cơ sở dữ liệu thành công!';
+// } catch (PDOException $e) {
+//     die('Lỗi kết nối: ' . $e->getMessage());
+// }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
