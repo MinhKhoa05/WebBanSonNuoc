@@ -1,57 +1,14 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-<body class="bg-light">
-    <!-- Navigation -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">ColorMaster Paint</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Trang Chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sản Phẩm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Dịch Vụ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Bảng Màu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tin Tức</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Liên Hệ</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> <span class="badge bg-danger rounded-pill">3</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user-circle"></i> Nguyễn Văn A
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item active" href="#">Tài khoản của tôi</a></li>
-                            <li><a class="dropdown-item" href="#">Đơn hàng của tôi</a></li>
-                            <li><a class="dropdown-item" href="#">Sản phẩm yêu thích</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
+require_once __DIR__ . '/../../../models/user.php';
+$user = user_get_by_id($_SESSION['user_id']);
 
+?>
+
+<body class="bg-light mt-5">
     <!-- Profile Header -->
     <div class="bg-primary text-white py-4 mb-4">
         <div class="container">
@@ -81,7 +38,7 @@
                         <div class="mb-3">
                             <img src="/api/placeholder/150/150" alt="Avatar" class="rounded-circle img-thumbnail">
                         </div>
-                        <h5 class="mb-1">Nguyễn Văn A</h5>
+                        <h5 class="mb-1"><?= htmlspecialchars($user['name']) ?></h5>
                         <p class="text-muted mb-3">Thành viên Bạc</p>
                         <div class="d-grid gap-2">
                             <button class="btn btn-outline-primary" type="button">Chỉnh sửa hồ sơ</button>
@@ -122,7 +79,8 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Cần hỗ trợ?</h5>
-                        <p class="card-text">Nếu bạn cần giúp đỡ, hãy liên hệ với đội ngũ chăm sóc khách hàng của chúng tôi.</p>
+                        <p class="card-text">Nếu bạn cần giúp đỡ, hãy liên hệ với đội ngũ chăm sóc khách hàng của chúng
+                            tôi.</p>
                         <a href="#" class="btn btn-outline-secondary w-100">
                             <i class="fas fa-headset me-2"></i> Liên hệ hỗ trợ
                         </a>
@@ -191,27 +149,19 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <p class="mb-2 text-muted small">Họ và tên</p>
-                                <p class="mb-3 fw-bold">Nguyễn Văn A</p>
+                                <p class="mb-3 fw-bold"><?= htmlspecialchars($user['name']) ?></p>
                             </div>
                             <div class="col-md-6">
                                 <p class="mb-2 text-muted small">Email</p>
-                                <p class="mb-3 fw-bold">nguyenvana@example.com</p>
+                                <p class="mb-3 fw-bold"><?= htmlspecialchars($user['email']) ?></p>
                             </div>
                             <div class="col-md-6">
                                 <p class="mb-2 text-muted small">Số điện thoại</p>
-                                <p class="mb-3 fw-bold">0123 456 789</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-2 text-muted small">Ngày sinh</p>
-                                <p class="mb-3 fw-bold">01/01/1990</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-2 text-muted small">Giới tính</p>
-                                <p class="mb-3 fw-bold">Nam</p>
+                                <p class="mb-3 fw-bold"><?= htmlspecialchars($user['phone']) ?></p>
                             </div>
                             <div class="col-md-6">
                                 <p class="mb-2 text-muted small">Ngày tham gia</p>
-                                <p class="mb-3 fw-bold">15/03/2023</p>
+                                <p class="mb-3 fw-bold"><?= htmlspecialchars($user['created_at']) ?></p>
                             </div>
                         </div>
                     </div>
@@ -295,9 +245,10 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <div class="col-md-6">
+                            <div class="col-md">
                                 <div class="border rounded p-3 position-relative">
-                                    <span class="badge bg-primary position-absolute top-0 end-0 mt-2 me-2">Mặc định</span>
+                                    <span class="badge bg-primary position-absolute top-0 end-0 mt-2 me-2">Mặc
+                                        định</span>
                                     <h6 class="mb-1">Địa chỉ nhà riêng</h6>
                                     <p class="mb-1">Nguyễn Văn A</p>
                                     <p class="mb-1">Số 123, Đường Nguyễn Huệ, Phường Bến Nghé, Quận 1</p>
@@ -309,7 +260,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="border rounded p-3">
                                     <h6 class="mb-1">Địa chỉ công ty</h6>
                                     <p class="mb-1">Công ty TNHH XYZ</p>
@@ -321,58 +272,7 @@
                                         <a href="#" class="btn btn-sm btn-outline-danger">Xóa</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recently Viewed Products -->
-                <div class="card shadow-sm">
-                    <div class="card-header bg-white py-3">
-                        <h5 class="mb-0">Sản phẩm đã xem gần đây</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-3">
-                            <div class="col-md-3 col-6">
-                                <div class="card border-0 text-center">
-                                    <img src="/api/placeholder/150/150" class="card-img-top mb-2" alt="Sơn nội thất">
-                                    <div class="card-body p-0">
-                                        <h6 class="card-title mb-1 text-truncate">Sơn nội thất cao cấp</h6>
-                                        <p class="text-primary fw-bold mb-2">850.000 ₫</p>
-                                        <button class="btn btn-sm btn-outline-primary">Xem chi tiết</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6">
-                                <div class="card border-0 text-center">
-                                    <img src="/api/placeholder/150/150" class="card-img-top mb-2" alt="Sơn ngoại thất">
-                                    <div class="card-body p-0">
-                                        <h6 class="card-title mb-1 text-truncate">Sơn ngoại thất chống thấm</h6>
-                                        <p class="text-primary fw-bold mb-2">950.000 ₫</p>
-                                        <button class="btn btn-sm btn-outline-primary">Xem chi tiết</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6">
-                                <div class="card border-0 text-center">
-                                    <img src="/api/placeholder/150/150" class="card-img-top mb-2" alt="Sơn chống nóng">
-                                    <div class="card-body p-0">
-                                        <h6 class="card-title mb-1 text-truncate">Sơn chống nóng mái nhà</h6>
-                                        <p class="text-primary fw-bold mb-2">1.250.000 ₫</p>
-                                        <button class="btn btn-sm btn-outline-primary">Xem chi tiết</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6">
-                                <div class="card border-0 text-center">
-                                    <img src="/api/placeholder/150/150" class="card-img-top mb-2" alt="Sơn epoxy">
-                                    <div class="card-body p-0">
-                                        <h6 class="card-title mb-1 text-truncate">Sơn epoxy sàn cao cấp</h6>
-                                        <p class="text-primary fw-bold mb-2">1.450.000 ₫</p>
-                                        <button class="btn btn-sm btn-outline-primary">Xem chi tiết</button>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -382,4 +282,5 @@
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
