@@ -1,3 +1,4 @@
+include 'views/middlewares/checkAuthen.php';
 <?php
 session_start();
 require_once __DIR__ . '/../../../models/cart.php';
@@ -68,19 +69,25 @@ $cart = cart_select_by_user($user_id);
                                                 <?= number_format($product['price'], 0, ',', '.') ?>₫
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-6 col-md-2 text-md-center mt-3 mt-md-0">
-                                            <input type="number" name="quantity[<?= htmlspecialchars($item['product_id']) ?>]"
-                                                class="form-control text-center quantity-input"
-                                                value="<?= htmlspecialchars($item['quantity']) ?>" min="1"
-                                                style="margin: 0 auto;">
+                                            <div class="quantity-control d-flex align-items-center justify-content-center">
+                                                <label for="quantity-<?= htmlspecialchars($item['product_id']) ?>" class="me-2">Số lượng:</label>
+                                                <input type="number"
+                                                    id="quantity-<?= htmlspecialchars($item['product_id']) ?>"
+                                                    name="quantity[<?= htmlspecialchars($item['product_id']) ?>]"
+                                                    class="form-control text-center quantity-input"
+                                                    value="<?= isset($item['quantity']) ? htmlspecialchars($item['quantity']) : 1 ?>"
+                                                    min="1"
+                                                    style="width: 70px; margin: 0 auto;">
+                                            </div>
                                         </div>
 
                                         <div class="col-6 col-md-2 text-md-center mt-3 mt-md-0">
-                                            <div class="fw-bold item-total">
+                                            <div class="fw-bold item-total" id="total-<?= htmlspecialchars($item['product_id']) ?>">
                                                 <?= number_format($product['price'] * $item['quantity'], 0, ',', '.') ?>₫
-                                                <!-- Tính tổng tiền cho sản phẩm -->
                                             </div>
+                                            <input type="hidden" class="product-price" data-id="<?= htmlspecialchars($item['product_id']) ?>" value="<?= $product['price'] ?>">
                                             <a href="controllers/cartController.php?action=remove&id=<?= htmlspecialchars($item['product_id']) ?>"
                                                 class="btn btn-sm btn-link text-danger p-0 mt-2">
                                                 <i class="bi bi-trash"></i> Xóa
