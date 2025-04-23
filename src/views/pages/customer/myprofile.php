@@ -47,7 +47,7 @@ $user = user_get_by_id($_SESSION['user_id']);
                 </div>
 
                 <div class="list-group shadow-sm mb-4">
-                    <a href="#" class="list-group-item list-group-item-action active">
+                    <a href="#" class="list-group-item list-group-item-action">
                         <i class="fas fa-user me-2"></i> Thông tin tài khoản
                     </a>
                     <a href="#" class="list-group-item list-group-item-action">
@@ -71,7 +71,7 @@ $user = user_get_by_id($_SESSION['user_id']);
                     <a href="#" class="list-group-item list-group-item-action">
                         <i class="fas fa-lock me-2"></i> Đổi mật khẩu
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action text-danger">
+                    <a href="controllers/logoutController.php" class="list-group-item list-group-item-action text-danger">
                         <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
                     </a>
                 </div>

@@ -32,9 +32,6 @@ $userName = $isLoggedIn ? $_SESSION['user_name'] : ''; // Lấy tên người d�
                     <a class="nav-link" href="index.php">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=cart">Sản phẩm</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="index.php?page=service">Dịch vụ</a>
                 </li>
                 <li class="nav-item">

@@ -37,7 +37,7 @@
 <body>
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="hero-overlay d-flex align-items-center py-5">
+        <div class="hero-overlay d-flex align-items-center py-5 lazy-load">
             <div class="container text-center text-white py-5">
                 <h1 class="display-4 fw-bold mb-4">Về ColorHomes Paint</h1>
                 <p class="lead mb-4">Chất lượng tạo nên sự khác biệt - Hơn 20 năm kinh nghiệm trong ngành sơn</p>
@@ -54,7 +54,7 @@
 
     <!-- Our Story Section -->
     <section class="py-5">
-        <div class="container">
+        <div class="container lazy-load">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <img src="views/assets/images/Background.png" alt="Câu chuyện của chúng tôi" class="img-fluid rounded shadow">
@@ -86,7 +86,7 @@
 
     <!-- Mission & Values -->
     <section class="paint-gradient text-white py-5">
-        <div class="container py-4">
+        <div class="container py-4 lazy-load">
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <div class="text-center px-4">
@@ -127,7 +127,7 @@
 
     <!-- Why Choose Us -->
     <section class="py-5 bg-light">
-        <div class="container py-4">
+        <div class="container py-4 lazy-load">
             <div class="text-center mb-5">
                 <h6 class="text-paint-primary fw-bold">TẠI SAO CHỌN CHÚNG TÔI</h6>
                 <h2 class="fw-bold">Những lý do khách hàng tin tưởng ColorHomes Paint</h2>
@@ -191,7 +191,7 @@
 
     <!-- Our Team -->
     <section class="py-5">
-        <div class="container py-4">
+        <div class="container py-4 lazy-load">
             <div class="text-center mb-5">
                 <h6 class="text-paint-primary fw-bold">ĐỘI NGŨ CỦA CHÚNG TÔI</h6>
                 <h2 class="fw-bold">Những người làm nên thành công</h2>
@@ -263,7 +263,7 @@
 
     <!-- Milestones -->
     <section class="py-5 bg-light">
-        <div class="container py-4">
+        <div class="container py-4 lazy-load">
             <div class="text-center mb-5">
                 <h6 class="text-paint-primary fw-bold">CHẶNG ĐƯỜNG PHÁT TRIỂN</h6>
                 <h2 class="fw-bold">Những cột mốc quan trọng</h2>
@@ -393,7 +393,7 @@
 
     <!-- CTA -->
     <section class="py-5 paint-gradient">
-        <div class="container text-center text-white py-4">
+        <div class="container text-center text-white py-4 lazy-load">
             <h2 class="fw-bold mb-4">Sẵn sàng làm mới không gian của bạn?</h2>
             <p class="lead mb-4">Hãy liên hệ với chúng tôi ngay hôm nay để được tư vấn miễn phí về giải pháp sơn phù hợp
                 nhất.</p>

@@ -1,17 +1,19 @@
 <link rel="stylesheet" href="views/assets/css/customer/servicesCSS.css">
 
-<body>
+<body">
     <!-- Header -->
     <header class="paint-gradient text-white py-5 text-center">
-        <div class="container py-3">
-            <h1 class="display-5 fw-bold mb-3">Dịch vụ của chúng tôi</h1>
-            <p class="lead mb-0">Giải pháp sơn toàn diện cho mọi không gian sống và làm việc</p>
+        <div class="lazy-load">
+            <div class="container py-3">
+                <h1 class="display-5 fw-bold mb-3">Dịch vụ của chúng tôi</h1>
+                <p class="lead mb-0">Giải pháp sơn toàn diện cho mọi không gian sống và làm việc</p>
+            </div>
         </div>
     </header>
 
     <!-- Main Services -->
     <section class="py-5">
-        <div class="container">
+        <div class="container lazy-load">
             <div class="row g-4">
                 <!-- Service 1 -->
                 <div class="col-md-6 col-lg-4">
@@ -102,7 +104,7 @@
 
     <!-- Service Process -->
     <section class="py-5 bg-light">
-        <div class="container">
+        <div class="container lazy-load"> ">
             <div class="text-center mb-5">
                 <h6 class="text-paint-primary fw-bold">QUY TRÌNH DỊCH VỤ</h6>
                 <h2 class="fw-bold mb-0">Các bước thực hiện</h2>
@@ -170,7 +172,7 @@
 
     <!-- CTA -->
     <section class="paint-gradient text-white py-5">
-        <div class="container text-center py-3">
+        <div class="container text-center py-3 lazy-load">
             <h2 class="fw-bold mb-3">Bạn cần tư vấn về dịch vụ sơn?</h2>
             <p class="lead mb-4">Liên hệ ngay với chúng tôi để được hỗ trợ và nhận báo giá miễn phí</p>
             <div class="row justify-content-center">
@@ -183,5 +185,7 @@
             </div>
         </div>
     </section>
+
+    <!-- <script src="ajax/lazyloading.js"></script> -->
 </body>
 </html>

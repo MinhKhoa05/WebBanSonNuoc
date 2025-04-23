@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="views/assets/css/customer/contactCSS.css">
 <body>
     <!-- Header Banner -->
-    <div class="bg-dark py-5 mb-5 text-white">
+    <div class="bg-dark py-5 mb-5 text-white lazy-load">
         <div class="container text-center">
             <h1>Liên Hệ Với Chúng Tôi</h1>
             <p class="lead">Hãy để chúng tôi giúp bạn tìm giải pháp màu sắc hoàn hảo</p>
@@ -9,7 +9,7 @@
     </div>
 
     <!-- Contact Info -->
-    <div class="container mb-5">
+    <div class="container mb-5 lazy-load">
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card shadow h-100 text-center p-4">
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Contact Form and Map -->
-    <div class="container mb-5">
+    <div class="container mb-5 lazy-load">
         <div class="row">
             <!-- Contact Form -->
             <div class="col-lg-6 mb-5">
@@ -104,7 +104,7 @@
     </div>
 
     <!-- Showroom and Distributors -->
-    <div class="container mb-5">
+    <div class="container mb-5 lazy-load">
         <div class="row">
             <div class="col-12 text-center mb-4">
                 <h2>Hệ Thống Showroom & Đại Lý</h2>
@@ -148,7 +148,7 @@
     </div>
 
     <!-- FAQ Section -->
-    <div class="container mb-5">
+    <div class="container mb-5 lazy-load">
         <div class="row">
             <div class="col-12 text-center mb-4">
                 <h2>Câu Hỏi Thường Gặp</h2>

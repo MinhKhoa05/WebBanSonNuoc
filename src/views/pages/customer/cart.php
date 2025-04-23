@@ -1,11 +1,14 @@
-include 'views/middlewares/checkAuthen.php';
+<link rel="stylesheet" href="views/assets/css/customer/cartCSS.css">
+
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+include 'views/middlewares/checkAuthen.php';
 require_once __DIR__ . '/../../../models/cart.php';
 require_once __DIR__ . '/../../../models/product.php';
+
 
 // Kiểm tra nếu người dùng đã đăng nhập
 if (!isset($_SESSION['user_id'])) {
@@ -32,9 +35,6 @@ $user_name = $_SESSION['user_name'] ?? '';
 // Lấy giỏ hàng của người dùng
 $cart = cart_select_by_user($user_id);
 ?>
-
-<link rel="stylesheet" href="views/assets/css/customer/cartCSS.css">
-<script src="views/assets/css/customer/cart.js"></script>
 
 <body>
     <div class="container py-5">
@@ -68,14 +68,14 @@ $cart = cart_select_by_user($user_id);
                                             <h5 class="product-name mb-1"><?= htmlspecialchars($product['name']) ?></h5>
                                         </div>
                                         <div class="col-6 col-md-2 text-md-center mt-3 mt-md-0">
-                                            <div class="price-current" data-price="<?= $item['quantity'] ?>">
+                                            <div class="price-current" data-price="<?= $product['price'] ?>">
                                                 <?= number_format($product['price'], 0, ',', '.') ?>₫
                                             </div>
                                         </div>
 
                                         <div class="col-6 col-md-2 text-md-center mt-3 mt-md-0">
                                             <div class="quantity-control d-flex align-items-center justify-content-center">
-                                                <label for="quantity-<?= htmlspecialchars($item['product_id']) ?>" class="me-2">Số lượng:</label>
+                                                <label for="quantity-<?= htmlspecialchars($item['product_id']) ?>" class="me-2"></label>
                                                 <input type="number"
                                                     id="quantity-<?= htmlspecialchars($item['product_id']) ?>"
                                                     name="quantity[<?= htmlspecialchars($item['product_id']) ?>]"
@@ -144,8 +144,8 @@ $cart = cart_select_by_user($user_id);
             </div>
         <?php endif; ?>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="views/assets/js/customer/cart.js"></script>
 
+</body>
 </html>

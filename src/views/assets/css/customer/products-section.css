@@ -1,31 +1,190 @@
+/* General Section Styling */
+#products {
+    background-color: #f8f9fa;
+}
+
+#products hr {
+    opacity: 0.1;
+    margin: 40px 0;
+}
+
+#products h2 {
+    font-weight: 700;
+    color: #333;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+#products h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, #0d6efd, #0dcaf0);
+    border-radius: 2px;
+}
+
+/* Brand Cards Styling */
+.brand-img-container {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.brand-img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.card {
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card:hover .brand-img {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Product Cards Styling */
 .product-img {
     height: 220px;
     width: 100%;
-    object-fit: contain;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    object-fit: cover;
     transition: transform 0.3s ease-in-out;
 }
 
 .card:hover .product-img {
     transform: scale(1.05);
-    z-index: 2;
 }
 
-.card {
-    border: none;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    transition: box-shadow 0.3s ease;
+/* Sidebar Styling */
+.sidebar-link {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s ease;
 }
 
-.card:hover {
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+.sidebar-link:hover {
+    color: #0d6efd;
+    transform: translateX(5px);
 }
 
-#productsList .product {
-    display: block !important; /* Đảm bảo sản phẩm hiển thị */
-    visibility: visible !important;
-    opacity: 1 !important;
+.card-header {
+    font-weight: 600;
+}
+
+/* Price Filter Styling */
+#priceRange {
+    height: 6px;
+    cursor: pointer;
+}
+
+#priceRange::-webkit-slider-thumb {
+    background: #0d6efd;
+}
+
+#priceValue {
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+/* Sort Options Styling */
+.form-select {
+    border-color: #dee2e6;
+    cursor: pointer;
+}
+
+/* Pagination Styling */
+.pagination .page-link {
+    color: #0d6efd;
+    border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.pagination .btn {
+    color: #333;
+}
+
+.pagination .btn:hover {
+    background-color: #f8f9fa;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+    .brand-img-container {
+        height: 120px;
+    }
+    
+    .product-img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 767px) {
+    .brand-img-container {
+        height: 100px;
+    }
+    
+    .product-img {
+        height: 160px;
+    }
+}
+
+@media (max-width: 575px) {
+    .brand-img-container {
+        height: 80px;
+    }
+    
+    .product-img {
+        height: 140px;
+    }
+    
+    #products h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card-body {
+        padding: 0.75rem;
+    }
+}
+
+/* Animation for Lazy Loading */
+.lazy-load {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

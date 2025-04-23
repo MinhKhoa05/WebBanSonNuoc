@@ -23,7 +23,7 @@
           <hr class="text-light">
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link">
                 <i class="fas fa-tachometer-alt"></i> Tổng quan
               </a>
             </li>
