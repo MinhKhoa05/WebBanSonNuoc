@@ -1,4 +1,3 @@
-
 // Hàm tải sản phẩm qua AJAX
 function loadProducts(page = 1) {
     $.ajax({
@@ -83,4 +82,14 @@ $(document).on('click', '.page-link', function (e) {
 // Tải sản phẩm khi trang được tải
 $(document).ready(function () {
     loadProducts(1); // Tải trang đầu tiên
+});
+
+// Hàm xử lý sự kiện khi người dùng thay đổi giá trị của thanh trượt giá
+document.addEventListener('DOMContentLoaded', function() {
+    const priceRange = document.getElementById('priceRange');
+    const priceValue = document.getElementById('priceValue');
+    
+    priceRange.addEventListener('input', function() {
+        priceValue.textContent = new Intl.NumberFormat('vi-VN').format(this.value) + 'đ';
+    });
 });

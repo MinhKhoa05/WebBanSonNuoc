@@ -42,6 +42,11 @@ function product_select_by_category_id($categoryId)
     return pdo_query($sql, $categoryId);
 }
 
+function product_select_by_price($maxPrice) {
+    $sql = "SELECT * FROM products WHERE price <= ?";
+    return pdo_query($sql, $maxPrice);
+}
+
 function product_select_best_selling($limit = 8)
 {
     $sql = "SELECT * FROM best_selling_products LIMIT ?";
