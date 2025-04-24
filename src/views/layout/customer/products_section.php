@@ -165,8 +165,10 @@ $productsOnPage = array_slice($products, $startIndex, $productsPerPage);
     /* Sidebar Styling */
     .card-sidebar,
     .card-price {
+        height: auto;
         border-radius: 10px;
         overflow: hidden;
+
     }
 
     .card-header {
