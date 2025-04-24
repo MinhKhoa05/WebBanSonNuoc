@@ -3,18 +3,22 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
-$userName = $isLoggedIn ? $_SESSION['user_name'] : ''; // Lấy tên người dùng nếu đã đăng nhập
+$isLoggedIn = isset($_SESSION['user_id']);
+$userName = $isLoggedIn ? $_SESSION['user_name'] : '';
 ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>ColorHomes Paint</title>
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="views/assets/css/customer/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="views/assets/js/customer/home.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 <header>
@@ -28,31 +32,24 @@ $userName = $isLoggedIn ? $_SESSION['user_name'] : ''; // Lấy tên người d�
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php">Trang chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=service">Dịch vụ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=about-us">Về chúng tôi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=contact">Liên hệ</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php?page=service">Dịch vụ</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php?page=about-us">Về chúng tôi</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php?page=contact">Liên hệ</a></li>
             </ul>
+
             <div class="d-flex align-items-center">
                 <?php if (!$isLoggedIn): ?>
                     <a href="index.php?page=login" class="btn btn-primary me-2">
-                        <i class="bi bi-person-plus me-2"></i> Đăng nhập
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Đăng nhập
                     </a>
-                    <a href="index.php?page=sign-in" class="btn btn-primary">
-                        <i class="bi bi-person-plus me-2"></i> Đăng ký
+                    <a href="index.php?page=sign-in" class="btn btn-outline-light">
+                        <i class="bi bi-person-plus me-1"></i> Đăng ký
                     </a>
                 <?php else: ?>
                     <div class="dropdown me-2">
                         <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user-circle"></i> <?= htmlspecialchars($userName) ?>
+                            <i class="fas fa-user-circle me-1"></i><?= htmlspecialchars($userName) ?>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="index.php?page=myprofile">Tài khoản của tôi</a></li>
@@ -73,7 +70,9 @@ $userName = $isLoggedIn ? $_SESSION['user_name'] : ''; // Lấy tên người d�
 </nav>
 </header>
 
-<!-- JS Bootstrap Bundle (gồm Popper.js) -->
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="views/assets/js/customer/home.js"></script>
 </body>
 </html>
