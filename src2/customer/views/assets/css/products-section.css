@@ -4,7 +4,7 @@
     padding: 50px 0;
 }
 
-hr {
+#products hr {
     opacity: 0.1;
     margin: 40px 0;
 }
@@ -125,12 +125,6 @@ hr {
 .card-product .btn:hover {
     background-color: #0d6efd;
     color: #fff;
-}
-
-.sidebar {
-    position: sticky;
-    top: 40px; /* Khoảng cách từ đỉnh trang */
-    height: fit-content; /* Đảm bảo chiều cao vừa đủ */
 }
 
 /* Sidebar Styling */

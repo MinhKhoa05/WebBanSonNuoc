@@ -26,10 +26,9 @@ function cart_update($id, $user_id, $product_id, $quantity, $added_at)
     pdo_execute($sql, $user_id, $product_id, $quantity, $added_at, $id);
 }
 
-function cart_delete($id)
-{
-    $sql = "DELETE FROM carts WHERE id = ?";
-    pdo_execute($sql, $id);
+function cart_delete($userId, $productId) {
+    $sql = "DELETE FROM carts WHERE user_id = ? AND product_id = ?";
+    pdo_execute($sql, $userId, $productId);
 }
 
 function cart_count_all()

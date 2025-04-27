@@ -2,5 +2,5 @@
 
 <?php
     include("customer/views/layout/banner.php");
-    include("customer/views/layout/products-section.php");
+    include("customer/views/layout/products_section.php");
 ?>

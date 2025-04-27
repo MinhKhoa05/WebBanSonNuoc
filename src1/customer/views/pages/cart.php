@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="customer/views/assets/css/cartCSS.css">
-
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -35,13 +33,14 @@ $user_name = $_SESSION['user_name'] ?? '';
 // Lấy giỏ hàng của người dùng
 $cart = cart_select_by_user($user_id);
 ?>
+<link rel="stylesheet" href="customer/views/assets/css/cartCSS.css">
 
 <body>
     <div class="container py-5">
         <h2 class="text-center mb-5 fw-bold text-primary">Giỏ hàng của bạn</h2>
 
         <?php if (!empty($cart)): ?>
-            <form method="POST" action="controllers/cartController.php?action=update">
+            <form method="POST" action="customer/controllers/cartController.php?action=update">
                 <input type="hidden" name="update_cart" value="1">
                 <div class="row">
                     <!-- Cart Items -->
@@ -91,8 +90,7 @@ $cart = cart_select_by_user($user_id);
                                                 <?= number_format($product['price'] * $item['quantity'], 0, ',', '.') ?>₫
                                             </div>
                                             <input type="hidden" class="product-price" data-id="<?= htmlspecialchars($item['product_id']) ?>" value="<?= $product['price'] ?>">
-                                            <a href="controllers/cartController.php?action=remove&id=<?= htmlspecialchars($item['product_id']) ?>"
-                                                class="btn btn-sm btn-link text-danger p-0 mt-2">
+                                            <a href="#" class="btn btn-sm btn-link text-danger p-0 mt-2 remove-item" data-id="<?= htmlspecialchars($item['product_id']) ?>">
                                                 <i class="bi bi-trash"></i> Xóa
                                             </a>
                                         </div>
@@ -145,7 +143,9 @@ $cart = cart_select_by_user($user_id);
         <?php endif; ?>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="customer/views/assets/js/cart.js"></script>
+    <script src="customer/views/assets/js/carts.js"></script>
+    <script src="customer/ajax/cart.js"></script>
 
 </body>
+
 </html>

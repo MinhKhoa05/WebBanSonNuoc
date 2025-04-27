@@ -61,7 +61,7 @@
             <!-- Slide 1 -->
             <div class="carousel-item active">
                 <a href="">
-                    <img src="customer/views/assets/images/background.png" class="d-block w-100" alt="Banner 1">
+                    <img src="views/assets/images/background.png" class="d-block w-100" alt="Banner 1">
                 </a>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>PaintMart - Siêu thị sơn số 1 Việt Nam</h5>
@@ -72,7 +72,7 @@
             <!-- Slide 2 -->
             <div class="carousel-item">
                 <a href="">
-                    <img src="customer/views/assets/images/background.png" class="d-block w-100" alt="Banner 2">
+                    <img src="views/assets/images/background.png" class="d-block w-100" alt="Banner 2">
                 </a>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Mua sơn tặng ghế</h5>
@@ -83,7 +83,7 @@
             <!-- Slide 3 -->
             <div class="carousel-item">
                 <a href="">
-                    <img src="customer/views/assets/images/background.png" class="d-block w-100" alt="Banner 3">
+                    <img src="views/assets/images/background.png" class="d-block w-100" alt="Banner 3">
                 </a>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Ambiance 5in1</h5>
@@ -111,12 +111,12 @@
             <div class="col-md-3 d-flex flex-column justify-content-between">
                 <div class="banner-small">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Left 1">
+                        <img src="views/assets/images/background.png" class="img-fluid rounded" alt="Banner Left 1">
                     </a>
                 </div>
                 <div class="banner-small mt-3">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Left 2">
+                        <img src="views/assets/images/background.png" class="img-fluid rounded" alt="Banner Left 2">
                     </a>
                 </div>
             </div>
@@ -125,7 +125,7 @@
             <div class="col-md-6">
                 <div class="banner-large">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Center">
+                        <img src="views/assets/images/background.png" class="img-fluid rounded" alt="Banner Center">
                     </a>
                 </div>
             </div>
@@ -134,12 +134,12 @@
             <div class="col-md-3 d-flex flex-column justify-content-between">
                 <div class="banner-small">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Right 1">
+                        <img src="views/assets/images/background.png" class="img-fluid rounded" alt="Banner Right 1">
                     </a>
                 </div>
                 <div class="banner-small mt-3">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Right 2">
+                        <img src="views/assets/images/background.png" class="img-fluid rounded" alt="Banner Right 2">
                     </a>
                 </div>
             </div>

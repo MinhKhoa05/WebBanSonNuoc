@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const price = priceInput?.value || '';
         const category = categorySelect?.value || '';
 
-        const url = `paginate-product.php?page=${page}&sort=${sort}&price=${price}&category=${category}`;
-        
+        const url = `customer/ajax/paginate-product.php?page=${page}&sort=${sort}&price=${price}&category=${category}`;
+
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Hiển thị sản phẩm
     function renderProducts(products) {
+        if (!productList) return;
+
         productList.innerHTML = '';
 
         if (!products.length) {
@@ -48,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Hiển thị phân trang
     function renderPagination({ currentPage, totalPages }) {
+        if (!pagination) return;
+
         pagination.innerHTML = '';
 
         // Nút Previous
@@ -79,10 +83,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Sự kiện click vào nút phân trang
-    pagination.addEventListener('click', function (e) {
+    pagination?.addEventListener('click', function (e) {
         const btn = e.target.closest('button');
         if (btn && btn.dataset.page) {
-            const page = parseInt(btn.dataset.page);
+            const page = parseInt(btn.dataset.page, 10);
             if (!isNaN(page)) {
                 loadProducts(page);
             }
@@ -91,7 +95,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Khi thay đổi filter
     [sortSelect, priceInput, categorySelect].forEach(el => {
-        if (el) el.addEventListener('change', () => loadProducts(1));
+        if (el) {
+            const eventType = (el === priceInput) ? 'input' : 'change';
+            el.addEventListener(eventType, () => loadProducts(1));
+        }
     });
 
     // Lần đầu tải trang

@@ -55,6 +55,54 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
 
         <hr>
         <h2 class="text-center mb-5">Sản phẩm nổi bật</h2>
+        <!-- Sản phẩm nổi bật-->
+        <div class="row" id="productsList">
+            <?php if (!empty($productsOnPage) && is_array($productsOnPage)): ?>
+                <?php foreach ($productsOnPage as $product): ?>
+                    <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
+                        <div class="card card-product h-100 shadow">
+                            <img src="uploads/<?= htmlspecialchars($product['thumbnail']) ?>"
+                                class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']) ?>"
+                                onerror="this.onerror=null; this.src='customer/views/assets/images/default-product.png';">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
+                                <p class="card-text text-danger fw-bold">
+                                    <?= number_format($product['price'], 0, ',', '.') ?>₫
+                                </p>
+                                <a href="index.php?page=product-detail&id=<?= $product['id'] ?>" class="btn btn-outline-primary mt-auto">
+                                    Xem chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <p class="text-muted text-center">Không có sản phẩm nào để hiển thị.</p>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Product pagination" class="my-4">
+            <ul class="pagination justify-content-center" id="pagination">
+                <li class="page-item <?= $currentPage == 1 ? 'disabled' : '' ?>">
+                    <button type="button" class="btn border prev-page" data-page="<?= $currentPage - 1 ?>" <?= $currentPage == 1 ? 'disabled' : '' ?>>
+                        <i class="fa-solid fa-angles-left p-1"></i>
+                    </button>
+                </li>
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
+                        <button type="button" class="btn page-link" data-page="<?= $i ?>"><?= $i ?></button>
+                    </li>
+                <?php endfor; ?>
+                <li class="page-item <?= $currentPage == $totalPages ? 'disabled' : '' ?>">
+                    <button type="button" class="btn border next-page" data-page="<?= $currentPage + 1 ?>" <?= $currentPage == $totalPages ? 'disabled' : '' ?>>
+                        <i class="fa-solid fa-angles-right p-1"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
 
         <div class="row">
             <!-- Sidebar -->
@@ -66,7 +114,7 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
             <div class="col-lg-9">
                 <!-- Sort Options -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div>
+                    <!-- <div>
                         <span class="me-2">Hiển thị <span id="productCount"><?= count($productsOnPage) ?></span> sản
                             phẩm</span>
                     </div>
@@ -78,59 +126,10 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
                             <option value="price-desc">Giá: Cao đến thấp</option>
                             <option value="popular">Phổ biến nhất</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
 
-                <!-- Sản phẩm nổi bật-->
-                <div class="row" id="productsList">
-                    <?php if (!empty($productsOnPage) && is_array($productsOnPage)): ?>
-                        <?php foreach ($productsOnPage as $product): ?>
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-                                <div class="card card-product h-100 shadow">
-                                    <img src="uploads/<?= htmlspecialchars($product['thumbnail']) ?>"
-                                        class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']) ?>"
-                                        onerror="this.onerror=null; this.src='customer/views/assets/images/default-product.png';">
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
-                                        <p class="card-text text-danger fw-bold">
-                                            <?= number_format($product['price'], 0, ',', '.') ?>₫
-                                        </p>
-                                        <a href="index.php?page=product-detail&id=<?= $product['id'] ?>" class="btn btn-outline-primary mt-auto">
-                                            Xem chi tiết
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <div class="col-12">
-                            <p class="text-muted text-center">Không có sản phẩm nào để hiển thị.</p>
-                        </div>
-                    <?php endif; ?>
-                </div>
-
-                <!-- Pagination -->
-                <nav aria-label="Product pagination" class="my-4">
-                    <ul class="pagination justify-content-center" id="pagination">
-                        <li class="page-item <?= $currentPage == 1 ? 'disabled' : '' ?>">
-                            <button type="button" class="btn border prev-page" data-page="<?= $currentPage - 1 ?>" <?= $currentPage == 1 ? 'disabled' : '' ?>>
-                                <i class="fa-solid fa-angles-left p-1"></i>
-                            </button>
-                        </li>
-                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                            <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
-                                <button type="button" class="btn page-link" data-page="<?= $i ?>"><?= $i ?></button>
-                            </li>
-                        <?php endfor; ?>
-                        <li class="page-item <?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <button type="button" class="btn border next-page" data-page="<?= $currentPage + 1 ?>" <?= $currentPage == $totalPages ? 'disabled' : '' ?>>
-                                <i class="fa-solid fa-angles-right p-1"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-
-                <!-- Category 1 -->
+                <!-- Category -->
                 <div>
                     <?php foreach ($categories as $cat): ?>
                         <hr>
@@ -178,6 +177,5 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
 </section>
 
 <!-- <script src="customer/views/assets/js/products.js"></script> -->
-<script src="customer/ajax/filter-products.js"></script>
+<script src="customer/ajax/product-filter.js"></script>
 <script src="customer/ajax/pagination.js"></script>
-<script src="customer/ajax/lazyloading.js"></script>

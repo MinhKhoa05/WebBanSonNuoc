@@ -13,7 +13,7 @@ $userName = $isLoggedIn ? $_SESSION['user_name'] : '';
     <title>ColorHomes Paint</title>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="views/assets/css/customer/home.css">
+    <link rel="stylesheet" href="customer/views/assets/css/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -27,9 +27,11 @@ $userName = $isLoggedIn ? $_SESSION['user_name'] : '';
         <a class="navbar-brand" href="index.php">
             <i class="bi bi-droplet-fill me-2"></i>ColorHomes Paint
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <!-- Nút toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Menu -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="index.php">Trang chủ</a></li>

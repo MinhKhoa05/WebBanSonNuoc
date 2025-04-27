@@ -26,9 +26,9 @@ $pageParam = $parsedUrl['path'] ?? '';
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <link rel="stylesheet" href="customer/views/assets/css/products-section.css">
+    <!-- <link rel="stylesheet" href="customer/views/assets/css/products-section.css"> -->
 
-    <!-- <script src="views/assets/js/customer/home.js"></script> -->
+
 </head>
 <body>
 <?php
