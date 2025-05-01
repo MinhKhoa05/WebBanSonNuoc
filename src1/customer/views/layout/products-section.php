@@ -8,7 +8,7 @@ $brands = brand_select_all();
 $featuredBrands = brand_select_featured(6);
 
 // Để hiển thị ban đầu, lấy dữ liệu cho trang đầu tiên
-$productsPerPage = 8;
+$productsPerPage = 3;
 $products = product_select_all();
 $totalProducts = count($products);
 $totalPages = ceil($totalProducts / $productsPerPage);
@@ -17,7 +17,6 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
 ?>
 
 <link rel="stylesheet" href="customer/views/assets/css/products-section.css">
-
 
 <!-- Products Section -->
 <section id="products" class="py-5">
@@ -30,7 +29,7 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
             <?php if (!empty($featuredBrands) && is_array($featuredBrands)): ?>
                 <?php foreach ($featuredBrands as $brand): ?>
                     <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
-                        <div class="card card-brand border-0 shadow-sm text-center">
+                        <div class="card card-brand border-1 text-center">
                             <?php
                             $imagePath = 'uploads/' . $brand['thumbnail'];
                             $imageUrl = file_exists($imagePath) && !empty($brand['thumbnail'])
@@ -60,7 +59,7 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
             <?php if (!empty($productsOnPage) && is_array($productsOnPage)): ?>
                 <?php foreach ($productsOnPage as $product): ?>
                     <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
-                        <div class="card card-product h-100 shadow">
+                        <div class="card card-product h-100">
                             <img src="uploads/<?= htmlspecialchars($product['thumbnail']) ?>"
                                 class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']) ?>"
                                 onerror="this.onerror=null; this.src='customer/views/assets/images/default-product.png';">
@@ -86,21 +85,7 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
         <!-- Pagination -->
         <nav aria-label="Product pagination" class="my-4">
             <ul class="pagination justify-content-center" id="pagination">
-                <li class="page-item <?= $currentPage == 1 ? 'disabled' : '' ?>">
-                    <button type="button" class="btn border prev-page" data-page="<?= $currentPage - 1 ?>" <?= $currentPage == 1 ? 'disabled' : '' ?>>
-                        <i class="fa-solid fa-angles-left p-1"></i>
-                    </button>
-                </li>
-                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                    <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
-                        <button type="button" class="btn page-link" data-page="<?= $i ?>"><?= $i ?></button>
-                    </li>
-                <?php endfor; ?>
-                <li class="page-item <?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                    <button type="button" class="btn border next-page" data-page="<?= $currentPage + 1 ?>" <?= $currentPage == $totalPages ? 'disabled' : '' ?>>
-                        <i class="fa-solid fa-angles-right p-1"></i>
-                    </button>
-                </li>
+                <!-- JavaScript sẽ điền nội dung phân trang ở đây -->
             </ul>
         </nav>
 
@@ -113,8 +98,9 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
             <!-- Main content - Fixed to use 9 columns to complete the 12-column grid -->
             <div class="col-lg-9">
                 <!-- Sort Options -->
+                <hr>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <!-- <div>
+                    <div>
                         <span class="me-2">Hiển thị <span id="productCount"><?= count($productsOnPage) ?></span> sản
                             phẩm</span>
                     </div>
@@ -124,18 +110,19 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
                             <option value="newest">Mới nhất</option>
                             <option value="price-asc">Giá: Thấp đến cao</option>
                             <option value="price-desc">Giá: Cao đến thấp</option>
-                            <option value="popular">Phổ biến nhất</option>
                         </select>
-                    </div> -->
+                    </div>
                 </div>
 
                 <!-- Category -->
                 <div>
                     <?php foreach ($categories as $cat): ?>
-                        <hr>
                         <h2 id="category-<?= htmlspecialchars($cat['id']) ?>" class="text-center mb-5">
                             <?= htmlspecialchars($cat['name']) ?>
                         </h2>
+                        <a href="index.php?page=product-all&category_id=<?= $cat['id'] ?>" class="btn btn-link">
+                            Xem tất cả
+                        </a>
                         <div class="row">
                             <?php
                             // Lọc sản phẩm theo danh mục
@@ -147,7 +134,7 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
                             <?php if (!empty($productsByCategory)): ?>
                                 <?php foreach ($productsByCategory as $product): ?>
                                     <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-                                        <div class="card card-product h-100 shadow">
+                                        <div class="card card-product h-100">
                                             <img src="uploads/<?= htmlspecialchars($product['thumbnail']) ?>"
                                                 class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']) ?>"
                                                 onerror="this.onerror=null; this.src='customer/views/assets/images/default-product.png';">
@@ -169,6 +156,7 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
                                 </div>
                             <?php endif; ?>
                         </div>
+                        <hr>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -178,4 +166,4 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
 
 <!-- <script src="customer/views/assets/js/products.js"></script> -->
 <script src="customer/ajax/product-filter.js"></script>
-<script src="customer/ajax/pagination.js"></script>
+<!-- <script src="customer/ajax/pagination.js"></script> -->

@@ -1,63 +1,52 @@
 <?php
 require_once __DIR__ . '/../../models/product.php';
-require_once __DIR__ . '/../../models/category.php';
+require_once __DIR__ . '/../../models/pdo.php';
 
-// Lấy các tham số từ yêu cầu
-$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-$categoryId = isset($_GET['category']) ? (int) $_GET['category'] : null;
-$priceMax = isset($_GET['price']) ? (int) $_GET['price'] : null;
-$sort = isset($_GET['sort']) ? $_GET['sort'] : 'newest';
+// Lấy các tham số trang và bộ lọc với giá trị mặc định
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$sort = isset($_GET['sort']) ? $_GET['sort'] : '';
+$price = isset($_GET['price']) ? (int)$_GET['price'] : 0;
+$category = isset($_GET['category']) ? $_GET['category'] : '';
 
-// Số sản phẩm mỗi trang
-$productsPerPage = 8;
+// Số sản phẩm trên mỗi trang
+$perPage = 3;
+$offset = ($page - 1) * $perPage;
 
-// Lấy tất cả sản phẩm từ cơ sở dữ liệu
-$products = product_select_all(); // Hàm trả về mảng sản phẩm
+// Lấy tổng số sản phẩm sau khi áp dụng bộ lọc
+$totalItems = product_filter_count($category, $price);
 
-// === LỌC SẢN PHẨM === //
-if ($categoryId) {
-    $products = array_filter($products, function ($product) use ($categoryId) {
-        return $product['category_id'] == $categoryId;
-    });
+// Tính tổng số trang
+$totalPages = ceil($totalItems / $perPage);
+
+// Lấy danh sách sản phẩm sau khi áp dụng bộ lọc và phân trang
+$products = product_filter($category, $price, null, $sort, $offset, $perPage);
+
+// Xử lý sản phẩm để đảm bảo định dạng nhất quán
+$formattedProducts = [];
+foreach ($products as $product) {
+    $formattedProducts[] = [
+        'id' => $product['id'],
+        'name' => $product['name'],
+        'price' => $product['price'],
+        'discount' => $product['discount'] ?? 0,
+        'category_id' => $product['category_id'],
+        'category_name' => $product['category_name'] ?? '',
+        'thumbnail' => $product['thumbnail'] ?? '',
+        'description' => $product['description'] ?? ''
+    ];
 }
 
-if ($priceMax) {
-    $products = array_filter($products, function ($product) use ($priceMax) {
-        return $product['price'] <= $priceMax;
-    });
-}
-
-// === SẮP XẾP SẢN PHẨM === //
-if ($sort === 'newest') {
-    usort($products, function ($a, $b) {
-        return strtotime($b['created_at']) - strtotime($a['created_at']);
-    });
-} elseif ($sort === 'price_asc') {
-    usort($products, function ($a, $b) {
-        return $a['price'] - $b['price'];
-    });
-} elseif ($sort === 'price_desc') {
-    usort($products, function ($a, $b) {
-        return $b['price'] - $a['price'];
-    });
-}
-
-// === PHÂN TRANG === //
-$totalProducts = count($products);
-$totalPages = ceil($totalProducts / $productsPerPage);
-$startIndex = ($page - 1) * $productsPerPage;
-$productsOnPage = array_slice($products, $startIndex, $productsPerPage);
-
-// === TRẢ KẾT QUẢ DẠNG JSON === //
+// Chuẩn bị phản hồi
 $response = [
-    'products' => $productsOnPage,
+    'products' => $formattedProducts,
     'pagination' => [
         'currentPage' => $page,
         'totalPages' => $totalPages,
-        'totalProducts' => $totalProducts
+        'perPage' => $perPage,
+        'totalItems' => $totalItems
     ]
 ];
 
+// Trả về phản hồi JSON
 header('Content-Type: application/json');
 echo json_encode($response);
-?>

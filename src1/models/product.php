@@ -76,4 +76,73 @@ function product_count_by_category($categoryId)
     $sql = "SELECT COUNT(*) FROM products WHERE category_id = ? AND is_deleted = 0";
     return pdo_query_value($sql, $categoryId);
 }
+
+function product_filter_count($categoryId = null, $maxPrice = null)
+{
+    $sql = "SELECT COUNT(*) 
+            FROM products p
+            WHERE p.is_deleted = 0";
+    $params = [];
+
+    // Lọc theo danh mục
+    if (!is_null($categoryId) && $categoryId !== 'all') {
+        $sql .= " AND p.category_id = ?";
+        $params[] = $categoryId;
+    }
+
+    // Lọc theo giá
+    if (!is_null($maxPrice)) {
+        $sql .= " AND p.price <= ?";
+        $params[] = $maxPrice;
+    }
+
+    return pdo_query_value($sql, ...$params);
+}
+
+function product_filter($categoryId = null, $maxPrice = null, $status = null, $sort = null, $startIndex = 0, $limit = 10)
+{
+    $sql = "SELECT p.*, c.name as category_name 
+            FROM products p
+            LEFT JOIN categories c ON p.category_id = c.id
+            WHERE p.is_deleted = 0";
+    $params = [];
+
+    // Lọc theo danh mục
+    if (!is_null($categoryId) && $categoryId !== 'all') {
+        $sql .= " AND p.category_id = ?";
+        $params[] = $categoryId;
+    }
+
+    // Lọc theo giá
+    if (!is_null($maxPrice)) {
+        $sql .= " AND p.price <= ?";
+        $params[] = $maxPrice;
+    }
+
+    // Sắp xếp
+    if (!is_null($sort)) {
+        if ($sort === 'price_asc') {
+            $sql .= " ORDER BY p.price ASC";
+        } elseif ($sort === 'price_desc') {
+            $sql .= " ORDER BY p.price DESC";
+        } elseif ($sort === 'newest') {
+            $sql .= " ORDER BY p.created_at DESC";
+        } else {
+            $sql .= " ORDER BY p.id DESC"; // Mặc định
+        }
+    } else {
+        $sql .= " ORDER BY p.id DESC"; // Mặc định
+    }
+
+    // Giới hạn số lượng sản phẩm
+    $sql .= " LIMIT ?, ?";
+    $params[] = $startIndex;
+    $params[] = $limit;
+
+    return pdo_query($sql, ...$params);
+}
 ?>
+
+
+
+

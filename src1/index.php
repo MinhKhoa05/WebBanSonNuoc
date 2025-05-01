@@ -67,13 +67,16 @@ switch ($pageParam) {
         include 'customer/views/middlewares/redirectIfAuthen.php';
         include 'customer/views/pages/register.php';
         break;
+    case 'product-all':
+        include 'customer/views/pages/product-all.php';
+        break;
     default:
         include 'customer/views/pages/home.php';
         break;
 }
 ?>
 
-<script src="customer/ajax/lazyloading.js"></script>
+<!-- <script src="customer/ajax/lazyloading.js"></script> -->
 </body>
 </html>
 <?php

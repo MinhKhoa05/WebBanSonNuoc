@@ -1,4 +1,3 @@
-
 <?php
 // filepath: c:\xampp\htdocs\WebBanSonLuc\views\pages\customer\product-detail.php
 require_once __DIR__ . '/../../../models/product.php';
@@ -52,9 +51,16 @@ if (!$product) {
                         <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control"
                             style="width: 80px;">
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-cart-plus me-2"></i> Thêm vào giỏ hàng
-                    </button>
+                    <div class="d-flex flex-column gap-2" style="max-width: 300px;">
+                        <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-cart-plus me-2"></i> Thêm vào giỏ hàng
+                        </button>
+
+                        <a href="#" class="btn btn-success w-100 d-flex align-items-center justify-content-center">
+                            <img src="https://stc-zaloprofile.zdn.vn/pc/v1/images/zalo_sharelogo.png" alt="Zalo" style="width: 24px; height: 24px; margin-right: 8px;">
+                            Tư vấn qua Zalo
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
