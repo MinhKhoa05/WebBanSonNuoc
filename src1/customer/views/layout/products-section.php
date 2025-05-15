@@ -104,14 +104,14 @@ $productsOnPage = array_slice($products, 0, $productsPerPage);
                         <span class="me-2">Hiển thị <span id="productCount"><?= count($productsOnPage) ?></span> sản
                             phẩm</span>
                     </div>
-                    <div class="d-flex align-items-center">
+                    <!-- <div class="d-flex align-items-center">
                         <label class="me-2">Sắp xếp theo:</label>
                         <select class="form-select form-select-sm" style="width: auto">
                             <option value="newest">Mới nhất</option>
                             <option value="price-asc">Giá: Thấp đến cao</option>
                             <option value="price-desc">Giá: Cao đến thấp</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Category -->

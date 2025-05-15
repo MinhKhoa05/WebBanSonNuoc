@@ -63,6 +63,51 @@ $productsOnPage = array_slice($productsByCategory, $offset, $itemsPerPage);
 
 <!-- CSS tùy chỉnh nếu cần -->
 <link rel="stylesheet" href="customer/views/assets/css/products-section.css">
+<style>
+    #banner-section {
+        margin-bottom: 20px;
+    }
+
+    #banner-section .carousel-item img {
+        height: 400px;
+        /* Chiều cao cố định cho banner */
+        object-fit: cover;
+        /* Đảm bảo hình ảnh giữ tỷ lệ */
+    }
+
+    #banner-section .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Nền đen mờ */
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    #banner-section .carousel-caption h5 {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    #banner-section .carousel-caption p {
+        font-size: 1rem;
+    }
+</style>
+
+<!-- Banner Section -->
+
+<section id="banner-section" class="mb-4">
+    <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <a href="">
+                <img src="customer/views/assets/images/background.png" class="d-block w-100" alt="Banner 1">
+            </a>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>PaintMart - Siêu thị sơn số 1 Việt Nam</h5>
+                <p>Phối màu sơn nhà 3D miễn phí - 5 gam màu sơn đẹp nhất.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Main Content -->
 <section class="py-4">
@@ -135,7 +180,7 @@ $productsOnPage = array_slice($productsByCategory, $offset, $itemsPerPage);
                                     &laquo; Trước
                                 </a>
                             </li>
-                            
+
                             <!-- Các số trang -->
                             <?php
                             // Hiển thị tối đa 5 số trang
@@ -145,7 +190,7 @@ $productsOnPage = array_slice($productsByCategory, $offset, $itemsPerPage);
                                 $startPage = max(1, $endPage - 4);
                             }
                             ?>
-                            
+
                             <?php if ($startPage > 1): ?>
                                 <li class="page-item">
                                     <a class="page-link" href="index.php?page=product-all&category_id=<?= $category_id ?>&trang=1">1</a>
@@ -156,7 +201,7 @@ $productsOnPage = array_slice($productsByCategory, $offset, $itemsPerPage);
                                     </li>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            
+
                             <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
                                 <li class="page-item <?= ($i == $currentPage) ? 'active' : '' ?>">
                                     <a class="page-link" href="index.php?page=product-all&category_id=<?= $category_id ?>&trang=<?= $i ?>">
@@ -164,7 +209,7 @@ $productsOnPage = array_slice($productsByCategory, $offset, $itemsPerPage);
                                     </a>
                                 </li>
                             <?php endfor; ?>
-                            
+
                             <?php if ($endPage < $totalPages): ?>
                                 <?php if ($endPage < $totalPages - 1): ?>
                                     <li class="page-item disabled">
@@ -175,7 +220,7 @@ $productsOnPage = array_slice($productsByCategory, $offset, $itemsPerPage);
                                     <a class="page-link" href="index.php?page=product-all&category_id=<?= $category_id ?>&trang=<?= $totalPages ?>"><?= $totalPages ?></a>
                                 </li>
                             <?php endif; ?>
-                            
+
                             <!-- Nút Next -->
                             <li class="page-item <?= ($currentPage >= $totalPages) ? 'disabled' : '' ?>">
                                 <a class="page-link" href="index.php?page=product-all&category_id=<?= $category_id ?>&trang=<?= $currentPage + 1 ?>">
@@ -201,7 +246,7 @@ $productsOnPage = array_slice($productsByCategory, $offset, $itemsPerPage);
                 currentUrl.searchParams.set('sort', sortValue);
                 window.location.href = currentUrl.toString();
             });
-            
+
             // Giữ tùy chọn đã chọn khi tải lại trang
             const urlParams = new URLSearchParams(window.location.search);
             const sortParam = urlParams.get('sort');

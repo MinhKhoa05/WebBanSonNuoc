@@ -1,9 +1,11 @@
 <?php
 require_once 'pdo.php';
 
-function product_select_all()
-{
-    $sql = "SELECT * FROM products WHERE is_deleted = 0 ORDER BY name ASC";
+function product_select_all() {
+    $sql = "SELECT p.*, c.name AS category_name 
+            FROM products p
+            JOIN categories c ON p.category_id = c.id
+            WHERE p.is_deleted = 0";
     return pdo_query($sql);
 }
 
@@ -21,19 +23,19 @@ function product_insert($name, $description, $price, $discount, $stock, $status,
     pdo_execute($sql, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail);
 }
 
-function product_update($id, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail)
-{
-    $sql = "UPDATE products SET
-            name = ?, 
-            description = ?, 
-            price = ?, 
-            discount = ?, 
-            stock = ?, 
-            status = ?, 
-            category_id = ?, 
-            thumbnail = ?, 
+function product_update($id, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail) {
+    $sql = "UPDATE products 
+            SET name = ?, 
+                description = ?, 
+                price = ?, 
+                discount = ?, 
+                stock = ?, 
+                status = ?, 
+                category_id = ?, 
+                thumbnail = ? 
             WHERE id = ?";
-    pdo_execute($sql, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail, $id);
+    
+    return pdo_execute($sql, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail, $id);
 }
 
 function product_select_by_category_id($categoryId)
@@ -75,6 +77,11 @@ function product_count_by_category($categoryId)
 {
     $sql = "SELECT COUNT(*) FROM products WHERE category_id = ? AND is_deleted = 0";
     return pdo_query_value($sql, $categoryId);
+}
+
+function product_count_all() {
+    $sql = "SELECT COUNT(*) AS total FROM products WHERE is_deleted = 0";
+    return pdo_query_value($sql);
 }
 
 function product_filter_count($categoryId = null, $maxPrice = null)

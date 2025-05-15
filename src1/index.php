@@ -1,6 +1,6 @@
 <?php
 // Bao gồm các file cần thiết cho trang customer
-require_once 'customer/views/layout/header.php';
+// require_once 'customer/views/layout/header.php';
 // require_once 'customer/controllers/userController.php';
 
 ?>
@@ -32,6 +32,8 @@ $pageParam = $parsedUrl['path'] ?? '';
 </head>
 <body>
 <?php
+require_once 'customer/views/layout/header.php';
+
 // Điều hướng đến các trang cụ thể
 switch ($pageParam) {
     case 'myprofile':
@@ -43,6 +45,12 @@ switch ($pageParam) {
         break;
     case 'product-detail':
         include 'customer/views/pages/product-details.php';
+        break;
+    case 'payment':
+        include 'customer/views/pages/payment.php';
+        break;
+    case 'thankyou':
+        include 'customer/views/pages/thankyou.php';
         break;
     case 'checkout':
         include 'customer/views/pages/checkout.php';

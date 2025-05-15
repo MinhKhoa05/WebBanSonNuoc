@@ -61,9 +61,6 @@ $userName = $isLoggedIn ? $_SESSION['user_name'] : '';
                     </div>
                     <a href="index.php?page=cart" class="btn btn-outline-light position-relative">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
-                            <?= isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?>
-                        </span>
                     </a>
                 <?php endif; ?>
             </div>

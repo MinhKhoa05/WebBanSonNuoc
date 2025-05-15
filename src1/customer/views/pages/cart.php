@@ -107,7 +107,7 @@ $cart = cart_select_by_user($user_id);
                             <div class="card-body">
                                 <?php
                                 $subtotal = array_sum(array_map(fn($item) => product_select_by_id($item['product_id'])['price'] * $item['quantity'], $cart));
-                                $shipping = 50000;
+                                $shipping = 30000;
                                 $total = $subtotal + $shipping;
                                 ?>
                                 <div class="d-flex justify-content-between mb-2">
@@ -126,7 +126,7 @@ $cart = cart_select_by_user($user_id);
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">Cập nhật giỏ hàng</button>
-                                    <a href="index.php?page=checkout" class="btn btn-success">Thanh toán</a>
+                                    <a href="index.php?page=payment" class="btn btn-success">Thanh toán</a>
                                 </div>
                             </div>
                         </div>

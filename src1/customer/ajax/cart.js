@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     
         // Xử lý tương tự cho phí vận chuyển
-        let shipping = 50000; // Giá mặc định
+        let shipping = 30000; // Giá mặc định
         const shippingElement = document.getElementById('shipping');
         if (shippingElement) {
             let shippingText = shippingElement.textContent;

@@ -19,6 +19,12 @@ function order_insert($user_id, $order_date, $total, $status)
     pdo_execute($sql, $user_id, $order_date, $total, $status);
 }
 
+function order_insert_full($user_id, $fullname, $phone, $address, $note, $payment_method, $order_date, $total, $shipping, $status) {
+    $sql = "INSERT INTO orders (user_id, fullname, phone, address, note, payment_method, order_date, total, shipping, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    pdo_execute($sql, $user_id, $fullname, $phone, $address, $note, $payment_method, $order_date, $total, $shipping, $status);
+}
+
 function order_update($id, $user_id, $order_date, $total, $status)
 {
     $sql = "UPDATE orders SET user_id = ?, order_date = ?, total = ?, status = ? WHERE id = ?";
