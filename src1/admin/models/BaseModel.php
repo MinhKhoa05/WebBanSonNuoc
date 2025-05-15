@@ -2,59 +2,72 @@
 require_once 'pdo.php';
 
 class BaseModel {
-    protected $table;
-    protected $primaryKey = 'id';
+    protected string $table;
+    protected string $primaryKey;
 
-    public function __construct($table, $primaryKey = 'id') {
+    public function __construct(string $table, string $primaryKey = 'id') {
         $this->table = $table;
         $this->primaryKey = $primaryKey;
     }
 
-    // Lấy hết dữ liệu chưa xoá
-    public function get_all() {
-        // $sql = "SELECT * FROM {$this->table} WHERE is_deleted = 0";
+    /**
+     * Lấy tất cả bản ghi (chưa bị xóa mềm)
+     */
+    public function get_all(): array {
         $sql = "SELECT * FROM {$this->table}";
         return pdo_query($sql);
     }
 
-    // Lấy 1 bản ghi theo id chưa xoá
-    public function get_by_id($id) {
-        $sql = "SELECT * FROM {$this->table} WHERE is_deleted = 0 AND {$this->primaryKey} = ?";
+    /**
+     * Lấy một bản ghi theo ID (chưa bị xóa mềm)
+     */
+    public function get_by_id(int $id): ?array {
+        $sql = "SELECT * FROM {$this->table} WHERE {$this->primaryKey} = ? AND is_deleted = 0";
         return pdo_query_one($sql, $id);
     }
 
-    // Thêm dữ liệu, truyền vào mảng [cột => giá trị]
-    public function insert($data) {
-        $cols = implode(', ', array_keys($data));
+    /**
+     * Thêm mới bản ghi
+     */
+    public function insert(array $data): bool {
+        $columns = implode(', ', array_keys($data));
         $placeholders = implode(', ', array_fill(0, count($data), '?'));
         $values = array_values($data);
 
-        $sql = "INSERT INTO {$this->table} ($cols) VALUES ($placeholders)";
+        $sql = "INSERT INTO {$this->table} ($columns) VALUES ($placeholders)";
         return pdo_execute($sql, ...$values);
     }
 
-    // Cập nhật theo id, dữ liệu cũng mảng [cột => giá trị]
-    public function update($id, $data) {
+    /**
+     * Cập nhật bản ghi theo ID
+     */
+    public function update(int $id, array $data): bool {
         $fields = [];
         $values = [];
-        foreach ($data as $col => $val) {
-            $fields[] = "$col = ?";
-            $values[] = $val;
+
+        foreach ($data as $key => $value) {
+            $fields[] = "$key = ?";
+            $values[] = $value;
         }
-        $values[] = $id; // id ở cuối cho WHERE
+
+        $values[] = $id; // ID phải được thêm vào cuối cùng
 
         $sql = "UPDATE {$this->table} SET " . implode(', ', $fields) . " WHERE {$this->primaryKey} = ?";
         return pdo_execute($sql, ...$values);
     }
 
-    // Xóa mềm: đánh dấu is_deleted = 1
-    public function soft_delete($id) {
+    /**
+     * Xóa mềm (đánh dấu is_deleted = 1)
+     */
+    public function soft_delete(int $id): bool {
         $sql = "UPDATE {$this->table} SET is_deleted = 1 WHERE {$this->primaryKey} = ?";
-        pdo_execute($sql, $id);
+        return pdo_execute($sql, $id);
     }
 
-    // Xóa cứng khỏi database
-    public function delete($id) {
+    /**
+     * Xóa cứng khỏi database
+     */
+    public function delete(int $id): bool {
         $sql = "DELETE FROM {$this->table} WHERE {$this->primaryKey} = ?";
         return pdo_execute($sql, $id);
     }

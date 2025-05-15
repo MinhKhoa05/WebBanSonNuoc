@@ -1,12 +1,16 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once __DIR__ . '/../models/ProductModel.php';
 require_once __DIR__ . '/../models/CategoryModel.php';
 
 class ProductController
 {
-    private $model;
-    private $category_model;
-    private $data = [];
+    private ProductModel $model;
+    private CategoryModel $category_model;
+    private array $data = [];
 
     public function __construct()
     {
@@ -14,13 +18,13 @@ class ProductController
         $this->category_model = new CategoryModel();
     }
 
-    public function index()
+    public function index(): void
     {
-        $this->data['products'] = $this->model->getAll();
+        $this->data['products'] = $this->model->get_all();
         $this->data['categories'] = $this->category_model->get_all();
     }
 
-    public function add()
+    public function add(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
@@ -34,24 +38,27 @@ class ProductController
                 'thumbnail' => $this->handle_upload()
             ];
 
-            $this->model->insert($data);
-            header("Location: index.php?page=product");
-            exit;
+            $success = $this->model->insert($data);
+            if ($success) {
+                $_SESSION['flash_message'] = ['type' => 'success', 'text' => 'Thêm sản phẩm thành công!'];
+            } else {
+                $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'Thêm sản phẩm thất bại!'];
+            }
+            $this->redirect_to_product();
         }
 
-        // Nếu GET thì vẫn load danh mục để hiển thị trong form thêm
         $this->data['categories'] = $this->category_model->get_all();
     }
 
-    public function edit()
+    public function edit(): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = intval($_POST['id'] ?? 0);
-            if ($id <= 0) {
-                header("Location: index.php?page=product");
-                exit;
-            }
+        $id = intval($_GET['id'] ?? ($_POST['id'] ?? 0));
+        if ($id <= 0) {
+            $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'ID sản phẩm không hợp lệ!'];
+            $this->redirect_to_product();
+        }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
                 'name' => $_POST['name'] ?? '',
                 'description' => $_POST['description'] ?? '',
@@ -62,88 +69,78 @@ class ProductController
                 'category_id' => intval($_POST['category_id'] ?? 0),
             ];
 
-            if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
-                $uploadedFile = $this->handle_upload();
-                if ($uploadedFile !== '') {
-                    $data['thumbnail'] = $uploadedFile;
-                }
+            if (!empty($_FILES['thumbnail']['name'])) {
+                $upload = $this->handle_upload();
+                if ($upload !== '') $data['thumbnail'] = $upload;
             }
 
-            $this->model->update($id, $data);
-            header("Location: index.php?page=product");
-            exit;
+            $success = $this->model->update($id, $data);
+            if ($success) {
+                $_SESSION['flash_message'] = ['type' => 'success', 'text' => 'Cập nhật sản phẩm thành công!'];
+            } else {
+                $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'Cập nhật sản phẩm thất bại!'];
+            }
+            $this->redirect_to_product();
         }
 
-        // Xử lý GET lấy dữ liệu để show form sửa
-        $id = intval($_GET['id'] ?? 0);
-        if ($id <= 0) {
-            header("Location: index.php?page=product");
-            exit;
-        }
-
-        $product = $this->model->getById($id);
+        $product = $this->model->get_by_id($id);
         if (!$product) {
-            header("Location: index.php?page=product");
-            exit;
+            $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'Sản phẩm không tồn tại!'];
+            $this->redirect_to_product();
         }
 
         $this->data['product'] = $product;
         $this->data['categories'] = $this->category_model->get_all();
     }
 
-    public function delete()
+    public function delete(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = intval($_POST['id'] ?? 0);
-            $this->model->delete($id);
-            header("Location: index.php?page=product");
-            exit;
+            if ($id <= 0) {
+                $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'ID sản phẩm không hợp lệ!'];
+            } else {
+                $success = $this->model->delete($id);
+                if ($success) {
+                    $_SESSION['flash_message'] = ['type' => 'success', 'text' => 'Xóa sản phẩm thành công!'];
+                } else {
+                    $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'Xóa sản phẩm thất bại!'];
+                }
+            }
         }
+        $this->redirect_to_product();
+    }
+
+    private function redirect_to_product(): void
+    {
+        header("Location: index.php?page=product");
+        exit;
     }
 
     private function handle_upload(): string
     {
         $uploadDir = __DIR__ . '/../../uploads/';
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
-        }
+        if (!file_exists($uploadDir)) mkdir($uploadDir, 0755, true);
 
-        $file = $_FILES['thumbnail'];
+        $file = $_FILES['thumbnail'] ?? null;
+        if (!$file || $file['error'] !== UPLOAD_ERR_OK) return '';
 
-        // Kiểm tra lỗi upload
-        if ($file['error'] !== UPLOAD_ERR_OK) {
-            return '';
-        }
-
-        // Kiểm tra định dạng file ảnh
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
         $fileMime = mime_content_type($file['tmp_name']);
-        if (!in_array($fileMime, $allowedTypes)) {
-            return ''; // Không phải file hình ảnh hợp lệ
-        }
+        if (!in_array($fileMime, $allowedTypes)) return '';
 
-        // Hoặc có thể kiểm tra đuôi file (extension)
         $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
         $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-        if (!in_array($ext, $allowedExt)) {
-            return '';
-        }
+        if (!in_array($ext, $allowedExt)) return '';
 
-        // Đặt tên file hợp lệ
         $fileName = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', basename($file['name']));
         $targetFile = $uploadDir . $fileName;
 
-        if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-            return $fileName;
-        }
-
-        return '';
+        return move_uploaded_file($file['tmp_name'], $targetFile) ? $fileName : '';
     }
 
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
 }
-
-?>

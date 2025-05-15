@@ -27,8 +27,6 @@ $pageParam = $parsedUrl['path'] ?? '';
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <!-- <link rel="stylesheet" href="customer/views/assets/css/products-section.css"> -->
-
-
 </head>
 <body>
 <?php

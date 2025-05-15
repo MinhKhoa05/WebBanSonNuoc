@@ -42,3 +42,29 @@ function openAddProductModal() {
 
     modal.show();
 }
+
+function confirmDelete(id) {
+    Swal.fire({
+        title: 'Bạn có chắc muốn xóa sản phẩm này?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Có, xóa nó!',
+        cancelButtonText: 'Hủy',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Tạo form ẩn gửi POST xóa
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'index.php?page=product&action=delete';
+
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'id';
+            input.value = id;
+            form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    });
+}

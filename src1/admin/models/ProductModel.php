@@ -1,44 +1,69 @@
 <?php
 require_once 'BaseModel.php';
 
-class ProductModel extends BaseModel {
-    public function __construct() {
+class ProductModel extends BaseModel
+{
+    public function __construct()
+    {
         parent::__construct('products', 'id');
     }
 
-    // Ghi đè lấy tất cả sản phẩm kèm tên category
-    public function getAll(): array {
-        $sql = "SELECT p.*, c.name AS category_name
-                FROM products p
-                JOIN categories c ON p.category_id = c.id
-                ORDER BY p.id ASC";
+    /**
+     * Lấy toàn bộ sản phẩm kèm tên danh mục
+     */
+    public function get_all(): array
+    {
+        $sql = "
+            SELECT p.*, c.name AS category_name
+            FROM products p
+            JOIN categories c ON p.category_id = c.id
+            ORDER BY p.id ASC
+        ";
         return pdo_query($sql);
     }
 
-    // Lấy sản phẩm theo id kèm category name
-    public function getById(int $id): ?array {
-        $sql = "SELECT p.*, c.name AS category_name
-                FROM products p
-                JOIN categories c ON p.category_id = c.id
-                WHERE p.id = ? AND p.is_deleted = 0";
+    /**
+     * Lấy 1 sản phẩm theo ID, kèm tên danh mục
+     */
+    public function get_by_id(int $id): ?array
+    {
+        $sql = "
+            SELECT p.*, c.name AS category_name
+            FROM products p
+            JOIN categories c ON p.category_id = c.id
+            WHERE p.id = ? AND p.is_deleted = 0
+        ";
         return pdo_query_one($sql, $id);
     }
 
-    // Tìm kiếm sản phẩm theo tên
-    public function searchByName(string $keyword): array {
-        $sql = "SELECT * FROM products WHERE name LIKE ? AND is_deleted = 0";
+    /**
+     * Tìm sản phẩm theo tên (LIKE %keyword%)
+     */
+    public function search_by_name(string $keyword): array
+    {
+        $sql = "
+            SELECT * 
+            FROM products 
+            WHERE name LIKE ? AND is_deleted = 0
+        ";
         return pdo_query($sql, "%$keyword%");
     }
 
-    // Lọc sản phẩm theo các điều kiện, trả về danh sách
-    public function filter(array $filters = [], string $sort = 'id_desc', int $startIndex = 0, int $limit = 20): array {
-        $sql = "SELECT p.*, c.name as category_name 
-                FROM products p
-                LEFT JOIN categories c ON p.category_id = c.id
-                WHERE p.is_deleted = 0";
+    /**
+     * Lọc sản phẩm theo nhiều điều kiện + sắp xếp + phân trang
+     */
+    public function filter(array $filters = [], string $sort = 'id_desc', int $startIndex = 0, int $limit = 20): array
+    {
+        $sql = "
+            SELECT p.*, c.name AS category_name 
+            FROM products p
+            LEFT JOIN categories c ON p.category_id = c.id
+            WHERE p.is_deleted = 0
+        ";
         $params = [];
 
-        if (isset($filters['category_id']) && $filters['category_id'] !== 'all') {
+        // Điều kiện lọc
+        if (!empty($filters['category_id']) && $filters['category_id'] !== 'all') {
             $sql .= " AND p.category_id = ?";
             $params[] = $filters['category_id'];
         }
@@ -58,20 +83,16 @@ class ProductModel extends BaseModel {
             $params[] = $filters['price_max'];
         }
 
-        switch ($sort) {
-            case 'price_asc':
-                $sql .= " ORDER BY p.price ASC";
-                break;
-            case 'price_desc':
-                $sql .= " ORDER BY p.price DESC";
-                break;
-            case 'newest':
-                $sql .= " ORDER BY p.created_at DESC";
-                break;
-            default:
-                $sql .= " ORDER BY p.id DESC";
-        }
+        // Sắp xếp
+        $orderMap = [
+            'price_asc' => 'p.price ASC',
+            'price_desc' => 'p.price DESC',
+            'newest' => 'p.created_at DESC',
+            'id_desc' => 'p.id DESC',
+        ];
+        $sql .= " ORDER BY " . ($orderMap[$sort] ?? 'p.id DESC');
 
+        // Phân trang
         $sql .= " LIMIT ?, ?";
         $params[] = $startIndex;
         $params[] = $limit;
@@ -79,12 +100,15 @@ class ProductModel extends BaseModel {
         return pdo_query($sql, ...$params);
     }
 
-    // Đếm tổng số sản phẩm (filter theo category, trạng thái...)
-    public function count(array $filters = []): int {
+    /**
+     * Đếm tổng số sản phẩm theo bộ lọc
+     */
+    public function count(array $filters = []): int
+    {
         $sql = "SELECT COUNT(*) FROM products WHERE is_deleted = 0";
         $params = [];
 
-        if (isset($filters['category_id']) && $filters['category_id'] !== 'all') {
+        if (!empty($filters['category_id']) && $filters['category_id'] !== 'all') {
             $sql .= " AND category_id = ?";
             $params[] = $filters['category_id'];
         }
