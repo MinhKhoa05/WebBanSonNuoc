@@ -3,49 +3,7 @@ $products = $data['products'] ?? [];
 $categories = $data['categories'] ?? [];
 ?>
 
-<style>
-    .img-thumbnail {
-        width: 70px;
-        height: 70px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .table td,
-    .table th {
-        vertical-align: middle !important;
-        text-align: center;
-    }
-
-    .badge {
-        font-size: 0.85rem;
-        padding: 0.4em 0.7em;
-        border-radius: 0.5rem;
-    }
-
-    .btn-action {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.25rem 0.6rem;
-    }
-
-    .modal .form-label {
-        font-weight: 500;
-    }
-
-    .modal .form-control,
-    .modal .form-select {
-        border-radius: 0.5rem;
-    }
-
-    #currentProductImage {
-        border: 1px solid #ddd;
-        padding: 4px;
-        border-radius: 6px;
-        background: #f8f8f8;
-    }
-</style>
+<link href="views/assets/css/product.css" rel="stylesheet">
 
 <div class="row" id="productManagement">
     <div class="col-12">
@@ -191,49 +149,4 @@ $categories = $data['categories'] ?? [];
     </div>
 </div>
 
-<script>
-    function openEditProductModal(product) {
-        const modal = new bootstrap.Modal(document.getElementById('productModal'));
-        const form = document.getElementById('productForm');
-
-        form.action = 'index.php?page=product&action=edit';
-
-        document.getElementById('productId').value = product.id;
-        document.getElementById('productName').value = product.name;
-        document.getElementById('productDescription').value = product.description;
-        document.getElementById('productCategory').value = product.category_id;
-        document.getElementById('productPrice').value = product.price;
-        document.getElementById('productDiscount').value = product.discount;
-        document.getElementById('productStock').value = product.stock;
-        document.getElementById('productStatus').value = product.status;
-
-        const img = document.getElementById('currentProductImage');
-        if (product.thumbnail) {
-            img.src = '../uploads/' + product.thumbnail;
-            img.style.display = 'block';
-            document.getElementById('imageHelpText').textContent = 'Để trống nếu không thay đổi hình ảnh';
-        } else {
-            img.style.display = 'none';
-            document.getElementById('imageHelpText').textContent = 'Bạn có thể thêm hình ảnh cho sản phẩm';
-        }
-
-        document.getElementById('submitButton').textContent = 'Lưu thay đổi';
-
-        modal.show();
-    }
-
-    function openAddProductModal() {
-        const modal = new bootstrap.Modal(document.getElementById('productModal'));
-        const form = document.getElementById('productForm');
-
-        form.action = 'index.php?page=product&action=add';
-
-        form.reset();
-        document.getElementById('productId').value = '';
-        document.getElementById('currentProductImage').style.display = 'none';
-        document.getElementById('imageHelpText').textContent = 'Bắt buộc với thêm mới, để trống nếu không thay đổi hình ảnh khi sửa.';
-        document.getElementById('submitButton').textContent = 'Thêm';
-
-        modal.show();
-    }
-</script>
+<script src="views/assets/js/product.js"></script>
