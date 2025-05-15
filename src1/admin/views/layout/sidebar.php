@@ -1,7 +1,3 @@
-<?php
-// Đảm bảo không có khoảng trắng hoặc xuống dòng trước thẻ PHP
-// Bắt đầu bằng thẻ PHP thay vì HTML để tránh xuất bất kỳ nội dung nào
-?>
 <div class="col-md-3 col-lg-2 sidebar p-0">
     <div class="d-flex flex-column p-3">
         <a href="#" class="navbar-brand d-flex align-items-center mb-3">
@@ -11,12 +7,12 @@
         <hr class="text-light">
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="admin.php?page=dashboard" class="nav-link">
+                <a href="index.php?page=dashboard" class="nav-link">
                     <i class="fas fa-tachometer-alt me-2"></i> Tổng quan
                 </a>
             </li>
             <li class="nav-item">
-                <a href="admin.php?page=product" class="nav-link">
+                <a href="index.php?page=product" class="nav-link">
                     <i class="fas fa-box me-2"></i> Sản phẩm
                 </a>
             </li>
@@ -26,7 +22,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="admin.php?page=customer" class="nav-link">
+                <a href="index.php?page=customer" class="nav-link">
                     <i class="fas fa-users me-2"></i> Khách hàng
                 </a>
             </li>

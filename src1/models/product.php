@@ -20,7 +20,7 @@ function product_insert($name, $description, $price, $discount, $stock, $status,
     $sql = "INSERT INTO products
             (name, description, price, discount, stock, status, category_id, thumbnail)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    pdo_execute($sql, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail);
+    return pdo_execute($sql, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail);
 }
 
 function product_update($id, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail) {
@@ -64,7 +64,7 @@ function product_soft_delete($id)
 function product_delete($id)
 {
     $sql = "DELETE FROM products WHERE id = ?";
-    pdo_execute($sql, $id);
+    return pdo_execute($sql, $id);
 }
 
 function product_search_by_name($keyword)

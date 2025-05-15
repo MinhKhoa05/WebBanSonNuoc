@@ -20,6 +20,7 @@ function pdo_execute($sql, ...$args) {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($args); // Thực thi câu lệnh với các tham số
+        return $stmt->rowCount();
     } catch (PDOException $e) {
         echo "SQL: $sql<br>";
         echo "Parameters: " . implode(', ', $args) . "<br>";

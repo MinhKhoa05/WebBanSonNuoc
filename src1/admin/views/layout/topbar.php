@@ -1,6 +1,3 @@
-<?php
-
-?>
 <div class="row top-bar">
     <div class="col">
         <div class="d-flex justify-content-between align-items-center">

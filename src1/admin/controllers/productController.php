@@ -1,127 +1,149 @@
 <?php
-// Thêm session_start() nếu chưa được khởi tạo từ trước
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+require_once __DIR__ . '/../models/ProductModel.php';
+require_once __DIR__ . '/../models/CategoryModel.php';
 
-require_once __DIR__ . '/../../models/product.php';
+class ProductController
+{
+    private $model;
+    private $category_model;
+    private $data = [];
 
-// Phần 1: Xử lý thêm sản phẩm
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'add') {
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $price = (float)$_POST['price'];
-    $discount = isset($_POST['discount']) && $_POST['discount'] !== '' ? (float)$_POST['discount'] : 0;
-    $stock = (int)$_POST['stock'];
-    $status = (int)$_POST['status'];
-    $category_id = (int)$_POST['category_id'];
+    public function __construct()
+    {
+        $this->model = new ProductModel();
+        $this->category_model = new CategoryModel();
+    }
 
-    $thumbnail_name = '';
-    if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
-        $thumbnail = $_FILES['thumbnail'];
-        $thumbnail_name = time() . '_' . basename($thumbnail['name']);
+    public function index()
+    {
+        $this->data['products'] = $this->model->getAll();
+        $this->data['categories'] = $this->category_model->get_all();
+    }
 
-        $uploadDir = __DIR__ . '/../../../uploads/';
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
+    public function add()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'name' => $_POST['name'] ?? '',
+                'description' => $_POST['description'] ?? '',
+                'price' => floatval($_POST['price'] ?? 0),
+                'discount' => floatval($_POST['discount'] ?? 0),
+                'stock' => intval($_POST['stock'] ?? 0),
+                'status' => $_POST['status'] ?? 'inactive',
+                'category_id' => intval($_POST['category_id'] ?? 0),
+                'thumbnail' => $this->handle_upload()
+            ];
+
+            $this->model->insert($data);
+            header("Location: index.php?page=product");
+            exit;
         }
 
-        $uploadFile = $uploadDir . $thumbnail_name;
+        // Nếu GET thì vẫn load danh mục để hiển thị trong form thêm
+        $this->data['categories'] = $this->category_model->get_all();
+    }
 
-        if (move_uploaded_file($thumbnail['tmp_name'], $uploadFile)) {
-            $result = product_insert($name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail_name);
-
-            if ($result) {
-                $_SESSION['success'] = "Thêm sản phẩm thành công";
-                header('Location: ../../admin.php?page=product');
+    public function edit()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = intval($_POST['id'] ?? 0);
+            if ($id <= 0) {
+                header("Location: index.php?page=product");
                 exit;
-            } else {
-                $error = "Không thể thêm sản phẩm vào cơ sở dữ liệu";
             }
-        } else {
-            $error = "Không thể tải lên hình ảnh";
-        }
-    } else {
-        $error = "Vui lòng chọn hình ảnh cho sản phẩm";
-    }
 
-    if (isset($error)) {
-        $_SESSION['error'] = $error;
-        header('Location: ../../admin.php?page=product');
-        exit;
-    }
-}
+            $data = [
+                'name' => $_POST['name'] ?? '',
+                'description' => $_POST['description'] ?? '',
+                'price' => floatval($_POST['price'] ?? 0),
+                'discount' => floatval($_POST['discount'] ?? 0),
+                'stock' => intval($_POST['stock'] ?? 0),
+                'status' => $_POST['status'] ?? 'inactive',
+                'category_id' => intval($_POST['category_id'] ?? 0),
+            ];
 
-// Phần 2: Xử lý sửa sản phẩm
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'edit') {
-    $id = (int)$_POST['id'];
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $price = (float)$_POST['price'];
-    $discount = isset($_POST['discount']) && $_POST['discount'] !== '' ? (float)$_POST['discount'] : 0;
-    $stock = (int)$_POST['stock'];
-    $status = (int)$_POST['status'];
-    $category_id = (int)$_POST['category_id'];
-    $current_thumbnail = $_POST['current_thumbnail'];
+            if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
+                $uploadedFile = $this->handle_upload();
+                if ($uploadedFile !== '') {
+                    $data['thumbnail'] = $uploadedFile;
+                }
+            }
 
-    $thumbnail_name = $current_thumbnail;
-    if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
-        $thumbnail_name = time() . '_' . basename($_FILES['thumbnail']['name']);
-
-        $uploadDir = __DIR__ . '/../../../uploads/';
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
+            $this->model->update($id, $data);
+            header("Location: index.php?page=product");
+            exit;
         }
 
-        $uploadFile = $uploadDir . $thumbnail_name;
+        // Xử lý GET lấy dữ liệu để show form sửa
+        $id = intval($_GET['id'] ?? 0);
+        if ($id <= 0) {
+            header("Location: index.php?page=product");
+            exit;
+        }
 
-        if (move_uploaded_file($_FILES['thumbnail']['tmp_name'], $uploadFile)) {
-            if ($current_thumbnail && file_exists($uploadDir . $current_thumbnail)) {
-                unlink($uploadDir . $current_thumbnail);
-            }
-        } else {
-            $_SESSION['error'] = "Không thể tải lên hình ảnh mới";
-            header('Location: ../../admin.php?page=product');
+        $product = $this->model->getById($id);
+        if (!$product) {
+            header("Location: index.php?page=product");
+            exit;
+        }
+
+        $this->data['product'] = $product;
+        $this->data['categories'] = $this->category_model->get_all();
+    }
+
+    public function delete()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = intval($_POST['id'] ?? 0);
+            $this->model->delete($id);
+            header("Location: index.php?page=product");
             exit;
         }
     }
 
-    $result = product_update($id, $name, $description, $price, $discount, $stock, $status, $category_id, $thumbnail_name);
-
-    if ($result) {
-        $_SESSION['success'] = "Cập nhật sản phẩm thành công";
-    } else {
-        $_SESSION['error'] = "Không thể cập nhật sản phẩm";
-    }
-
-    header('Location: ../../admin.php?page=product');
-    exit;
-}
-
-// Phần 3: Xử lý xóa sản phẩm
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'delete') {
-    $id = (int)$_POST['id'];
-
-    $product = product_select_by_id($id);
-
-    if ($product) {
-        $result = product_delete($id);
-
-        if ($result) {
-            $uploadDir = __DIR__ . '/../../../uploads/';
-            if ($product['thumbnail'] && file_exists($uploadDir . $product['thumbnail'])) {
-                unlink($uploadDir . $product['thumbnail']);
-            }
-
-            $_SESSION['success'] = "Xóa sản phẩm thành công";
-        } else {
-            $_SESSION['error'] = "Không thể xóa sản phẩm";
+    private function handle_upload(): string
+    {
+        $uploadDir = __DIR__ . '/../../uploads/';
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
         }
-    } else {
-        $_SESSION['error'] = "Không tìm thấy sản phẩm";
+
+        $file = $_FILES['thumbnail'];
+
+        // Kiểm tra lỗi upload
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            return '';
+        }
+
+        // Kiểm tra định dạng file ảnh
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $fileMime = mime_content_type($file['tmp_name']);
+        if (!in_array($fileMime, $allowedTypes)) {
+            return ''; // Không phải file hình ảnh hợp lệ
+        }
+
+        // Hoặc có thể kiểm tra đuôi file (extension)
+        $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        if (!in_array($ext, $allowedExt)) {
+            return '';
+        }
+
+        // Đặt tên file hợp lệ
+        $fileName = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', basename($file['name']));
+        $targetFile = $uploadDir . $fileName;
+
+        if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+            return $fileName;
+        }
+
+        return '';
     }
 
-    header('Location: ../../admin.php?page=product');
-    exit;
+    public function getData()
+    {
+        return $this->data;
+    }
 }
+
 ?>
