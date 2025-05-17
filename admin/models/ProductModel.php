@@ -15,8 +15,9 @@ class ProductModel extends BaseModel
     {
         $sql = "
             SELECT p.*, c.name AS category_name
-            FROM products p
+            FROM {$this->table} p
             JOIN categories c ON p.category_id = c.id
+            WHERE is_deleted = 0
             ORDER BY p.id ASC
         ";
         return pdo_query($sql);
@@ -29,9 +30,9 @@ class ProductModel extends BaseModel
     {
         $sql = "
             SELECT p.*, c.name AS category_name
-            FROM products p
+            FROM {$this->table} p
             JOIN categories c ON p.category_id = c.id
-            WHERE p.id = ? AND p.is_deleted = 0
+            WHERE p.id = ?
         ";
         return pdo_query_one($sql, $id);
     }
@@ -43,7 +44,7 @@ class ProductModel extends BaseModel
     {
         $sql = "
             SELECT * 
-            FROM products 
+            FROM {$this->table} 
             WHERE name LIKE ? AND is_deleted = 0
         ";
         return pdo_query($sql, "%$keyword%");
@@ -56,9 +57,8 @@ class ProductModel extends BaseModel
     {
         $sql = "
             SELECT p.*, c.name AS category_name 
-            FROM products p
+            FROM {$this->table} p
             LEFT JOIN categories c ON p.category_id = c.id
-            WHERE p.is_deleted = 0
         ";
         $params = [];
 
@@ -66,11 +66,6 @@ class ProductModel extends BaseModel
         if (!empty($filters['category_id']) && $filters['category_id'] !== 'all') {
             $sql .= " AND p.category_id = ?";
             $params[] = $filters['category_id'];
-        }
-
-        if (isset($filters['status'])) {
-            $sql .= " AND p.status = ?";
-            $params[] = $filters['status'];
         }
 
         if (isset($filters['price_min'])) {
@@ -105,17 +100,12 @@ class ProductModel extends BaseModel
      */
     public function count(array $filters = []): int
     {
-        $sql = "SELECT COUNT(*) FROM products WHERE is_deleted = 0";
+        $sql = "SELECT COUNT(*) FROM {$this->table}";
         $params = [];
 
         if (!empty($filters['category_id']) && $filters['category_id'] !== 'all') {
             $sql .= " AND category_id = ?";
             $params[] = $filters['category_id'];
-        }
-
-        if (isset($filters['status'])) {
-            $sql .= " AND status = ?";
-            $params[] = $filters['status'];
         }
 
         if (isset($filters['price_min'])) {
@@ -129,5 +119,11 @@ class ProductModel extends BaseModel
         }
 
         return pdo_query_value($sql, ...$params);
+    }
+
+    public function toggle_view(int $id, bool $view): bool
+    {
+        $sql = "UPDATE {$this->table} SET view = ? WHERE id = ?";
+        return pdo_execute($sql, $view, $id);
     }
 }

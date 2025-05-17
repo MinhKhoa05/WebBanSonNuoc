@@ -5,6 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . '/../models/ProductModel.php';
 require_once __DIR__ . '/../models/CategoryModel.php';
+require_once __DIR__ . '/../helpers/Common.php';
 
 class ProductController
 {
@@ -20,7 +21,15 @@ class ProductController
 
     public function index(): void
     {
-        $this->data['products'] = $this->model->get_all();
+        $products = $this->model->get_all();
+
+        foreach ($products as &$product) {
+            $price = floatval($product['price']);
+            $discount = floatval($product['discount']);
+            $product['final_price'] = max($price - ($price * $discount / 100), 0);
+        }
+
+        $this->data['products'] = $products;
         $this->data['categories'] = $this->category_model->get_all();
     }
 
@@ -33,18 +42,13 @@ class ProductController
                 'price' => floatval($_POST['price'] ?? 0),
                 'discount' => floatval($_POST['discount'] ?? 0),
                 'stock' => intval($_POST['stock'] ?? 0),
-                'status' => $_POST['status'] ?? 'inactive',
                 'category_id' => intval($_POST['category_id'] ?? 0),
-                'thumbnail' => $this->handle_upload()
+                'thumbnail' => handle_file_upload()
             ];
 
             $success = $this->model->insert($data);
-            if ($success) {
-                $_SESSION['flash_message'] = ['type' => 'success', 'text' => 'Thêm sản phẩm thành công!'];
-            } else {
-                $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'Thêm sản phẩm thất bại!'];
-            }
-            $this->redirect_to_product();
+            set_flash($success ? 'success' : 'error', $success ? 'Thêm sản phẩm thành công!' : 'Thêm sản phẩm thất bại!');
+            redirect('index.php?page=product');
         }
 
         $this->data['categories'] = $this->category_model->get_all();
@@ -54,8 +58,8 @@ class ProductController
     {
         $id = intval($_GET['id'] ?? ($_POST['id'] ?? 0));
         if ($id <= 0) {
-            $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'ID sản phẩm không hợp lệ!'];
-            $this->redirect_to_product();
+            set_flash('error', 'ID sản phẩm không hợp lệ!');
+            redirect('index.php?page=product');
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -65,78 +69,55 @@ class ProductController
                 'price' => floatval($_POST['price'] ?? 0),
                 'discount' => floatval($_POST['discount'] ?? 0),
                 'stock' => intval($_POST['stock'] ?? 0),
-                'status' => $_POST['status'] ?? 'inactive',
                 'category_id' => intval($_POST['category_id'] ?? 0),
             ];
 
             if (!empty($_FILES['thumbnail']['name'])) {
-                $upload = $this->handle_upload();
-                if ($upload !== '') $data['thumbnail'] = $upload;
+                $upload = handle_file_upload();
+                if ($upload !== '') {
+                    $data['thumbnail'] = $upload;
+                }
             }
 
             $success = $this->model->update($id, $data);
-            if ($success) {
-                $_SESSION['flash_message'] = ['type' => 'success', 'text' => 'Cập nhật sản phẩm thành công!'];
-            } else {
-                $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'Cập nhật sản phẩm thất bại!'];
-            }
-            $this->redirect_to_product();
+            set_flash($success ? 'success' : 'error', $success ? 'Cập nhật sản phẩm thành công!' : 'Cập nhật sản phẩm thất bại!');
+            redirect('index.php?page=product');
         }
 
         $product = $this->model->get_by_id($id);
         if (!$product) {
-            $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'Sản phẩm không tồn tại!'];
-            $this->redirect_to_product();
+            set_flash('error', 'Sản phẩm không tồn tại!');
+            redirect('index.php?page=product');
         }
 
         $this->data['product'] = $product;
         $this->data['categories'] = $this->category_model->get_all();
     }
 
-    public function delete(): void
+    public function soft_delete(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = intval($_POST['id'] ?? 0);
             if ($id <= 0) {
-                $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'ID sản phẩm không hợp lệ!'];
+                set_flash('error', 'ID sản phẩm không hợp lệ!');
             } else {
-                $success = $this->model->delete($id);
-                if ($success) {
-                    $_SESSION['flash_message'] = ['type' => 'success', 'text' => 'Xóa sản phẩm thành công!'];
-                } else {
-                    $_SESSION['flash_message'] = ['type' => 'error', 'text' => 'Xóa sản phẩm thất bại!'];
-                }
+                $success = $this->model->soft_delete($id);
+                set_flash($success ? 'success' : 'error', $success ? 'Xóa sản phẩm thành công!' : 'Xóa sản phẩm thất bại!');
             }
         }
-        $this->redirect_to_product();
+        redirect('index.php?page=product');
     }
 
-    private function redirect_to_product(): void
+    public function toggle_view(): void
     {
-        header("Location: index.php?page=product");
-        exit;
-    }
-
-    private function handle_upload(): string
-    {
-        $uploadDir = __DIR__ . '/../../uploads/';
-        if (!file_exists($uploadDir)) mkdir($uploadDir, 0755, true);
-
-        $file = $_FILES['thumbnail'] ?? null;
-        if (!$file || $file['error'] !== UPLOAD_ERR_OK) return '';
-
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-        $fileMime = mime_content_type($file['tmp_name']);
-        if (!in_array($fileMime, $allowedTypes)) return '';
-
-        $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-        if (!in_array($ext, $allowedExt)) return '';
-
-        $fileName = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', basename($file['name']));
-        $targetFile = $uploadDir . $fileName;
-
-        return move_uploaded_file($file['tmp_name'], $targetFile) ? $fileName : '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = intval($_POST['id'] ?? 0);
+            $view = intval($_POST['view'] ?? 1);
+            if ($id > 0) {
+                $this->model->toggle_view($id, $view);
+            }
+        }
+        redirect('index.php?page=product');
     }
 
     public function getData(): array

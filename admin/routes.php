@@ -11,14 +11,21 @@ switch ($page) {
         require_once __DIR__ . '/controllers/ProductController.php';
         $controller = new ProductController();
 
-        if ($action === 'add') {
-            $controller->add();
-        } elseif ($action === 'edit') {
-            $controller->edit();
-        } elseif ($action === 'delete') {
-            $controller->delete();
-        } else {
-            $controller->index();
+        switch ($action) {
+            case 'add':
+                $controller->add();
+                break;
+            case 'edit':
+                $controller->edit();
+                break;
+            case 'delete':
+                $controller->soft_delete();
+                break;
+            case 'toggle':
+                $controller->toggle_view();
+            default:
+                $controller->index();
+                break;
         }
 
         $data = $controller->getData();
