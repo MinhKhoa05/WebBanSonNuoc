@@ -120,7 +120,7 @@ class ProductController
         redirect('index.php?page=product');
     }
 
-    public function getData(): array
+    public function get_data(): array
     {
         return $this->data;
     }

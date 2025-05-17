@@ -28,7 +28,14 @@ switch ($page) {
                 break;
         }
 
-        $data = $controller->getData();
+        $data = $controller->get_data();
+        break;
+
+    case 'order':
+        require_once __DIR__ . '/controllers/OrderController.php';
+        $controller = new OrderController();
+        $controller->index();
+        $data = $controller->get_data();
         break;
 
     case 'dashboard':

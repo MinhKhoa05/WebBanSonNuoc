@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?page=order" class="nav-link">
                     <i class="fas fa-shopping-cart me-2"></i> Đơn hàng
                 </a>
             </li>
