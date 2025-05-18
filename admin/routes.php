@@ -31,6 +31,30 @@ switch ($page) {
         $data = $controller->get_data();
         break;
 
+    case 'category':
+        require_once __DIR__ . '/controllers/CategoryController.php';
+        $controller = new CategoryController();
+
+        switch ($action) {
+            case 'add':
+                $controller->add();
+                break;
+            case 'edit':
+                $controller->edit();
+                break;
+            case 'delete':
+                $controller->soft_delete();
+                break;
+            case 'toggle':
+                $controller->toggle_status();
+            default:
+                $controller->index();
+                break;
+        }
+
+        $data = $controller->get_data();
+        break;
+
     case 'order':
         require_once __DIR__ . '/controllers/OrderController.php';
         $controller = new OrderController();
