@@ -32,6 +32,29 @@ switch ($page) {
         break;
 
     case 'dashboard':
+    case 'category':
+        require_once __DIR__ . '/controllers/CategoryController.php';
+        $controller = new CategoryController();
+
+        switch ($action) {
+            case 'add':
+                $controller->add();
+                break;
+            case 'edit':
+                $controller->edit();
+                break;
+            case 'delete':
+                $controller->soft_delete();
+                break;
+            case 'toggle':
+                // $controller->toggle_view();
+            default:
+                $controller->index();
+                break;
+        }
+
+        $data = $controller->getData();
+        break;
     default:
         $page = 'dashboard';
         // Có thể load DashboardController tương tự

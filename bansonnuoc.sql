@@ -44,8 +44,7 @@ CREATE TABLE `articles` (
 -- Cấu trúc đóng vai cho view `best_selling_products`
 -- (See below for the actual view)
 --
-CREATE TABLE `best_selling_products` (
-);
+
 
 -- --------------------------------------------------------
 
@@ -323,11 +322,7 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `address`, `rol
 --
 -- Cấu trúc cho view `best_selling_products`
 --
-DROP TABLE IF EXISTS `best_selling_products`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `best_selling_products`  AS SELECT `p`.`id` AS `id`, `p`.`name` AS `name`, `p`.`description` AS `description`, `p`.`price` AS `price`, `p`.`discount` AS `discount`, `p`.`stock` AS `stock`, `p`.`status` AS `status`, `p`.`thumbnail` AS `thumbnail`, `p`.`category_id` AS `category_id`, round(avg(`r`.`rating`),1) AS `rating`, count(`od`.`product_id`) AS `total_sold`, count(`r`.`id`) AS `reviews`, `p`.`created_at` AS `created_at`, `p`.`updated_at` AS `updated_at` FROM ((`products` `p` left join `order_details` `od` on(`p`.`id` = `od`.`product_id`)) left join `reviews` `r` on(`p`.`id` = `r`.`product_id`)) WHERE `p`.`is_deleted` = 0 GROUP BY `p`.`id` ORDER BY count(`od`.`product_id`) DESC ;
-
---
 -- Chỉ mục cho các bảng đã đổ
 --
 

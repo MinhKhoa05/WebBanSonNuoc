@@ -95,6 +95,7 @@ class ProductModel extends BaseModel
         return pdo_query($sql, ...$params);
     }
 
+
     /**
      * Đếm tổng số sản phẩm theo bộ lọc
      */

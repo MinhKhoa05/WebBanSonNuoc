@@ -27,8 +27,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-palette me-2"></i> Danh mục màu
+                <a href="index.php?page=category" class="nav-link">
+                    <i class="fas fa-folder-open me-2"></i> Danh mục
                 </a>
             </li>
             <li class="nav-item">
