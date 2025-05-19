@@ -56,14 +56,7 @@ switch ($page) {
         $data = $controller->get_data();
         break;
         
-    case 'order':
-        require_once __DIR__ . '/controllers/OrderController.php';
-        $controller = new OrderController();
-        $controller->index();
-        $data = $controller->get_data();
-        break;
-
-    case 'dashboard':
+    
     case 'category':
         require_once __DIR__ . '/controllers/CategoryController.php';
         $controller = new CategoryController();
@@ -79,14 +72,24 @@ switch ($page) {
                 $controller->soft_delete();
                 break;
             case 'toggle':
-                // $controller->toggle_view();
+                $controller->toggle_status();
+                break;
             default:
                 $controller->index();
                 break;
         }
 
-        $data = $controller->getData();
+        $data = $controller->get_data();
         break;
+        
+    case 'order':
+        require_once __DIR__ . '/controllers/OrderController.php';
+        $controller = new OrderController();
+        $controller->index();
+        $data = $controller->get_data();
+        break;
+
+    case 'dashboard':
     default:
         $page = 'dashboard';
         // Có thể load DashboardController tương tự

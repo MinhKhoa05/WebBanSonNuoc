@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 17, 2025 lúc 05:05 PM
+-- Thời gian đã tạo: Th5 18, 2025 lúc 10:22 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -40,10 +40,6 @@ CREATE TABLE `articles` (
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc đóng vai cho view `best_selling_products`
--- (See below for the actual view)
---
 
 
 -- --------------------------------------------------------
@@ -168,9 +164,21 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `order_date` datetime DEFAULT current_timestamp(),
+  `note` text DEFAULT NULL,
   `total` decimal(10,2) NOT NULL,
   `status` enum('pending','delivering','completed') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `order_date`, `note`, `total`, `status`) VALUES
+(6, 6, '2025-05-10 14:23:00', 'Giao hàng nhanh', 1500000.00, 'pending'),
+(7, 8, '2025-05-11 09:15:00', 'Yêu cầu giao buổi sáng', 2300000.00, 'delivering'),
+(8, 11, '2025-05-12 18:45:00', NULL, 500000.00, 'completed'),
+(9, 6, '2025-05-13 10:00:00', 'Kiểm tra kỹ hàng trước khi giao', 1200000.00, 'pending'),
+(10, 8, '2025-05-14 16:30:00', 'Giao hàng ngoài giờ hành chính', 1750000.00, 'delivering');
 
 -- --------------------------------------------------------
 
@@ -245,7 +253,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `stock`, `category_id`, `brand_id`, `thumbnail`, `is_deleted`, `view`, `created_at`, `updated_at`) VALUES
-(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, NULL, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 15:02:20'),
+(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, NULL, 'Son-4.jpg', 0, 0, '2025-04-10 04:21:29', '2025-05-17 15:41:49'),
 (4, 'Sơn Dulux EasyClean', 'Chống bám bẩn vượt trội, lau chùi dễ dàng.', 580000.00, 20, 120, 2, NULL, 'Son-3.jpg', 1, 0, '2025-04-10 04:21:29', '2025-05-17 14:57:08'),
 (5, 'Sơn Jotun Majestic', 'Sơn nội thất mịn cao cấp, không chứa chì.', 610000.00, 12, 90, 2, NULL, 'Son-5.jpg', 1, 1, '2025-04-10 04:21:29', '2025-05-17 14:57:21'),
 (6, 'Sơn Nippon Odour-less', 'Sơn không mùi, thân thiện môi trường.', 500000.00, 12, 11, 2, NULL, 'Son-6.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
@@ -253,11 +261,12 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `stock
 (8, 'Sơn Joton Jona', 'Sơn tường nội thất giá rẻ, phù hợp nhà trọ.', 300000.00, 17, 200, 3, NULL, 'Son-3.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:13'),
 (9, 'Sơn Spec Go Green', 'Sơn thân thiện môi trường, dễ sử dụng.', 350000.00, 12, 15, 4, NULL, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
 (10, 'Sơn TOA Nano Shield', 'Sơn ngoại thất chống thấm cao cấp.', 680000.00, 27, 65, 4, NULL, 'Son-5.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
-(16, '2034', 'kho', 1000000.00, 0, 0, 2, NULL, '', 0, 1, '2025-05-17 12:40:12', '2025-05-17 14:58:13'),
+(16, 'Sơn Maxilite Total', 'Sơn mới, sản phẩm mới đc bán', 100000.00, 0, 30, 2, NULL, '1747497701_Son-3.jpg', 0, 0, '2025-05-17 12:40:12', '2025-05-17 16:01:41'),
 (17, 'Sơn nước mới', 'Sơn siêu cấp', 0.00, 46, 30, 1, NULL, '1747488744_hinh-nen-may-tinh-co-ke-de-icon-desktop-blogchiasekienthuc-1-min.jpg', 0, 1, '2025-05-17 13:32:24', '2025-05-17 13:32:24'),
 (18, 'sf', 'skfh', 1000000.00, 30, 30, 5, NULL, '', 1, 1, '2025-05-17 13:35:31', '2025-05-17 15:04:28'),
 (19, 'XepLichThiDauBongDa2', 'kuug', 0.00, 0, 10, 3, NULL, '1747489154_sap-xep-destop-gon-gang-voi-loat-hinh-nen-doc-dao-12.png', 1, 1, '2025-05-17 13:39:14', '2025-05-17 14:58:13'),
-(20, 'dsfkbj', 'lldf', 100000.00, 0, 20, 3, NULL, '', 0, 1, '2025-05-17 13:40:29', '2025-05-17 14:11:24');
+(20, 'dsfkbj', 'lldf', 100000.00, 0, 20, 3, NULL, '', 0, 0, '2025-05-17 13:40:29', '2025-05-17 15:41:45'),
+(21, 'dkdnsfm;', 'lsjnlf', 10000000.00, 10, 12423, 4, NULL, '1747497597_images.jpg', 0, 1, '2025-05-17 15:41:00', '2025-05-17 15:59:57');
 
 -- --------------------------------------------------------
 
@@ -315,13 +324,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `address`, `role`, `is_deleted`, `created_at`, `updated_at`) VALUES
 (6, 'Hồ Nguyễn Minh Khoa', '$2y$10$otquYARg2scQP6H9G2NetukAYNB1IiT3Uik7yRfh1MtSVxzwCemkm', 'mkhoa639@gmail.com', '0373441697', NULL, '', 0, '2025-04-17 03:02:06', '2025-04-17 03:02:06'),
-(8, 'Khoa', '$2y$10$4Fs59MkA.TDPCn32jK0x1O3JB2Gc1H5qiDDAbQgAjBMzdw.qHSEuK', '52300038@student.tdtu.edu.vn', '0373441691', NULL, '', 0, '2025-04-17 03:31:12', '2025-04-17 03:31:12');
+(8, 'Khoa', '$2y$10$4Fs59MkA.TDPCn32jK0x1O3JB2Gc1H5qiDDAbQgAjBMzdw.qHSEuK', '52300038@student.tdtu.edu.vn', '0373441691', NULL, '', 0, '2025-04-17 03:31:12', '2025-04-17 03:31:12'),
+(11, 'ahihi', '$2y$10$PnkpGZGMe56cYNhKjVZDoOL9iqeYYEPUZLo0iXAjFaSZL6ah1Eca.', '27014814@sfcollege.edu', '0373441699', NULL, '', 0, '2025-05-17 16:21:53', '2025-05-17 16:21:53');
 
 -- --------------------------------------------------------
 
 --
 -- Cấu trúc cho view `best_selling_products`
---
 
 -- Chỉ mục cho các bảng đã đổ
 --
@@ -487,7 +496,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
@@ -511,7 +520,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `promotions`
@@ -529,7 +538,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

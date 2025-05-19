@@ -12,13 +12,18 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="index.php?page=product" class="nav-link">
-                    <i class="fas fa-box me-2"></i> Sản phẩm
+                <a href="index.php?page=brand" class="nav-link">
+                    <i class="fas fa-globe me-2"></i> Thương hiệu
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-shopping-cart me-2"></i> Đơn hàng
+                <a href="index.php?page=category" class="nav-link">
+                    <i class="fas fa-bars me-2"></i> Danh mục sản phẩm
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="index.php?page=product" class="nav-link">
+                    <i class="fas fa-box me-2"></i> Sản phẩm
                 </a>
             </li>
             <li class="nav-item">
@@ -27,8 +32,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="index.php?page=category" class="nav-link">
-                    <i class="fas fa-folder-open me-2"></i> Danh mục
+                <a href="index.php?page=order" class="nav-link">
+                    <i class="fas fa-shopping-cart me-2"></i> Đơn hàng
                 </a>
             </li>
             <li class="nav-item">
@@ -39,11 +44,6 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-newspaper me-2"></i> Bài đăng
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-clipboard-list me-2"></i> Tồn kho
                 </a>
             </li>
             <li class="nav-item">

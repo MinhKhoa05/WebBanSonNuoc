@@ -9,11 +9,7 @@ class BrandModel extends BaseModel
     }
 
     /**
-<<<<<<<< HEAD:admin/models/CategoryModel.php
-     * Lấy toàn bộ danh mục chưa bị xóa mềm
-========
      * Lấy toàn bộ thương hiệu
->>>>>>>> b30f36e29d0c93dedb11056b0b4ba4ba4c2e2c8e:admin/models/BrandModel.php
      */
     public function get_all(): array
     {
@@ -65,11 +61,8 @@ class BrandModel extends BaseModel
      */
     public function count_products(int $id): int
     {
-<<<<<<<< HEAD:admin/models/CategoryModel.php
-        $sql = "SELECT COUNT(*) FROM products WHERE category_id = ? AND is_deleted = 0";
-========
-        $sql = "SELECT COUNT(*) FROM products WHERE brand_id = ?";
->>>>>>>> b30f36e29d0c93dedb11056b0b4ba4ba4c2e2c8e:admin/models/BrandModel.php
+        $sql = "SELECT COUNT(*) FROM products WHERE brand_id = ? AND is_deleted = 0" ;
         return pdo_query_value($sql, $id);
     }
+
 }

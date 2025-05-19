@@ -1,6 +1,6 @@
 <link href="views/assets/css/category.css" rel="stylesheet">
 
-<div class="row" id="categoryManagement">
+<div class="row" id="productManagement">
     <div class="col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -10,11 +10,11 @@
                 </button>
             </div>
             <div class="card-body">
-                <?php include __DIR__ . '/categories/list.php'; ?>
+                <?php include __DIR__ . '/categories/listCategory.php'; ?>
             </div>
         </div>
     </div>
 </div>
 
-<?php include __DIR__ . '/categories/modal.php'; ?>
+<?php include __DIR__ . '/categories/modalCategory.php'; ?>
 <script src="views/assets/js/category.js"></script>

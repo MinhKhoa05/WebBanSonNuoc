@@ -1,63 +1,60 @@
 document.addEventListener('DOMContentLoaded', function () {
-    window.openEditCategoryModal = function (button) {
-        const modal = new bootstrap.Modal(document.getElementById('categoryModal'));
-        const form = document.getElementById('categoryForm');
+    window.openEditProductModal = function (button) {
+        const modal = new bootstrap.Modal(document.getElementById('productModal'));
+        const form = document.getElementById('productForm');
 
-        form.action = 'index.php?page=category&action=edit';
+        form.action = 'index.php?page=product&action=edit';
 
-        document.getElementById('categoryId').value = button.dataset.id;
-        document.getElementById('categoryName').value = button.dataset.name;
-        document.getElementById('categoryDescription').value = button.dataset.description;
-        
-        // Nếu có ảnh danh mục
-        const img = document.getElementById('currentCategoryImage');
+        document.getElementById('productId').value = button.dataset.id;
+        document.getElementById('productName').value = button.dataset.name;
+        document.getElementById('productDescription').value = button.dataset.description;
+        document.getElementById('productCategory').value = button.dataset.category;
+        document.getElementById('productBrand').value = button.dataset.brand; // Add this line
+        document.getElementById('productPrice').value = button.dataset.price;
+        document.getElementById('productDiscount').value = button.dataset.discount;
+        document.getElementById('productStock').value = button.dataset.stock;
+
+        const img = document.getElementById('currentProductImage');
         if (button.dataset.thumbnail) {
             img.src = '../uploads/' + button.dataset.thumbnail;
             img.style.display = 'block';
-            document.getElementById('categoryImageHelpText').textContent = 'Để trống nếu không thay đổi hình ảnh';
+            document.getElementById('imageHelpText').textContent = 'Để trống nếu không thay đổi hình ảnh';
         } else {
             img.style.display = 'none';
             img.src = '';
-            document.getElementById('categoryImageHelpText').textContent = 'Bạn có thể thêm hình ảnh cho danh mục';
+            document.getElementById('imageHelpText').textContent = 'Bạn có thể thêm hình ảnh cho sản phẩm';
         }
 
-        // Nếu có trường status cho danh mục
-        if (document.getElementById('categoryStatus')) {
-            document.getElementById('categoryStatus').value = button.dataset.status || '1';
-        }
-
-        document.getElementById('categorySubmitButton').textContent = 'Lưu thay đổi';
+        document.getElementById('submitButton').textContent = 'Lưu thay đổi';
 
         modal.show();
     };
 
-    window.openAddCategoryModal = function () {
-        const modal = new bootstrap.Modal(document.getElementById('categoryModal'));
-        const form = document.getElementById('categoryForm');
+    window.openAddProductModal = function () {
+        const modal = new bootstrap.Modal(document.getElementById('productModal'));
+        const form = document.getElementById('productForm');
 
-        form.action = 'index.php?page=category&action=add';
+        form.action = 'index.php?page=product&action=add';
         form.reset();
 
-        document.getElementById('categoryId').value = '';
-        
-        // Ẩn hình ảnh hiện tại
-        document.getElementById('currentCategoryImage').style.display = 'none';
-        document.getElementById('categoryImageHelpText').textContent = 'Bạn có thể thêm hình ảnh cho danh mục';
-        
-        // Nếu có trường status, đặt mặc định là active (1)
-        if (document.getElementById('categoryStatus')) {
-            document.getElementById('categoryStatus').value = '1';
-        }
+        document.getElementById('productId').value = '';
+        document.getElementById('productDiscount').value = 0;
 
-        document.getElementById('categorySubmitButton').textContent = 'Thêm';
+        document.getElementById('currentProductImage').style.display = 'none';
+        document.getElementById('imageHelpText').textContent = 'Bắt buộc với thêm mới, để trống nếu không thay đổi hình ảnh khi sửa.';
+        document.getElementById('submitButton').textContent = 'Thêm';
+
+        const discountTypeGroup = document.getElementById('discountTypeGroup');
+        if (discountTypeGroup) {
+            discountTypeGroup.style.display = 'none';
+        }
 
         modal.show();
     };
 
-    window.confirmDeleteCategory = function (id) {
+    window.confirmDelete = function (id) {
         Swal.fire({
-            title: 'Bạn có chắc muốn xóa danh mục này?',
-            text: 'Xóa danh mục có thể ảnh hưởng đến các sản phẩm liên quan!',
+            title: 'Bạn có chắc muốn xóa sản phẩm này?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Có, xóa nó!',
@@ -66,14 +63,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (result.isConfirmed) {
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = 'index.php?page=category&action=delete';
-
+                form.action = 'index.php?page=product&action=delete';
                 const input = document.createElement('input');
                 input.type = 'hidden';
                 input.name = 'id';
                 input.value = id;
                 form.appendChild(input);
-
                 document.body.appendChild(form);
                 form.submit();
             }
