@@ -10,11 +10,11 @@
                 </button>
             </div>
             <div class="card-body">
-                <?php include __DIR__ . '/products/list.php'; ?>
+                <?php include __DIR__ . '/products/listProduct.php'; ?>
             </div>
         </div>
     </div>
 </div>
 
-<?php include __DIR__ . '/products/modal.php'; ?>
+<?php include __DIR__ . '/products/modalProduct.php'; ?>
 <script src="views/assets/js/product.js"></script>

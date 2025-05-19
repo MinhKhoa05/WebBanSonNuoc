@@ -33,7 +33,7 @@ $products = $data['products'] ?? [];
                         <td><?= htmlspecialchars($product['name']) ?></td>
                         <td><?= htmlspecialchars($product['category_name'] ?? '') ?></td>
                         <td><?= number_format($product['price'], 0, ',', '.') ?> đ</td>
-                        <td>                            
+                        <td>
                             <?= number_format($product['final_price'], 0, ',', '.') ?> đ
                             <small class="text-muted">(<?= $product['discount'] ?>%)</small>
                         </td>
@@ -51,11 +51,15 @@ $products = $data['products'] ?? [];
                         </td>
                         <td>
                             <button type="button" class="btn btn-sm btn-outline-primary btn-action me-1"
-                                data-id="<?= $product['id'] ?>" data-name="<?= htmlspecialchars($product['name']) ?>"
-                                data-description="<?= htmlspecialchars($product['description']) ?>"
-                                data-price="<?= $product['price'] ?>" data-discount="<?= $product['discount'] ?>"
-                                data-stock="<?= $product['stock'] ?>" data-category="<?= $product['category_id'] ?>"
-                                data-thumbnail="<?= $product['thumbnail'] ?>" onclick="openEditProductModal(this)">
+                                data-id="<?= (int) $product['id'] ?>"
+                                data-name="<?= htmlspecialchars($product['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-description="<?= htmlspecialchars($product['description'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-price="<?= htmlspecialchars($product['price'] ?? '0', ENT_QUOTES, 'UTF-8') ?>"
+                                data-discount="<?= htmlspecialchars($product['discount'] ?? '0', ENT_QUOTES, 'UTF-8') ?>"
+                                data-stock="<?= htmlspecialchars($product['stock'] ?? '0', ENT_QUOTES, 'UTF-8') ?>"
+                                data-category="<?= htmlspecialchars($product['category_id'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-thumbnail="<?= htmlspecialchars($product['thumbnail'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                onclick="openEditProductModal(this)">
                                 <i class="fas fa-edit"></i> Sửa
                             </button>
 

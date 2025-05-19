@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once __DIR__ . '/../models/ProductModel.php';
+require_once __DIR__ . '/../models/BrandModel.php';
 require_once __DIR__ . '/../models/CategoryModel.php';
 require_once __DIR__ . '/../helpers/Common.php';
 
@@ -11,12 +12,14 @@ class ProductController
 {
     private ProductModel $model;
     private CategoryModel $category_model;
+    private BrandModel $brand_model; // Add this line
     private array $data = [];
 
     public function __construct()
     {
         $this->model = new ProductModel();
         $this->category_model = new CategoryModel();
+        $this->brand_model = new BrandModel(); // Add this line
     }
 
     public function index(): void
@@ -31,6 +34,7 @@ class ProductController
 
         $this->data['products'] = $products;
         $this->data['categories'] = $this->category_model->get_all();
+        $this->data['brands'] = $this->brand_model->get_all(); // Add this line
     }
 
     public function add(): void
@@ -43,6 +47,7 @@ class ProductController
                 'discount' => floatval($_POST['discount'] ?? 0),
                 'stock' => intval($_POST['stock'] ?? 0),
                 'category_id' => intval($_POST['category_id'] ?? 0),
+                'brand_id' => intval($_POST['brand_id'] ?? 0), // Add this line
                 'thumbnail' => handle_file_upload()
             ];
 
@@ -52,6 +57,7 @@ class ProductController
         }
 
         $this->data['categories'] = $this->category_model->get_all();
+        $this->data['brands'] = $this->brand_model->get_all(); // Add this line
     }
 
     public function edit(): void
@@ -70,6 +76,7 @@ class ProductController
                 'discount' => floatval($_POST['discount'] ?? 0),
                 'stock' => intval($_POST['stock'] ?? 0),
                 'category_id' => intval($_POST['category_id'] ?? 0),
+                'brand_id' => intval($_POST['brand_id'] ?? 0), // Add this line
             ];
 
             if (!empty($_FILES['thumbnail']['name'])) {
@@ -92,6 +99,7 @@ class ProductController
 
         $this->data['product'] = $product;
         $this->data['categories'] = $this->category_model->get_all();
+        $this->data['brands'] = $this->brand_model->get_all(); // Add this line
     }
 
     public function soft_delete(): void
@@ -120,7 +128,7 @@ class ProductController
         redirect('index.php?page=product');
     }
 
-    public function getData(): array
+    public function get_data(): array
     {
         return $this->data;
     }
