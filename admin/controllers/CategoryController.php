@@ -73,7 +73,7 @@ class CategoryController
             if ($id <= 0) {
                 set_flash('error', 'ID danh mục không hợp lệ!');
             } else {
-                $success = $this->model->delete($id);
+                $success = $this->model->soft_delete($id);
                 set_flash($success ? 'success' : 'error', $success ? 'Xóa danh mục thành công!' : 'Xóa danh mục thất bại!');
             }
         }

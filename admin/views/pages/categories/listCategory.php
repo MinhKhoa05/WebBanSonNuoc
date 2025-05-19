@@ -2,12 +2,12 @@
 $categories = $data['categories'] ?? [];
 ?>
 
-<!-- <div class="d-flex justify-content-between mb-4">
+<div class="d-flex justify-content-between mb-4">
     <h2 class="h3 mb-0">Quản lý danh mục</h2>
     <button type="button" class="btn btn-primary" onclick="openAddCategoryModal()">
         <i class="fas fa-plus-circle me-1"></i> Thêm danh mục
     </button>
-</div> -->
+</div>
 
 <div class="table-responsive">
     <table class="table table-striped table-bordered align-middle">
@@ -17,7 +17,7 @@ $categories = $data['categories'] ?? [];
                 <th>Tên danh mục</th>
                 <th>Mô tả</th>
                 <th>Số sản phẩm</th>
-                <th>Trạng thái</th>
+                <!-- <th>Trạng thái</th> -->
                 <th>Ngày tạo</th>
                 <th>Thao tác</th>
             </tr>
@@ -36,7 +36,7 @@ $categories = $data['categories'] ?? [];
                                 echo $productCount;
                             ?>
                         </td>
-                        <td>
+                        <!-- <td>
                             <form method="post" action="index.php?page=category&action=toggle" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($category['id']) ?>">
                                 <input type="hidden" name="status"
@@ -46,7 +46,7 @@ $categories = $data['categories'] ?? [];
                                     <?= (!empty($category['status']) && $category['status'] == 1) ? 'Hoạt động' : 'Đã khóa' ?>
                                 </button>
                             </form>
-                        </td>
+                        </td> -->
                         <td><?= date('d/m/Y', strtotime($category['created_at'] ?? 'now')) ?></td>
                         <td>
                             <button type="button" class="btn btn-sm btn-outline-primary btn-action me-1"

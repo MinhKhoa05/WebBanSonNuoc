@@ -1,4 +1,7 @@
-<?php $categories = $data['categories'] ?? []; ?>
+<?php
+$categories = $data['categories'] ?? [];
+$brands = $data['brands'] ?? [];
+?>
 
 <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -36,6 +39,18 @@
                             <option value="" disabled selected>-- Chọn danh mục --</option>
                             <?php foreach ($categories as $category): ?>
                                 <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <!-- Thương hiệu (Brand) - New field -->
+                    <div class="mb-3">
+                        <label for="productBrand" class="form-label">Thương hiệu <span
+                                class="text-danger">*</span></label>
+                        <select class="form-select" id="productBrand" name="brand_id" required>
+                            <option value="" disabled selected>-- Chọn thương hiệu --</option>
+                            <?php foreach ($brands as $brand): ?>
+                                <option value="<?= $brand['id'] ?>"><?= htmlspecialchars($brand['name']) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -94,13 +109,13 @@
 </div>
 
 <script>
-    document.getElementById('productImage').addEventListener('change', function (event) {
+    document.getElementById('productImage').addEventListener('change', function(event) {
         const input = event.target;
         const preview = document.getElementById('currentProductImage');
 
         if (input.files && input.files[0]) {
             const reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 preview.src = e.target.result;
                 preview.style.display = 'block';
             };

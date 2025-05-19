@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('productName').value = button.dataset.name;
         document.getElementById('productDescription').value = button.dataset.description;
         document.getElementById('productCategory').value = button.dataset.category;
+        document.getElementById('productBrand').value = button.dataset.brand; // Add this line
         document.getElementById('productPrice').value = button.dataset.price;
         document.getElementById('productDiscount').value = button.dataset.discount;
         document.getElementById('productStock').value = button.dataset.stock;
@@ -69,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.name = 'id';
                 input.value = id;
                 form.appendChild(input);
-
                 document.body.appendChild(form);
                 form.submit();
             }

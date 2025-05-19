@@ -1,0 +1,53 @@
+.brand-table th,
+.brand-table td {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.brand-thumbnail {
+    max-height: 50px;
+    max-width: 100px;
+    object-fit: contain;
+}
+
+.brand-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.brand-stat-card {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    text-align: center;
+}
+
+.brand-stat-value {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+.brand-stat-label {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+}
+
+.modal .form-label {
+    font-weight: 500;
+}
+
+.modal .form-control,
+.modal .form-select {
+    border-radius: 0.5rem;
+}
