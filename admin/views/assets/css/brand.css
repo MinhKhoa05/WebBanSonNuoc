@@ -1,16 +1,22 @@
-.category-table th,
-.category-table td {
+.brand-table th,
+.brand-table td {
     vertical-align: middle !important;
     text-align: center;
 }
 
-.category-stats {
+.brand-thumbnail {
+    max-height: 50px;
+    max-width: 100px;
+    object-fit: contain;
+}
+
+.brand-stats {
     display: flex;
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
 
-.category-stat-card {
+.brand-stat-card {
     flex: 1;
     background-color: #fff;
     border-radius: 0.5rem;
@@ -19,13 +25,13 @@
     text-align: center;
 }
 
-.category-stat-value {
+.brand-stat-value {
     font-size: 1.75rem;
     font-weight: 600;
     color: #0d6efd;
 }
 
-.category-stat-label {
+.brand-stat-label {
     color: #6c757d;
     font-size: 0.875rem;
 }

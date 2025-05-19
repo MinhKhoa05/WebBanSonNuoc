@@ -31,9 +31,9 @@ switch ($page) {
         $data = $controller->get_data();
         break;
 
-    case 'category':
-        require_once __DIR__ . '/controllers/CategoryController.php';
-        $controller = new CategoryController();
+    case 'brand':
+        require_once __DIR__ . '/controllers/BrandController.php';
+        $controller = new BrandController();
 
         switch ($action) {
             case 'add':
@@ -45,8 +45,9 @@ switch ($page) {
             case 'delete':
                 $controller->soft_delete();
                 break;
-            case 'toggle':
-                $controller->toggle_status();
+            case 'toggle_featured':
+                $controller->toggle_featured();
+                break;
             default:
                 $controller->index();
                 break;
@@ -54,7 +55,7 @@ switch ($page) {
 
         $data = $controller->get_data();
         break;
-
+        
     case 'order':
         require_once __DIR__ . '/controllers/OrderController.php';
         $controller = new OrderController();

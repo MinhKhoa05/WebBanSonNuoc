@@ -1,15 +1,15 @@
 <?php
 require_once 'BaseModel.php';
 
-class CategoryModel extends BaseModel
+class BrandModel extends BaseModel
 {
     public function __construct()
     {
-        parent::__construct('categories', 'id');
+        parent::__construct('brands', 'id');
     }
 
     /**
-     * Lấy toàn bộ danh mục
+     * Lấy toàn bộ thương hiệu
      */
     public function get_all(): array
     {
@@ -22,7 +22,7 @@ class CategoryModel extends BaseModel
     }
 
     /**
-     * Lấy 1 danh mục theo ID
+     * Lấy 1 thương hiệu theo ID
      */
     public function get_by_id(int $id): ?array
     {
@@ -35,7 +35,7 @@ class CategoryModel extends BaseModel
     }
 
     /**
-     * Tìm danh mục theo tên (LIKE %keyword%)
+     * Tìm thương hiệu theo tên (LIKE %keyword%)
      */
     public function search_by_name(string $keyword): array
     {
@@ -48,20 +48,20 @@ class CategoryModel extends BaseModel
     }
 
     /**
-     * Chuyển đổi trạng thái danh mục
+     * Chuyển đổi trạng thái featured cho thương hiệu
      */
-    public function toggle_status(int $id, bool $status): bool
+    public function toggle_featured(int $id, bool $is_featured): bool
     {
-        $sql = "UPDATE {$this->table} SET status = ? WHERE id = ?";
-        return pdo_execute($sql, $status, $id);
+        $sql = "UPDATE {$this->table} SET is_featured = ? WHERE id = ?";
+        return pdo_execute($sql, $is_featured, $id);
     }
 
     /**
-     * Đếm số sản phẩm trong danh mục
+     * Đếm số sản phẩm của thương hiệu
      */
     public function count_products(int $id): int
     {
-        $sql = "SELECT COUNT(*) FROM products WHERE category_id = ?";
+        $sql = "SELECT COUNT(*) FROM products WHERE brand_id = ?";
         return pdo_query_value($sql, $id);
     }
 }
