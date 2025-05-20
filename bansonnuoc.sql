@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 20, 2025 lúc 08:33 PM
+-- Thời gian đã tạo: Th5 20, 2025 lúc 09:46 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -93,7 +93,6 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `added_at`) VALUES
-(1, 6, 4, 4, '2025-04-17 04:35:06'),
 (5, 8, 4, 1, '2025-04-19 08:59:53');
 
 -- --------------------------------------------------------
@@ -180,7 +179,8 @@ INSERT INTO `orders` (`id`, `user_id`, `order_date`, `note`, `total`, `status`) 
 (7, 8, '2025-05-11 09:15:00', 'Yêu cầu giao buổi sáng', 2300000.00, 'delivering'),
 (8, 11, '2025-05-12 18:45:00', NULL, 500000.00, 'completed'),
 (9, 6, '2025-05-13 10:00:00', 'Kiểm tra kỹ hàng trước khi giao', 1200000.00, 'pending'),
-(10, 8, '2025-05-14 16:30:00', 'Giao hàng ngoài giờ hành chính', 1750000.00, 'delivering');
+(10, 8, '2025-05-14 16:30:00', 'Giao hàng ngoài giờ hành chính', 1750000.00, 'delivering'),
+(11, 6, '2025-05-20 20:36:06', NULL, 2850000.00, 'pending');
 
 -- --------------------------------------------------------
 
@@ -195,6 +195,14 @@ CREATE TABLE `order_details` (
   `quantity` smallint(6) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `subtotal`) VALUES
+(1, 11, 4, 0, 580000.00),
+(2, 11, 6, 0, 500000.00);
 
 -- --------------------------------------------------------
 
@@ -220,6 +228,7 @@ CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `content` text NOT NULL,
+  `slug` text NOT NULL,
   `author_id` int(11) DEFAULT NULL,
   `category` enum('news','blog') NOT NULL,
   `status` enum('draft','published','archived') DEFAULT 'draft',
@@ -232,10 +241,10 @@ CREATE TABLE `posts` (
 -- Đang đổ dữ liệu cho bảng `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `content`, `author_id`, `category`, `status`, `thumbnail`, `created_at`, `updated_at`) VALUES
-(2, 'jksdbnol', '<p>ẹkhbo3l4in</p>', NULL, 'blog', 'published', '', '2025-05-20 12:26:49', '2025-05-20 12:26:49'),
-(3, 'Sơn uy tính nhất ', '<p><strong>XIn chào</strong></p>', NULL, 'news', 'draft', '1747744795_dulux-logo.png', '2025-05-20 12:39:55', '2025-05-20 07:44:43'),
-(4, 'Hướng Dẫn Sử Dụng Sơn Nước Hiệu Quả Cho Công Trình Của Bạn', '<p>Sơn nước là lựa chọn phổ biến để trang trí và bảo vệ bề mặt tường nội thất lẫn ngoại thất. Tuy nhiên, để sơn đạt độ bám dính tốt, màu sắc đẹp và bền lâu, bạn cần thực hiện đúng kỹ thuật. Dưới đây là hướng dẫn từng bước:</p><h3>???? Bước 1: Chuẩn Bị Bề Mặt</h3><p><strong>Làm sạch:</strong> Loại bỏ bụi bẩn, dầu mỡ, rêu mốc và lớp sơn cũ bong tróc bằng bàn chải hoặc máy mài.</p><p><strong>Xử lý nấm mốc (nếu có):</strong> Dùng dung dịch chống rêu mốc để xử lý triệt để.</p><p><strong>Trám trét:</strong> Sử dụng bột trét (bả) tường để làm phẳng bề mặt.</p><p><strong>Chờ khô:</strong> Bề mặt cần khô hoàn toàn, độ ẩm dưới 16% mới tiến hành sơn.</p><h3>???? Bước 2: Lăn Lót Sơn</h3><p><strong>Sơn lót kháng kiềm:</strong> Giúp chống ẩm và tăng độ bám cho lớp sơn phủ.</p><p><strong>Thi công:</strong> Dùng cọ, con lăn hoặc súng phun. Lăn đều tay, tránh tạo vệt.</p><p><strong>Chờ khô:</strong> Thường mất khoảng 2–4 giờ (tùy hãng sơn và thời tiết).</p><h3>???? Bước 3: Sơn Phủ Hoàn Thiện</h3><p><strong>Chọn màu:</strong> Tùy theo phong cách nội thất và ánh sáng, nên chọn màu sơn phù hợp.</p><p><strong>Lăn từ 2 lớp trở lên:</strong> Đảm bảo độ che phủ và bền màu.</p><p><strong>Thời gian giữa 2 lớp:</strong> Nên cách nhau ít nhất 2 giờ.</p><h3>✅ Lưu Ý Khi Sử Dụng</h3><p>Không thi công khi trời mưa, độ ẩm cao, hoặc tường còn ẩm ướt.</p><p>Khuấy đều sơn trước khi sử dụng.</p><p>Đọc kỹ hướng dẫn của nhà sản xuất in trên bao bì.</p><p>Dụng cụ thi công nên được rửa sạch bằng nước sau khi dùng.</p><h3>???? Kết Luận</h3><p>Sơn nước không chỉ làm đẹp mà còn bảo vệ công trình của bạn khỏi thời tiết và ẩm mốc. Việc chuẩn bị kỹ lưỡng và thi công đúng quy trình sẽ giúp bạn đạt được bề mặt sơn đẹp, mịn và bền theo thời gian.</p>', NULL, 'blog', 'published', '1747763409_goi-y-chon-hang-son-vua-re-vua-chat-luong-2.jpg', '2025-05-20 17:50:09', '2025-05-20 17:50:09');
+INSERT INTO `posts` (`id`, `title`, `content`, `slug`, `author_id`, `category`, `status`, `thumbnail`, `created_at`, `updated_at`) VALUES
+(2, 'jksdbnol', '<p>ẹkhbo3l4in</p>', 'jksdbnol', NULL, 'blog', 'published', '', '2025-05-20 12:26:49', '2025-05-20 14:44:47'),
+(3, 'Sơn uy tính nhất ', '<p><strong>XIn chào</strong></p>', 'son-uy-tinh-nhat', NULL, 'news', 'draft', '1747744795_dulux-logo.png', '2025-05-20 12:39:55', '2025-05-20 14:44:50'),
+(4, 'Hướng Dẫn Sử Dụng Sơn Nước Hiệu Quả Cho Công Trình Của Bạn', '<p>Sơn nước là lựa chọn phổ biến để trang trí và bảo vệ bề mặt tường nội thất lẫn ngoại thất. Tuy nhiên, để sơn đạt độ bám dính tốt, màu sắc đẹp và bền lâu, bạn cần thực hiện đúng kỹ thuật. Dưới đây là hướng dẫn từng bước:</p><h3>???? Bước 1: Chuẩn Bị Bề Mặt</h3><p><strong>Làm sạch:</strong> Loại bỏ bụi bẩn, dầu mỡ, rêu mốc và lớp sơn cũ bong tróc bằng bàn chải hoặc máy mài.</p><p><strong>Xử lý nấm mốc (nếu có):</strong> Dùng dung dịch chống rêu mốc để xử lý triệt để.</p><p><strong>Trám trét:</strong> Sử dụng bột trét (bả) tường để làm phẳng bề mặt.</p><p><strong>Chờ khô:</strong> Bề mặt cần khô hoàn toàn, độ ẩm dưới 16% mới tiến hành sơn.</p><h3>???? Bước 2: Lăn Lót Sơn</h3><p><strong>Sơn lót kháng kiềm:</strong> Giúp chống ẩm và tăng độ bám cho lớp sơn phủ.</p><p><strong>Thi công:</strong> Dùng cọ, con lăn hoặc súng phun. Lăn đều tay, tránh tạo vệt.</p><p><strong>Chờ khô:</strong> Thường mất khoảng 2–4 giờ (tùy hãng sơn và thời tiết).</p><h3>???? Bước 3: Sơn Phủ Hoàn Thiện</h3><p><strong>Chọn màu:</strong> Tùy theo phong cách nội thất và ánh sáng, nên chọn màu sơn phù hợp.</p><p><strong>Lăn từ 2 lớp trở lên:</strong> Đảm bảo độ che phủ và bền màu.</p><p><strong>Thời gian giữa 2 lớp:</strong> Nên cách nhau ít nhất 2 giờ.</p><h3>✅ Lưu Ý Khi Sử Dụng</h3><p>Không thi công khi trời mưa, độ ẩm cao, hoặc tường còn ẩm ướt.</p><p>Khuấy đều sơn trước khi sử dụng.</p><p>Đọc kỹ hướng dẫn của nhà sản xuất in trên bao bì.</p><p>Dụng cụ thi công nên được rửa sạch bằng nước sau khi dùng.</p><h3>???? Kết Luận</h3><p>Sơn nước không chỉ làm đẹp mà còn bảo vệ công trình của bạn khỏi thời tiết và ẩm mốc. Việc chuẩn bị kỹ lưỡng và thi công đúng quy trình sẽ giúp bạn đạt được bề mặt sơn đẹp, mịn và bền theo thời gian.</p>', 'huong-dan-su-dung-son-nuoc-hieu-qua-cho-cong-trinh-cua-ban', NULL, 'blog', 'published', '1747763409_goi-y-chon-hang-son-vua-re-vua-chat-luong-2.jpg', '2025-05-20 17:50:09', '2025-05-20 13:56:20');
 
 -- --------------------------------------------------------
 
@@ -475,7 +484,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT cho bảng `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
@@ -505,13 +514,13 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `payments`
