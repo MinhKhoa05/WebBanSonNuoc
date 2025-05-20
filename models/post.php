@@ -7,10 +7,15 @@ function post_select_all()
     return pdo_query($sql);
 }
 
-function post_select_by_id($id)
-{
-    $sql = "SELECT * FROM posts WHERE id = ?";
-    return pdo_query_one($sql, $id);
+// function post_select_by_id($id)
+// {
+//     $sql = "SELECT * FROM posts WHERE id = ?";
+//     return pdo_query_one($sql, $id);
+// }
+
+function post_select_by_slug($slug) {
+    $sql = "SELECT * FROM posts WHERE slug LIKE ?";
+    return pdo_query_one($sql, $slug);
 }
 
 function post_insert($title, $content, $author_id, $category, $status, $thumbnail)

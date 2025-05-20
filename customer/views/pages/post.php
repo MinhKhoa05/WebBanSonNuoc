@@ -453,7 +453,7 @@
                                 </div>
                             </div>
 
-                            <a href="index.php?page=post_detail&id=<?= $post['id'] ?>" class="news-title">
+                            <a href="bai-viet/<?= htmlspecialchars($post['slug']) ?>" class="news-title">
                                 <?= htmlspecialchars($post['title']) ?>
                             </a>
 
@@ -466,7 +466,7 @@
                                 <span class="tag">Hướng dẫn</span>
                             </div>
 
-                            <a href="index.php?page=post_detail&id=<?= $post['id'] ?>" class="read-more">
+                            <a href="bai-viet/<?= htmlspecialchars($post['slug']) ?>" class="read-more">
                                 Đọc tiếp <i class="fas fa-arrow-right"></i>
                             </a>
 

@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Nếu là file thật hoặc thư mục thì bỏ qua
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# --- Trang danh sách bài viết: /bai-viet -> index.php?page=post ---
+RewriteRule ^bai-viet$ index.php?page=post [L,QSA]
+
+# --- Trang chi tiết bài viết: /bai-viet/slug -> index.php?page=post_detail&slug=slug ---
+RewriteRule ^bai-viet/([a-zA-Z0-9-]+)$ index.php?page=post_detail&slug=$1 [L,QSA]

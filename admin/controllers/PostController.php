@@ -26,8 +26,12 @@ class PostController
     public function add(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_POST['title'] ?? '';
+            $slug = $this->toSlug($title);
+
             $data = [
-                'title' => $_POST['title'] ?? '',
+                'title' => $title,
+                'slug' => $slug,
                 'content' => $_POST['content'] ?? '',
                 'category' => $_POST['category'] ?? 'news',
                 'status' => $_POST['status'] ?? 'draft',
@@ -49,8 +53,12 @@ class PostController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_POST['title'] ?? '';
+            $slug = $this->toSlug($title);
+
             $data = [
-                'title' => $_POST['title'] ?? '',
+                'title' => $title,
+                'slug' => $slug,
                 'content' => $_POST['content'] ?? '',
                 'category' => $_POST['category'] ?? 'news',
                 'status' => $_POST['status'] ?? 'draft',
@@ -107,5 +115,20 @@ class PostController
     public function get_data(): array
     {
         return $this->data;
+    }
+
+    function toSlug(string $str): string
+    {
+        $str = mb_strtolower($str, 'UTF-8');
+        $str = preg_replace('/[áàảãạăắằẳẵặâấầẩẫậ]/u', 'a', $str);
+        $str = preg_replace('/[éèẻẽẹêếềểễệ]/u', 'e', $str);
+        $str = preg_replace('/[iíìỉĩị]/u', 'i', $str);
+        $str = preg_replace('/[óòỏõọôốồổỗộơớờởỡợ]/u', 'o', $str);
+        $str = preg_replace('/[úùủũụưứừửữự]/u', 'u', $str);
+        $str = preg_replace('/[ýỳỷỹỵ]/u', 'y', $str);
+        $str = preg_replace('/[đ]/u', 'd', $str);
+        $str = preg_replace('/[^a-z0-9\s-]/', '', $str);
+        $str = preg_replace('/[\s-]+/', '-', $str);
+        return trim($str, '-');
     }
 }
