@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?page=post" class="nav-link">
                     <i class="fas fa-newspaper me-2"></i> Bài đăng
                 </a>
             </li>
