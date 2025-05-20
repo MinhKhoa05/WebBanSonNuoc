@@ -19,6 +19,11 @@ class CategoryController
     public function index(): void
     {
         $categories = $this->model->get_all();
+
+        foreach ($categories as &$category) {
+            $category['product_count'] = $this->model->count_products($category['id']);
+        }
+
         $this->data['categories'] = $categories;
     }
 

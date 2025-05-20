@@ -9,32 +9,6 @@ class BrandModel extends BaseModel
     }
 
     /**
-     * Lấy toàn bộ thương hiệu
-     */
-    public function get_all(): array
-    {
-        $sql = "
-            SELECT *
-            FROM {$this->table}
-            ORDER BY id ASC
-        ";
-        return pdo_query($sql);
-    }
-
-    /**
-     * Lấy 1 thương hiệu theo ID
-     */
-    public function get_by_id(int $id): ?array
-    {
-        $sql = "
-            SELECT *
-            FROM {$this->table}
-            WHERE id = ?
-        ";
-        return pdo_query_one($sql, $id);
-    }
-
-    /**
      * Tìm thương hiệu theo tên (LIKE %keyword%)
      */
     public function search_by_name(string $keyword): array
@@ -61,7 +35,7 @@ class BrandModel extends BaseModel
      */
     public function count_products(int $id): int
     {
-        $sql = "SELECT COUNT(*) FROM products WHERE brand_id = ? AND is_deleted = 0" ;
+        $sql = "SELECT COUNT(*) FROM products WHERE brand_id = ? AND is_deleted = 0";
         return pdo_query_value($sql, $id);
     }
 

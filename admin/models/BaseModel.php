@@ -14,7 +14,7 @@ class BaseModel {
      * Lấy tất cả bản ghi (chưa bị xóa mềm)
      */
     public function get_all(): array {
-        $sql = "SELECT * FROM {$this->table}";
+        $sql = "SELECT * FROM {$this->table} ORDER BY {$this->primaryKey} ASC";
         return pdo_query($sql);
     }
 
@@ -22,7 +22,7 @@ class BaseModel {
      * Lấy một bản ghi theo ID (chưa bị xóa mềm)
      */
     public function get_by_id(int $id): ?array {
-        $sql = "SELECT * FROM {$this->table} WHERE {$this->primaryKey} = ? AND is_deleted = 0";
+        $sql = "SELECT * FROM {$this->table} WHERE {$this->primaryKey} = ?";
         return pdo_query_one($sql, $id);
     }
 

@@ -2,13 +2,6 @@
 $categories = $data['categories'] ?? [];
 ?>
 
-<div class="d-flex justify-content-between mb-4">
-    <h2 class="h3 mb-0">Quản lý danh mục</h2>
-    <button type="button" class="btn btn-primary" onclick="openAddCategoryModal()">
-        <i class="fas fa-plus-circle me-1"></i> Thêm danh mục
-    </button>
-</div>
-
 <div class="table-responsive">
     <table class="table table-striped table-bordered align-middle">
         <thead class="table-light">
@@ -29,13 +22,7 @@ $categories = $data['categories'] ?? [];
                         <td>#<?= htmlspecialchars($category['id']) ?></td>
                         <td><?= htmlspecialchars($category['name']) ?></td>
                         <td><?= htmlspecialchars($category['description'] ?? 'Không có mô tả') ?></td>
-                        <td>
-                            <?php 
-                                $categoryModel = new CategoryModel();
-                                $productCount = $categoryModel->count_products($category['id']);
-                                echo $productCount;
-                            ?>
-                        </td>
+                        <td><?= htmlspecialchars($category['product_count']) ?></td>                           
                         <!-- <td>
                             <form method="post" action="index.php?page=category&action=toggle" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($category['id']) ?>">
@@ -72,5 +59,3 @@ $categories = $data['categories'] ?? [];
         </tbody>
     </table>
 </div>
-
-<?php include_once 'modalCategory.php'; ?>

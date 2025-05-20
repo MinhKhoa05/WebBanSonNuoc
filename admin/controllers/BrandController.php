@@ -19,6 +19,11 @@ class BrandController
     public function index(): void
     {
         $brands = $this->model->get_all();
+        
+        foreach ($brands as &$brand) {
+            $brand['product_count'] = $this->model->count_products($brand['id']);
+        }
+
         $this->data['brands'] = $brands;
     }
 
@@ -34,15 +39,15 @@ class BrandController
             // Upload thumbnail if exists
             if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
                 $upload_dir = 'uploads/brands/';
-                
+
                 // Create directory if it doesn't exist
                 if (!file_exists($upload_dir)) {
                     mkdir($upload_dir, 0755, true);
                 }
-                
+
                 $file_name = time() . '_' . basename($_FILES['thumbnail']['name']);
                 $target_file = $upload_dir . $file_name;
-                
+
                 if (move_uploaded_file($_FILES['thumbnail']['tmp_name'], $target_file)) {
                     $data['thumbnail'] = $target_file;
                 }
@@ -72,22 +77,22 @@ class BrandController
             // Upload thumbnail if exists
             if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
                 $upload_dir = 'uploads/brands/';
-                
+
                 // Create directory if it doesn't exist
                 if (!file_exists($upload_dir)) {
                     mkdir($upload_dir, 0755, true);
                 }
-                
+
                 $file_name = time() . '_' . basename($_FILES['thumbnail']['name']);
                 $target_file = $upload_dir . $file_name;
-                
+
                 // Get old thumbnail to delete
                 $brand = $this->model->get_by_id($id);
                 $old_thumbnail = $brand['thumbnail'] ?? '';
-                
+
                 if (move_uploaded_file($_FILES['thumbnail']['tmp_name'], $target_file)) {
                     $data['thumbnail'] = $target_file;
-                    
+
                     // Delete old thumbnail
                     if (!empty($old_thumbnail) && file_exists($old_thumbnail)) {
                         unlink($old_thumbnail);

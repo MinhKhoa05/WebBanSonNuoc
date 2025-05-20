@@ -30,13 +30,7 @@ $brands = $data['brands'] ?? [];
                             <?php endif; ?>
                         </td>
                         <td><?= htmlspecialchars($brand['description'] ?? 'Không có mô tả') ?></td>
-                        <td>
-                            <?php 
-                                $brandModel = new BrandModel();
-                                $productCount = $brandModel->count_products($brand['id']);
-                                echo $productCount;
-                            ?>
-                        </td>
+                        <td><?= htmlspecialchars($brand['product_count']) ?></td>
                         <td>
                             <form method="post" action="index.php?page=brand&action=toggle_featured" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($brand['id']) ?>">
@@ -74,5 +68,3 @@ $brands = $data['brands'] ?? [];
         </tbody>
     </table>
 </div>
-
-<?php include_once 'modalBrand.php'; ?>

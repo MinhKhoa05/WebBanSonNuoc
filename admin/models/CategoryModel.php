@@ -7,33 +7,7 @@ class CategoryModel extends BaseModel
     {
         parent::__construct('categories', 'id');
     }
-
-    /**
-     * Lấy toàn bộ danh mục chưa bị xóa mềm
-     */
-    public function get_all(): array
-    {
-        $sql = "
-            SELECT *
-            FROM {$this->table}
-            ORDER BY id ASC
-        ";
-        return pdo_query($sql);
-    }
-
-    /**
-     * Lấy 1 danh mục theo ID
-     */
-    public function get_by_id(int $id): ?array
-    {
-        $sql = "
-            SELECT *
-            FROM {$this->table}
-            WHERE id = ?
-        ";
-        return pdo_query_one($sql, $id);
-    }
-
+    
     /**
      * Tìm danh mục theo tên (LIKE %keyword%)
      */
