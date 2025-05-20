@@ -9,10 +9,8 @@ $data = [];
 switch ($page) {
     case 'product':
         require_once __DIR__ . '/controllers/ProductController.php';
-        require_once __DIR__ . '/controllers/CategoryController.php';
 
         $productController = new ProductController();
-        $categoryController = new CategoryController();
 
         switch ($action) {
             // Product actions
@@ -40,13 +38,13 @@ switch ($page) {
 
             // Category actions (integrated)
             case 'add_category':
-                $categoryController->add();
+                $productController->category_add();
                 break;
             case 'edit_category':
-                $categoryController->edit();
+                $productController->category_edit();
                 break;
             case 'delete_category':
-                $categoryController->delete();
+                $productController->category_delete();
                 break;
 
             default:

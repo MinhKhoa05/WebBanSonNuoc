@@ -1,4 +1,4 @@
-<link href="views/assets/css/category.css" rel="stylesheet">
+<!-- <link href="views/assets/css/category.css" rel="stylesheet">
 
 <div class="row" id="productManagement">
     <div class="col-12">
@@ -17,4 +17,4 @@
 </div>
 
 <?php include __DIR__ . '/categories/modalCategory.php'; ?>
-<script src="views/assets/js/category.js"></script>
+<script src="views/assets/js/category.js"></script> -->

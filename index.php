@@ -53,8 +53,11 @@ switch ($pageParam) {
     case 'checkout':
         include 'customer/views/pages/checkout.php';
         break;
-    case 'service':
-        include 'customer/views/pages/services.php';
+    case 'post':
+        include 'customer/views/pages/post.php';
+        break;
+    case 'post_detail':
+        include 'customer/views/pages/post_detail.php';
         break;
     case 'cart':
         include 'customer/views/pages/cart.php';

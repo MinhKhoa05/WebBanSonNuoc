@@ -35,7 +35,7 @@ $userName = $isLoggedIn ? $_SESSION['user_name'] : '';
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="index.php">Trang chủ</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.php?page=service">Dịch vụ</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php?page=post">Tin Tức</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.php?page=about-us">Về chúng tôi</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.php?page=contact">Liên hệ</a></li>
             </ul>

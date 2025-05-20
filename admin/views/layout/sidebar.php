@@ -16,11 +16,11 @@
                     <i class="fas fa-globe me-2"></i> Thương hiệu
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="index.php?page=category" class="nav-link">
                     <i class="fas fa-bars me-2"></i> Danh mục sản phẩm
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a href="index.php?page=product" class="nav-link">
                     <i class="fas fa-box me-2"></i> Sản phẩm

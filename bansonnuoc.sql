@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 20, 2025 lúc 07:33 PM
+-- Thời gian đã tạo: Th5 20, 2025 lúc 08:33 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -234,7 +234,8 @@ CREATE TABLE `posts` (
 
 INSERT INTO `posts` (`id`, `title`, `content`, `author_id`, `category`, `status`, `thumbnail`, `created_at`, `updated_at`) VALUES
 (2, 'jksdbnol', '<p>ẹkhbo3l4in</p>', NULL, 'blog', 'published', '', '2025-05-20 12:26:49', '2025-05-20 12:26:49'),
-(3, 'Sơn uy tính nhất ', '<p><strong>XIn chào</strong></p>', NULL, 'news', 'draft', '1747744795_dulux-logo.png', '2025-05-20 12:39:55', '2025-05-20 07:44:43');
+(3, 'Sơn uy tính nhất ', '<p><strong>XIn chào</strong></p>', NULL, 'news', 'draft', '1747744795_dulux-logo.png', '2025-05-20 12:39:55', '2025-05-20 07:44:43'),
+(4, 'Hướng Dẫn Sử Dụng Sơn Nước Hiệu Quả Cho Công Trình Của Bạn', '<p>Sơn nước là lựa chọn phổ biến để trang trí và bảo vệ bề mặt tường nội thất lẫn ngoại thất. Tuy nhiên, để sơn đạt độ bám dính tốt, màu sắc đẹp và bền lâu, bạn cần thực hiện đúng kỹ thuật. Dưới đây là hướng dẫn từng bước:</p><h3>???? Bước 1: Chuẩn Bị Bề Mặt</h3><p><strong>Làm sạch:</strong> Loại bỏ bụi bẩn, dầu mỡ, rêu mốc và lớp sơn cũ bong tróc bằng bàn chải hoặc máy mài.</p><p><strong>Xử lý nấm mốc (nếu có):</strong> Dùng dung dịch chống rêu mốc để xử lý triệt để.</p><p><strong>Trám trét:</strong> Sử dụng bột trét (bả) tường để làm phẳng bề mặt.</p><p><strong>Chờ khô:</strong> Bề mặt cần khô hoàn toàn, độ ẩm dưới 16% mới tiến hành sơn.</p><h3>???? Bước 2: Lăn Lót Sơn</h3><p><strong>Sơn lót kháng kiềm:</strong> Giúp chống ẩm và tăng độ bám cho lớp sơn phủ.</p><p><strong>Thi công:</strong> Dùng cọ, con lăn hoặc súng phun. Lăn đều tay, tránh tạo vệt.</p><p><strong>Chờ khô:</strong> Thường mất khoảng 2–4 giờ (tùy hãng sơn và thời tiết).</p><h3>???? Bước 3: Sơn Phủ Hoàn Thiện</h3><p><strong>Chọn màu:</strong> Tùy theo phong cách nội thất và ánh sáng, nên chọn màu sơn phù hợp.</p><p><strong>Lăn từ 2 lớp trở lên:</strong> Đảm bảo độ che phủ và bền màu.</p><p><strong>Thời gian giữa 2 lớp:</strong> Nên cách nhau ít nhất 2 giờ.</p><h3>✅ Lưu Ý Khi Sử Dụng</h3><p>Không thi công khi trời mưa, độ ẩm cao, hoặc tường còn ẩm ướt.</p><p>Khuấy đều sơn trước khi sử dụng.</p><p>Đọc kỹ hướng dẫn của nhà sản xuất in trên bao bì.</p><p>Dụng cụ thi công nên được rửa sạch bằng nước sau khi dùng.</p><h3>???? Kết Luận</h3><p>Sơn nước không chỉ làm đẹp mà còn bảo vệ công trình của bạn khỏi thời tiết và ẩm mốc. Việc chuẩn bị kỹ lưỡng và thi công đúng quy trình sẽ giúp bạn đạt được bề mặt sơn đẹp, mịn và bền theo thời gian.</p>', NULL, 'blog', 'published', '1747763409_goi-y-chon-hang-son-vua-re-vua-chat-luong-2.jpg', '2025-05-20 17:50:09', '2025-05-20 17:50:09');
 
 -- --------------------------------------------------------
 
@@ -263,7 +264,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `stock`, `category_id`, `brand_id`, `thumbnail`, `is_deleted`, `view`, `created_at`, `updated_at`) VALUES
-(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, 1, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 17:09:09'),
+(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, 1, 'Son-4.jpg', 0, 0, '2025-04-10 04:21:29', '2025-05-20 17:41:28'),
 (4, 'Sơn Dulux EasyClean', 'Chống bám bẩn vượt trội, lau chùi dễ dàng.', 580000.00, 20, 120, 1, 2, 'Son-3.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 17:09:48'),
 (5, 'Sơn Jotun Majestic', 'Sơn nội thất mịn cao cấp, không chứa chì.', 610000.00, 12, 90, 2, NULL, 'Son-5.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 16:08:08'),
 (6, 'Sơn Nippon Odour-less', 'Sơn không mùi, thân thiện môi trường.', 500000.00, 12, 11, 14, 3, 'Son-6.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 16:19:25'),
@@ -522,7 +523,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
