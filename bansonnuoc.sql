@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 20, 2025 lúc 02:45 PM
+-- Thời gian đã tạo: Th5 20, 2025 lúc 07:33 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -116,10 +116,7 @@ INSERT INTO `categories` (`id`, `name`, `created_at`) VALUES
 (1, 'Sơn Dulux', '2025-04-10 03:25:23'),
 (2, 'Sơn Jotun', '2025-04-10 03:25:23'),
 (3, 'Sơn Maxilite', '2025-04-10 03:25:23'),
-(4, 'Sơn Kova', '2025-04-10 03:25:23'),
-(5, 'Sơn Nippon', '2025-04-10 03:25:23'),
-(6, 'Sơn Vip pro', '2025-04-10 03:41:49'),
-(7, 'Sơn chống thấm thế hệ mới', '2025-04-10 03:42:45');
+(14, 'Sơn Nippon', '2025-05-20 16:19:11');
 
 -- --------------------------------------------------------
 
@@ -266,17 +263,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `stock`, `category_id`, `brand_id`, `thumbnail`, `is_deleted`, `view`, `created_at`, `updated_at`) VALUES
-(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, NULL, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-18 08:39:42'),
-(4, 'Sơn Dulux EasyClean', 'Chống bám bẩn vượt trội, lau chùi dễ dàng.', 580000.00, 20, 120, 2, NULL, 'Son-3.jpg', 1, 0, '2025-04-10 04:21:29', '2025-05-17 14:57:08'),
-(5, 'Sơn Jotun Majestic', 'Sơn nội thất mịn cao cấp, không chứa chì.', 610000.00, 12, 90, 2, NULL, 'Son-5.jpg', 1, 1, '2025-04-10 04:21:29', '2025-05-17 14:57:21'),
-(6, 'Sơn Nippon Odour-less', 'Sơn không mùi, thân thiện môi trường.', 500000.00, 12, 11, 2, NULL, 'Son-6.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
-(7, 'Sơn Kova K260', 'Sơn nước ngoài trời siêu bền màu.', 420000.00, 27, 70, 3, NULL, 'Son-2.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 15:01:37'),
-(8, 'Sơn Joton Jona', 'Sơn tường nội thất giá rẻ, phù hợp nhà trọ.', 300000.00, 17, 200, 3, NULL, 'Son-3.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:13'),
-(9, 'Sơn Spec Go Green', 'Sơn thân thiện môi trường, dễ sử dụng.', 350000.00, 12, 15, 4, NULL, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
-(10, 'Sơn TOA Nano Shield', 'Sơn ngoại thất chống thấm cao cấp.', 680000.00, 27, 65, 4, NULL, 'Son-5.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
-(16, 'Sơn Maxilite Total', 'Sơn mới, sản phẩm mới đc bán', 100000.00, 0, 30, 2, NULL, '1747497701_Son-3.jpg', 0, 1, '2025-05-17 12:40:12', '2025-05-18 08:39:40'),
-(20, 'dsfkbj', 'lldf', 100000.00, 0, 20, 3, NULL, '', 0, 1, '2025-05-17 13:40:29', '2025-05-18 08:39:38'),
-(21, 'dkdnsfm;', 'lsjnlf', 10000000.00, 10, 12423, 4, NULL, '1747497597_images.jpg', 0, 1, '2025-05-17 15:41:00', '2025-05-18 08:39:35');
+(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, 1, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 17:09:09'),
+(4, 'Sơn Dulux EasyClean', 'Chống bám bẩn vượt trội, lau chùi dễ dàng.', 580000.00, 20, 120, 1, 2, 'Son-3.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 17:09:48'),
+(5, 'Sơn Jotun Majestic', 'Sơn nội thất mịn cao cấp, không chứa chì.', 610000.00, 12, 90, 2, NULL, 'Son-5.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 16:08:08'),
+(6, 'Sơn Nippon Odour-less', 'Sơn không mùi, thân thiện môi trường.', 500000.00, 12, 11, 14, 3, 'Son-6.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 16:19:25'),
+(7, 'Sơn Kova K260', 'Sơn nước ngoài trời siêu bền màu.', 420000.00, 27, 70, 3, NULL, 'Son-2.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 17:16:17'),
+(16, 'Sơn Maxilite Total', 'Sơn mới, sản phẩm mới đc bán', 100000.00, 0, 30, 14, NULL, '1747497701_Son-3.jpg', 0, 1, '2025-05-17 12:40:12', '2025-05-20 17:16:28'),
+(20, 'dsfkbj', 'lldf', 100000.00, 0, 20, 3, NULL, '', 0, 0, '2025-05-17 13:40:29', '2025-05-20 14:56:11');
 
 -- --------------------------------------------------------
 
@@ -487,7 +480,7 @@ ALTER TABLE `carts`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `discount_types`
@@ -535,7 +528,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT cho bảng `promotions`

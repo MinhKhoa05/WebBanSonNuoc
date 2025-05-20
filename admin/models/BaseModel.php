@@ -71,4 +71,12 @@ class BaseModel {
         $sql = "DELETE FROM {$this->table} WHERE {$this->primaryKey} = ?";
         return pdo_execute($sql, $id);
     }
+    
+    /**
+     * Khôi phục (đánh dấu is_deleted = 0)
+     */
+    public function restore(int $id): bool {
+        $sql = "UPDATE {$this->table} SET is_deleted = 0 WHERE {$this->primaryKey} = ?";
+        return pdo_execute($sql, $id);
+    }
 }

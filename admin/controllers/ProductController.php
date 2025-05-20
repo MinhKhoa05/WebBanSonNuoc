@@ -24,17 +24,34 @@ class ProductController
 
     public function index(): void
     {
+        // Mặc định hiển thị danh sách sản phẩm
         $products = $this->model->get_all();
+        $categories = $this->category_model->get_all();
+        $brands = $this->brand_model->get_all();
 
-        foreach ($products as &$product) {
-            $price = floatval($product['price']);
-            $discount = floatval($product['discount']);
-            $product['final_price'] = max($price - ($price * $discount / 100), 0);
+        // Gom sản phẩm theo danh mục
+        $productsByCategory = [];
+        foreach ($categories as $category) {
+            $categoryId = $category['id'];
+            $products = $this->model->get_by_category($categoryId);
+
+            // Tính giá sau giảm cho từng sản phẩm
+            foreach ($products as &$product) {
+                $price = floatval($product['price']);
+                $discount = floatval($product['discount']);
+                $product['final_price'] = max($price - ($price * $discount / 100), 0);
+            }
+            unset($product);
+
+            $productsByCategory[$categoryId] = [
+                'category_name' => $category['name'],
+                'products' => $products,
+            ];
         }
-
-        $this->data['products'] = $products;
-        $this->data['categories'] = $this->category_model->get_all();
-        $this->data['brands'] = $this->brand_model->get_all(); // Add this line
+        
+        $this->data['categories'] = $categories;
+        $this->data['brands'] = $brands;
+        $this->data['products_by_category'] = $productsByCategory;
     }
 
     public function add(): void
@@ -131,5 +148,39 @@ class ProductController
     public function get_data(): array
     {
         return $this->data;
+    }
+
+    public function trash(): void
+    {
+        $deletedProducts = $this->model->get_deleted_products();
+        $this->data['deleted_products'] = $deletedProducts;
+    }
+
+    public function delete(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = intval($_POST['id'] ?? 0);
+            if ($id <= 0) {
+                set_flash('error', 'ID sản phẩm không hợp lệ!');
+            } else {
+                $success = $this->model->delete($id);
+                set_flash($success ? 'success' : 'error', $success ? 'Xóa sản phẩm thành công!' : 'Xóa sản phẩm thất bại!');
+            }
+        }
+        redirect('index.php?page=product');
+    }
+
+    public function restore(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = intval($_POST['id'] ?? 0);
+            if ($id <= 0) {
+                set_flash('error', 'ID sản phẩm không hợp lệ!');
+            } else {
+                $success = $this->model->restore($id);
+                set_flash($success ? 'success' : 'error', $success ? 'Đã khôi phục sản phẩm' : 'Khôi phục sản phẩm thất bại!');
+            }
+        }
+        redirect('index.php?page=product');
     }
 }

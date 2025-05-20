@@ -2,74 +2,63 @@
 $posts = $data['posts'] ?? [];
 ?>
 
-<div class="table-responsive">
-    <table class="table table-striped table-bordered align-middle">
-        <thead class="table-light">
-            <tr>
-                <th>Mã</th>
-                <th>Hình ảnh</th>
-                <th>Tiêu đề</th>
-                <th>Loại</th>
-                <th>Thời gian</th>
-                <th>Trạng thái</th>
-                <th>Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($posts)): ?>
-                <?php foreach ($posts as $post): ?>
-                    <tr>
-                        <td>#<?= htmlspecialchars($post['id']) ?></td>
-                        <td>
-                            <?php if (!empty($post['thumbnail'])): ?>
-                                <img src="../uploads/<?= htmlspecialchars($post['thumbnail']) ?>" class="img-thumbnail"
-                                    alt="<?= htmlspecialchars($post['title']) ?>" style="max-width: 60px;">
-                            <?php else: ?>
-                                <span class="text-muted">Không có ảnh</span>
-                            <?php endif; ?>
-                        </td>
-                        <td class="text-start"><?= htmlspecialchars($post['title']) ?></td>
-                        <td>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <?php if (!empty($posts)): ?>
+        <?php foreach ($posts as $post): ?>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <?php if (!empty($post['thumbnail'])): ?>
+                        <img src="../uploads/<?= htmlspecialchars($post['thumbnail']) ?>" 
+                             class="card-img-top" alt="<?= htmlspecialchars($post['title']) ?>" style="height: 180px; object-fit: cover;">
+                    <?php else: ?>
+                        <div class="bg-secondary text-white d-flex align-items-center justify-content-center" 
+                             style="height: 180px;">
+                            <small>Không có ảnh</small>
+                        </div>
+                    <?php endif; ?>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title" title="<?= htmlspecialchars($post['title']) ?>">
+                            <?= htmlspecialchars(mb_strimwidth($post['title'], 0, 40, '...')) ?>
+                        </h5>
+                        <p class="card-text flex-grow-1" style="font-size: 0.9rem; color: #555;">
+                            <?= htmlspecialchars(mb_strimwidth(strip_tags($post['content']), 0, 100, '...')) ?>
+                        </p>
+                        <div class="mb-2">
                             <span class="badge <?= ($post['category'] == 'news') ? 'bg-primary' : 'bg-info' ?>">
                                 <?= ($post['category'] == 'news') ? 'Tin tức' : 'Blog' ?>
                             </span>
-                        </td>
-                        <td><?= date('d/m/Y H:i', strtotime($post['created_at'])) ?></td>
-                        <td>
-                            <form method="post" action="index.php?page=post&action=change_status" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($post['id']) ?>">
-                                <input type="hidden" name="status"
-                                    value="<?= ($post['status'] == 'published') ? 'draft' : 'published' ?>">
-                                <button type="submit"
-                                    class="btn btn-sm <?= ($post['status'] == 'published') ? 'btn-success' : 'btn-warning' ?>">
-                                    <?= ($post['status'] == 'published') ? 'Xuất bản' : 'Nháp' ?>
-                                </button>
-                            </form>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-outline-primary btn-action me-1"
-                                data-id="<?= (int) $post['id'] ?>"
-                                data-title="<?= htmlspecialchars($post['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
-                                data-content="<?= htmlspecialchars($post['content'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
-                                data-category-id="<?= (int) ($post['category_id'] ?? 0) ?>"
-                                data-category="<?= htmlspecialchars($post['category'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
-                                data-status="<?= htmlspecialchars($post['status'] ?? 'draft', ENT_QUOTES, 'UTF-8') ?>"
-                                data-thumbnail="<?= htmlspecialchars($post['thumbnail'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                            <span class="badge <?= ($post['status'] == 'published') ? 'bg-success' : 'bg-secondary' ?> ms-1">
+                                <?= ($post['status'] == 'published') ? 'Xuất bản' : 'Nháp' ?>
+                            </span>
+                        </div>
+                        <small class="text-muted mb-3">
+                            <time datetime="<?= htmlspecialchars($post['created_at']) ?>" 
+                                  title="<?= date('d/m/Y H:i:s', strtotime($post['created_at'])) ?>">
+                                <?= date('d/m/Y H:i', strtotime($post['created_at'])) ?>
+                            </time>
+                        </small>
+                        <div>
+                            <button type="button" class="btn btn-sm btn-outline-primary me-1"
+                                data-id="<?= (int)$post['id'] ?>"
+                                data-title="<?= htmlspecialchars($post['title']) ?>"
+                                data-content="<?= htmlspecialchars($post['content']) ?>"
+                                data-category="<?= htmlspecialchars($post['category']) ?>"
+                                data-status="<?= htmlspecialchars($post['status'] ?? 'draft') ?>"
+                                data-thumbnail="<?= htmlspecialchars($post['thumbnail']) ?>"
                                 onclick="openEditPostModal(this)">
                                 <i class="fas fa-edit"></i> Sửa
                             </button>
-
-                            <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(<?= $post['id'] ?>)">
+                            <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(<?= (int)$post['id'] ?>)">
                                 <i class="fas fa-trash"></i> Xóa
                             </button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="8" class="text-center text-muted">Không có bài viết nào.</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="col-12">
+            <p class="text-center text-muted fst-italic">Chưa có bài viết nào.</p>
+        </div>
+    <?php endif; ?>
 </div>

@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.confirmDelete = function (id) {
         Swal.fire({
-            title: 'Bạn có chắc muốn xóa sản phẩm này?',
+            title: 'Bạn có chắc muốn xóa vĩnh viễn sản phẩm này?',
+            text: 'Thao tác này không thể hoàn tác!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Có, xóa nó!',

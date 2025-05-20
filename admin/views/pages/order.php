@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">Quản lý đơn hàng</h6>
+                <h4 class="m-0 font-weight-bold text-primary text-uppercase">Quản lý đơn hàng</h4>
                 <button class="btn btn-primary" onclick="openAddOrderModal()">
                     <i class="fas fa-plus me-1"></i> Thêm đơn hàng
                 </button>

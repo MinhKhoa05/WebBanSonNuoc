@@ -14,13 +14,30 @@ class ProductModel extends BaseModel
     public function get_all(): array
     {
         $sql = "
-            SELECT p.*, c.name AS category_name
+            SELECT p.*, c.name AS category_name, b.name AS brand_name
             FROM {$this->table} p
             JOIN categories c ON p.category_id = c.id
+            LEFT JOIN brands b ON p.brand_id = b.id
             WHERE is_deleted = 0
             ORDER BY p.id ASC
         ";
         return pdo_query($sql);
+    }
+
+     /**
+     * Lấy toàn bộ sản phẩm kèm tên danh mục
+     */
+    public function get_by_category($category_id): array
+    {
+        $sql = "
+            SELECT p.*, c.name AS category_name, b.name AS brand_name
+            FROM {$this->table} p
+            JOIN categories c ON p.category_id = c.id
+            LEFT JOIN brands b ON p.brand_id = b.id
+            WHERE is_deleted = 0 AND category_id = ?
+            ORDER BY p.id ASC
+        ";
+        return pdo_query($sql, $category_id);
     }
 
     /**
@@ -96,6 +113,15 @@ class ProductModel extends BaseModel
     }
 
     /**
+     * Xóa mềm (đánh dấu is_deleted = 1, bỏ khỏi danh mục sản phẩm)
+     */
+    public function soft_delete(int $id): bool
+    {
+        $sql = "UPDATE {$this->table} SET is_deleted = 1 WHERE {$this->primaryKey} = ?";
+        return pdo_execute($sql, $id);
+    }
+
+    /**
      * Đếm tổng số sản phẩm theo bộ lọc
      */
     public function count(array $filters = []): int
@@ -125,5 +151,11 @@ class ProductModel extends BaseModel
     {
         $sql = "UPDATE {$this->table} SET view = ? WHERE id = ?";
         return pdo_execute($sql, $view, $id);
+    }
+
+    public function get_deleted_products(): array
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE is_deleted = 1";
+        return pdo_query($sql);
     }
 }

@@ -9,26 +9,52 @@ $data = [];
 switch ($page) {
     case 'product':
         require_once __DIR__ . '/controllers/ProductController.php';
-        $controller = new ProductController();
+        require_once __DIR__ . '/controllers/CategoryController.php';
+
+        $productController = new ProductController();
+        $categoryController = new CategoryController();
 
         switch ($action) {
+            // Product actions
             case 'add':
-                $controller->add();
+                $productController->add();
                 break;
             case 'edit':
-                $controller->edit();
+                $productController->edit();
                 break;
-            case 'delete':
-                $controller->soft_delete();
+            case 'soft_delete':
+                $productController->soft_delete();
                 break;
             case 'toggle':
-                $controller->toggle_view();
+                $productController->toggle_view();
+                break;
+            case 'trash':
+                $productController->trash();
+                break;
+            case 'delete':
+                $productController->delete();
+                break;
+            case 'restore':
+                $productController->restore();
+                break;
+
+            // Category actions (integrated)
+            case 'add_category':
+                $categoryController->add();
+                break;
+            case 'edit_category':
+                $categoryController->edit();
+                break;
+            case 'delete_category':
+                $categoryController->delete();
+                break;
+
             default:
-                $controller->index();
+                $productController->index();
                 break;
         }
 
-        $data = $controller->get_data();
+        $data = $productController->get_data();
         break;
 
     case 'brand':
@@ -55,33 +81,7 @@ switch ($page) {
 
         $data = $controller->get_data();
         break;
-        
-    
-    case 'category':
-        require_once __DIR__ . '/controllers/CategoryController.php';
-        $controller = new CategoryController();
 
-        switch ($action) {
-            case 'add':
-                $controller->add();
-                break;
-            case 'edit':
-                $controller->edit();
-                break;
-            case 'delete':
-                $controller->soft_delete();
-                break;
-            case 'toggle':
-                $controller->toggle_status();
-                break;
-            default:
-                $controller->index();
-                break;
-        }
-
-        $data = $controller->get_data();
-        break;
-        
     case 'order':
         require_once __DIR__ . '/controllers/OrderController.php';
         $controller = new OrderController();
@@ -89,7 +89,7 @@ switch ($page) {
         $data = $controller->get_data();
         break;
 
-    case 'post':    
+    case 'post':
         require_once __DIR__ . '/controllers/PostController.php';
         $controller = new PostController();
 
