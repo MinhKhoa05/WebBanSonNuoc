@@ -9,34 +9,6 @@ class PostModel extends BaseModel
     }
 
     /**
-     * Lấy toàn bộ bài viết
-     */
-    public function get_all(): array
-    {
-        $sql = "
-            SELECT p.*, c.name AS category_name
-            FROM {$this->table} p
-            LEFT JOIN categories c ON p.category_id = c.id
-            ORDER BY p.id DESC
-        ";
-        return pdo_query($sql);
-    }
-
-    /**
-     * Lấy 1 bài viết theo ID
-     */
-    public function get_by_id(int $id): ?array
-    {
-        $sql = "
-            SELECT p.*, c.name AS category_name
-            FROM {$this->table} p
-            LEFT JOIN categories c ON p.category_id = c.id
-            WHERE p.id = ?
-        ";
-        return pdo_query_one($sql, $id);
-    }
-
-    /**
      * Tìm bài viết theo tiêu đề (LIKE %keyword%)
      */
     public function search_by_title(string $keyword): array
@@ -55,37 +27,32 @@ class PostModel extends BaseModel
     public function filter(array $filters = [], string $sort = 'newest', int $startIndex = 0, int $limit = 20): array
     {
         $sql = "
-            SELECT p.*, c.name AS category_name 
-            FROM {$this->table} p
-            LEFT JOIN categories c ON p.category_id = c.id
-            WHERE p.is_deleted = 0
+            SELECT *
+            FROM {$this->table}
+            WHERE is_deleted = 0
         ";
+
         $params = [];
 
         // Điều kiện lọc
-        if (!empty($filters['category_id']) && $filters['category_id'] !== 'all') {
-            $sql .= " AND p.category_id = ?";
-            $params[] = $filters['category_id'];
-        }
-
         if (!empty($filters['category']) && $filters['category'] !== 'all') {
-            $sql .= " AND p.category = ?";
+            $sql .= " AND category = ?";
             $params[] = $filters['category'];
         }
 
         if (!empty($filters['status']) && $filters['status'] !== 'all') {
-            $sql .= " AND p.status = ?";
+            $sql .= " AND status = ?";
             $params[] = $filters['status'];
         }
 
         // Sắp xếp
         $orderMap = [
-            'newest' => 'p.created_at DESC',
-            'oldest' => 'p.created_at ASC',
-            'title_asc' => 'p.title ASC',
-            'title_desc' => 'p.title DESC',
+            'newest' => 'created_at DESC',
+            'oldest' => 'created_at ASC',
+            'title_asc' => 'title ASC',
+            'title_desc' => 'title DESC',
         ];
-        $sql .= " ORDER BY " . ($orderMap[$sort] ?? 'p.created_at DESC');
+        $sql .= " ORDER BY " . ($orderMap[$sort] ?? 'created_at DESC');
 
         // Phân trang
         $sql .= " LIMIT ?, ?";
@@ -102,11 +69,6 @@ class PostModel extends BaseModel
     {
         $sql = "SELECT COUNT(*) FROM {$this->table} WHERE is_deleted = 0";
         $params = [];
-
-        if (!empty($filters['category_id']) && $filters['category_id'] !== 'all') {
-            $sql .= " AND category_id = ?";
-            $params[] = $filters['category_id'];
-        }
 
         if (!empty($filters['category']) && $filters['category'] !== 'all') {
             $sql .= " AND category = ?";

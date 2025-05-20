@@ -24,7 +24,7 @@ $brands = $data['brands'] ?? [];
                         <td><?= htmlspecialchars($brand['name']) ?></td>
                         <td>
                             <?php if (!empty($brand['thumbnail'])): ?>
-                                <img src="<?= htmlspecialchars($brand['thumbnail']) ?>" alt="<?= htmlspecialchars($brand['name']) ?>" class="brand-thumbnail">
+                                <img src="../uploads/<?= htmlspecialchars($brand['thumbnail']) ?>" alt="<?= htmlspecialchars($brand['name']) ?>" class="brand-thumbnail">
                             <?php else: ?>
                                 <span class="text-muted">Không có ảnh</span>
                             <?php endif; ?>

@@ -10,20 +10,17 @@ require_once __DIR__ . '/../helpers/Common.php';
 class PostController
 {
     private PostModel $model;
-    private CategoryModel $category_model;
     private array $data = [];
 
     public function __construct()
     {
         $this->model = new PostModel();
-        $this->category_model = new CategoryModel();
     }
 
     public function index(): void
     {
         $posts = $this->model->get_all();
         $this->data['posts'] = $posts;
-        $this->data['categories'] = $this->category_model->get_all();
     }
 
     public function add(): void
@@ -32,7 +29,6 @@ class PostController
             $data = [
                 'title' => $_POST['title'] ?? '',
                 'content' => $_POST['content'] ?? '',
-                'category_id' => intval($_POST['category_id'] ?? 0),
                 'category' => $_POST['category'] ?? 'news',
                 'status' => $_POST['status'] ?? 'draft',
                 'thumbnail' => handle_file_upload()
@@ -42,8 +38,6 @@ class PostController
             set_flash($success ? 'success' : 'error', $success ? 'Thêm bài viết thành công!' : 'Thêm bài viết thất bại!');
             redirect('index.php?page=post');
         }
-
-        $this->data['categories'] = $this->category_model->get_all();
     }
 
     public function edit(): void
@@ -58,7 +52,6 @@ class PostController
             $data = [
                 'title' => $_POST['title'] ?? '',
                 'content' => $_POST['content'] ?? '',
-                'category_id' => intval($_POST['category_id'] ?? 0),
                 'category' => $_POST['category'] ?? 'news',
                 'status' => $_POST['status'] ?? 'draft',
                 'updated_at' => date('Y-m-d H:i:s')
@@ -83,7 +76,6 @@ class PostController
         }
 
         $this->data['post'] = $post;
-        $this->data['categories'] = $this->category_model->get_all();
     }
 
     public function soft_delete(): void

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 18, 2025 lúc 10:22 AM
+-- Thời gian đã tạo: Th5 20, 2025 lúc 02:45 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -40,7 +40,12 @@ CREATE TABLE `articles` (
 
 -- --------------------------------------------------------
 
-
+--
+-- Cấu trúc đóng vai cho view `best_selling_products`
+-- (See below for the actual view)
+--
+CREATE TABLE `best_selling_products` (
+);
 
 -- --------------------------------------------------------
 
@@ -218,13 +223,21 @@ CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `content` text NOT NULL,
-  `author_id` int(11) NOT NULL,
+  `author_id` int(11) DEFAULT NULL,
   `category` enum('news','blog') NOT NULL,
   `status` enum('draft','published','archived') DEFAULT 'draft',
   `thumbnail` varchar(500) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `content`, `author_id`, `category`, `status`, `thumbnail`, `created_at`, `updated_at`) VALUES
+(2, 'jksdbnol', '<p>ẹkhbo3l4in</p>', NULL, 'blog', 'published', '', '2025-05-20 12:26:49', '2025-05-20 12:26:49'),
+(3, 'Sơn uy tính nhất ', '<p><strong>XIn chào</strong></p>', NULL, 'news', 'draft', '1747744795_dulux-logo.png', '2025-05-20 12:39:55', '2025-05-20 07:44:43');
 
 -- --------------------------------------------------------
 
@@ -253,7 +266,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `stock`, `category_id`, `brand_id`, `thumbnail`, `is_deleted`, `view`, `created_at`, `updated_at`) VALUES
-(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, NULL, 'Son-4.jpg', 0, 0, '2025-04-10 04:21:29', '2025-05-17 15:41:49'),
+(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, NULL, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-18 08:39:42'),
 (4, 'Sơn Dulux EasyClean', 'Chống bám bẩn vượt trội, lau chùi dễ dàng.', 580000.00, 20, 120, 2, NULL, 'Son-3.jpg', 1, 0, '2025-04-10 04:21:29', '2025-05-17 14:57:08'),
 (5, 'Sơn Jotun Majestic', 'Sơn nội thất mịn cao cấp, không chứa chì.', 610000.00, 12, 90, 2, NULL, 'Son-5.jpg', 1, 1, '2025-04-10 04:21:29', '2025-05-17 14:57:21'),
 (6, 'Sơn Nippon Odour-less', 'Sơn không mùi, thân thiện môi trường.', 500000.00, 12, 11, 2, NULL, 'Son-6.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
@@ -261,12 +274,9 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `stock
 (8, 'Sơn Joton Jona', 'Sơn tường nội thất giá rẻ, phù hợp nhà trọ.', 300000.00, 17, 200, 3, NULL, 'Son-3.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:13'),
 (9, 'Sơn Spec Go Green', 'Sơn thân thiện môi trường, dễ sử dụng.', 350000.00, 12, 15, 4, NULL, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
 (10, 'Sơn TOA Nano Shield', 'Sơn ngoại thất chống thấm cao cấp.', 680000.00, 27, 65, 4, NULL, 'Son-5.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-17 14:58:46'),
-(16, 'Sơn Maxilite Total', 'Sơn mới, sản phẩm mới đc bán', 100000.00, 0, 30, 2, NULL, '1747497701_Son-3.jpg', 0, 0, '2025-05-17 12:40:12', '2025-05-17 16:01:41'),
-(17, 'Sơn nước mới', 'Sơn siêu cấp', 0.00, 46, 30, 1, NULL, '1747488744_hinh-nen-may-tinh-co-ke-de-icon-desktop-blogchiasekienthuc-1-min.jpg', 0, 1, '2025-05-17 13:32:24', '2025-05-17 13:32:24'),
-(18, 'sf', 'skfh', 1000000.00, 30, 30, 5, NULL, '', 1, 1, '2025-05-17 13:35:31', '2025-05-17 15:04:28'),
-(19, 'XepLichThiDauBongDa2', 'kuug', 0.00, 0, 10, 3, NULL, '1747489154_sap-xep-destop-gon-gang-voi-loat-hinh-nen-doc-dao-12.png', 1, 1, '2025-05-17 13:39:14', '2025-05-17 14:58:13'),
-(20, 'dsfkbj', 'lldf', 100000.00, 0, 20, 3, NULL, '', 0, 0, '2025-05-17 13:40:29', '2025-05-17 15:41:45'),
-(21, 'dkdnsfm;', 'lsjnlf', 10000000.00, 10, 12423, 4, NULL, '1747497597_images.jpg', 0, 1, '2025-05-17 15:41:00', '2025-05-17 15:59:57');
+(16, 'Sơn Maxilite Total', 'Sơn mới, sản phẩm mới đc bán', 100000.00, 0, 30, 2, NULL, '1747497701_Son-3.jpg', 0, 1, '2025-05-17 12:40:12', '2025-05-18 08:39:40'),
+(20, 'dsfkbj', 'lldf', 100000.00, 0, 20, 3, NULL, '', 0, 1, '2025-05-17 13:40:29', '2025-05-18 08:39:38'),
+(21, 'dkdnsfm;', 'lsjnlf', 10000000.00, 10, 12423, 4, NULL, '1747497597_images.jpg', 0, 1, '2025-05-17 15:41:00', '2025-05-18 08:39:35');
 
 -- --------------------------------------------------------
 
@@ -331,7 +341,12 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `address`, `rol
 
 --
 -- Cấu trúc cho view `best_selling_products`
+--
+DROP TABLE IF EXISTS `best_selling_products`;
 
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `best_selling_products`  AS SELECT `p`.`id` AS `id`, `p`.`name` AS `name`, `p`.`description` AS `description`, `p`.`price` AS `price`, `p`.`discount` AS `discount`, `p`.`stock` AS `stock`, `p`.`status` AS `status`, `p`.`thumbnail` AS `thumbnail`, `p`.`category_id` AS `category_id`, round(avg(`r`.`rating`),1) AS `rating`, count(`od`.`product_id`) AS `total_sold`, count(`r`.`id`) AS `reviews`, `p`.`created_at` AS `created_at`, `p`.`updated_at` AS `updated_at` FROM ((`products` `p` left join `order_details` `od` on(`p`.`id` = `od`.`product_id`)) left join `reviews` `r` on(`p`.`id` = `r`.`product_id`)) WHERE `p`.`is_deleted` = 0 GROUP BY `p`.`id` ORDER BY count(`od`.`product_id`) DESC ;
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -514,7 +529,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `products`

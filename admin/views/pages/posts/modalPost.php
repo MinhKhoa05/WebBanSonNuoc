@@ -1,7 +1,3 @@
-<?php
-$categories = $data['categories'] ?? [];
-?>
-
 <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -26,25 +22,12 @@ $categories = $data['categories'] ?? [];
                     <div class="mb-3">
                         <label for="postContent" class="form-label">Nội dung <span
                                 class="text-danger">*</span></label>
-                        <textarea class="form-control" id="postContent" name="content" rows="10"
-                            required></textarea>
+                        <textarea class="form-control" id="postContent" name="content" rows="10"></textarea>
                     </div>
 
                     <div class="row">
-                        <!-- Danh mục -->
-                        <div class="col-md-6 mb-3">
-                            <label for="postCategory" class="form-label">Danh mục <span
-                                    class="text-danger">*</span></label>
-                            <select class="form-select" id="postCategory" name="category_id" required>
-                                <option value="" disabled selected>-- Chọn danh mục --</option>
-                                <?php foreach ($categories as $category): ?>
-                                    <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
                         <!-- Loại bài viết -->
-                        <div class="col-md-3 mb-3">
+                        <div class="col-12 col-md">
                             <label for="postType" class="form-label">Loại bài viết <span
                                     class="text-danger">*</span></label>
                             <select class="form-select" id="postType" name="category" required>
@@ -54,7 +37,7 @@ $categories = $data['categories'] ?? [];
                         </div>
 
                         <!-- Trạng thái -->
-                        <div class="col-md-3 mb-3">
+                        <div class="col-12 col-md">
                             <label for="postStatus" class="form-label">Trạng thái <span
                                     class="text-danger">*</span></label>
                             <select class="form-select" id="postStatus" name="status" required>
@@ -66,15 +49,12 @@ $categories = $data['categories'] ?? [];
 
                     <!-- Ảnh đại diện -->
                     <div class="mb-3">
-                        <label for="postImage" class="form-label">Ảnh đại diện</label>
+                        <label for="postImage" class="form-label">Hình ảnh</label>
                         <input type="file" class="form-control" id="postImage" name="thumbnail"
                             accept=".jpg,.jpeg,.png,.gif,.webp">
                         <div class="text-center mt-3">
                             <img id="currentPostImage" src="" alt="Ảnh hiện tại" class="img-thumbnail shadow-sm"
                                 style="max-width: 120px; display: none;">
-                            <div class="form-text mt-1" id="imageHelpText">
-                                <span id="imageNote">Bắt buộc khi thêm mới, để trống nếu không thay đổi khi sửa.</span>
-                            </div>
                         </div>
                     </div>
                 </div>

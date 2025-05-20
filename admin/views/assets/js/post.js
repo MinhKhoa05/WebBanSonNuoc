@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // Hàm mở modal thêm bài viết
     window.openAddPostModal = function () {
         const modal = new bootstrap.Modal(document.getElementById('postModal'));
         const form = document.getElementById('postForm');
@@ -72,45 +71,54 @@ document.addEventListener('DOMContentLoaded', function () {
             window.editor.setData('');
         }
 
-        document.getElementById('currentPostImage').style.display = 'none';
-        document.getElementById('imageHelpText').textContent = 'Bắt buộc với thêm mới, để trống nếu không thay đổi hình ảnh khi sửa.';
-        document.getElementById('submitButton').textContent = 'Thêm';
+        const currentImageEl = document.getElementById('currentPostImage');
+        if (currentImageEl) {
+            currentImageEl.style.display = 'none';
+        }
+
+        const submitBtn = document.getElementById('submitButton');
+        if (submitBtn) {
+            submitBtn.textContent = 'Thêm';
+        }
 
         modal.show();
     };
 
-    // Hàm mở modal chỉnh sửa bài viết (Trong trường hợp sửa từ modal)
-    window.openEditPostModal = function (id, title, content, category_id, category, status, thumbnail) {
+    window.openEditPostModal = function (button) {
         const modal = new bootstrap.Modal(document.getElementById('postModal'));
         const form = document.getElementById('postForm');
 
         form.action = 'index.php?page=post&action=edit';
 
+        // Lấy dữ liệu từ data-* attributes
+        const id = button.dataset.id || '';
+        const title = button.dataset.title || '';
+        const content = button.dataset.content || '';
+        const category = button.dataset.category || '';
+        const status = button.dataset.status || '';
+        const thumbnail = button.dataset.thumbnail || '';
+
         document.getElementById('postId').value = id;
         document.getElementById('postTitle').value = title;
-        
-        if (window.editor) {
-            window.editor.setData(content);
-        } else {
-            document.getElementById('postContent').value = content;
-        }
-        
-        document.getElementById('postCategory').value = category_id;
+        setEditorDataWhenReady(content);
         document.getElementById('postType').value = category;
         document.getElementById('postStatus').value = status;
 
         const img = document.getElementById('currentPostImage');
-        if (thumbnail) {
-            img.src = '../uploads/' + thumbnail;
-            img.style.display = 'block';
-            document.getElementById('imageHelpText').textContent = 'Để trống nếu không thay đổi hình ảnh';
-        } else {
-            img.style.display = 'none';
-            img.src = '';
-            document.getElementById('imageHelpText').textContent = 'Bạn có thể thêm hình ảnh cho bài viết';
+        if (img) {
+            if (thumbnail) {
+                img.src = '../uploads/' + thumbnail;
+                img.style.display = 'block';
+            } else {
+                img.src = '';
+                img.style.display = 'none';
+            }
         }
 
-        document.getElementById('submitButton').textContent = 'Lưu thay đổi';
+        const submitBtn = document.getElementById('submitButton');
+        if (submitBtn) {
+            submitBtn.textContent = 'Lưu thay đổi';
+        }
 
         modal.show();
     };
@@ -139,3 +147,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 });
+
+function setEditorDataWhenReady(data) {
+    const safeData = typeof data === 'string' ? data : '';
+
+    if (window.editor) {
+        window.editor.setData(safeData);
+    } else {
+        setTimeout(() => setEditorDataWhenReady(safeData), 100);
+    }
+}

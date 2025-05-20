@@ -9,7 +9,6 @@ $posts = $data['posts'] ?? [];
                 <th>Mã</th>
                 <th>Hình ảnh</th>
                 <th>Tiêu đề</th>
-                <th>Danh mục</th>
                 <th>Loại</th>
                 <th>Thời gian</th>
                 <th>Trạng thái</th>
@@ -30,7 +29,6 @@ $posts = $data['posts'] ?? [];
                             <?php endif; ?>
                         </td>
                         <td class="text-start"><?= htmlspecialchars($post['title']) ?></td>
-                        <td><?= htmlspecialchars($post['category_name'] ?? '') ?></td>
                         <td>
                             <span class="badge <?= ($post['category'] == 'news') ? 'bg-primary' : 'bg-info' ?>">
                                 <?= ($post['category'] == 'news') ? 'Tin tức' : 'Blog' ?>
@@ -49,10 +47,17 @@ $posts = $data['posts'] ?? [];
                             </form>
                         </td>
                         <td>
-                            <a href="index.php?page=post&action=edit&id=<?= $post['id'] ?>" 
-                               class="btn btn-sm btn-outline-primary btn-action me-1">
+                            <button type="button" class="btn btn-sm btn-outline-primary btn-action me-1"
+                                data-id="<?= (int) $post['id'] ?>"
+                                data-title="<?= htmlspecialchars($post['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-content="<?= htmlspecialchars($post['content'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-category-id="<?= (int) ($post['category_id'] ?? 0) ?>"
+                                data-category="<?= htmlspecialchars($post['category'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-status="<?= htmlspecialchars($post['status'] ?? 'draft', ENT_QUOTES, 'UTF-8') ?>"
+                                data-thumbnail="<?= htmlspecialchars($post['thumbnail'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                onclick="openEditPostModal(this)">
                                 <i class="fas fa-edit"></i> Sửa
-                            </a>
+                            </button>
 
                             <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(<?= $post['id'] ?>)">
                                 <i class="fas fa-trash"></i> Xóa
