@@ -89,6 +89,31 @@ switch ($page) {
         $data = $controller->get_data();
         break;
 
+    case 'post':    
+        require_once __DIR__ . '/controllers/PostController.php';
+        $controller = new PostController();
+
+        switch ($action) {
+            case 'add':
+                $controller->add();
+                break;
+            case 'edit':
+                $controller->edit();
+                break;
+            case 'delete':
+                $controller->soft_delete();
+                break;
+            case 'toggle':
+                // $controller->toggle_status();
+                break;
+            default:
+                $controller->index();
+                break;
+        }
+
+        $data = $controller->get_data();
+        break;
+
     case 'dashboard':
     default:
         $page = 'dashboard';
