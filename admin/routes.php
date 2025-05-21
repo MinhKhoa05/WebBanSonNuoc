@@ -85,17 +85,21 @@ switch ($page) {
         $controller = new OrderController();
 
         switch ($action) {
-            case 'view':
-                $id = $_GET['id'] ?? null; // Lấy id từ URL parameter
-                $controller->view($id);
+            case 'update_status':
+                $controller->update_status();
                 break;
-
-            // các action khác ...
             default:
                 $controller->index();
                 break;
         }
 
+        $data = $controller->get_data();
+        break;
+
+    case 'customer':
+        require_once __DIR__ . '/controllers/UserController.php';
+        $controller = new UserController();
+        $controller->index();
         $data = $controller->get_data();
         break;
 
