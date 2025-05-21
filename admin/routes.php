@@ -83,7 +83,19 @@ switch ($page) {
     case 'order':
         require_once __DIR__ . '/controllers/OrderController.php';
         $controller = new OrderController();
-        $controller->index();
+
+        switch ($action) {
+            case 'view':
+                $id = $_POST['id'] ?? null; // lấy id từ form POST
+                $controller->view($id);
+                return;
+
+            // các action khác ...
+            default:
+                $controller->index();
+                break;
+        }
+
         $data = $controller->get_data();
         break;
 

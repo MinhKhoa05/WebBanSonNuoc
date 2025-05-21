@@ -23,55 +23,81 @@ class OrderController
         $this->data['orders'] = $orders;
     }
 
-    // Thêm đơn hàng mới
-    public function add(): void
+    public function view($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'user_id' => intval($_POST['user_id'] ?? 0),
-                'order_date' => $_POST['order_date'] ?? date('Y-m-d H:i:s'),
-                'total' => floatval($_POST['total'] ?? 0),
-                'status' => $_POST['status'] ?? 'pending',
-                'note' => $_POST['note'] ?? null,
-            ];
-
-            $success = $this->model->insert($data);
-            set_flash($success ? 'success' : 'error', $success ? 'Thêm đơn hàng thành công!' : 'Thêm đơn hàng thất bại!');
-            redirect('index.php?page=order');
-        }
-    }
-
-    // Sửa đơn hàng theo ID
-    public function edit(): void
-    {
-        $id = intval($_GET['id'] ?? ($_POST['id'] ?? 0));
-        if ($id <= 0) {
-            set_flash('error', 'ID đơn hàng không hợp lệ!');
-            redirect('index.php?page=order');
+        if (!$id) {
+            header('Location: index.php?page=order');
+            exit;
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'user_id' => intval($_POST['user_id'] ?? 0),
-                'order_date' => $_POST['order_date'] ?? date('Y-m-d H:i:s'),
-                'total' => floatval($_POST['total'] ?? 0),
-                'status' => $_POST['status'] ?? 'pending',
-                'note' => $_POST['note'] ?? null,
-            ];
-
-            $success = $this->model->update($id, $data);
-            set_flash($success ? 'success' : 'error', $success ? 'Cập nhật đơn hàng thành công!' : 'Cập nhật đơn hàng thất bại!');
-            redirect('index.php?page=order');
-        }
-
+        // Lấy thông tin đơn hàng theo id
         $order = $this->model->get_by_id($id);
         if (!$order) {
             set_flash('error', 'Đơn hàng không tồn tại!');
-            redirect('index.php?page=order');
+            header('Location: index.php?page=order');
+            exit;
         }
 
+        // Lấy danh sách sản phẩm trong đơn
+        $orderItems = $this->model->get_order_details($id);
+
+        // Truyền dữ liệu ra view
         $this->data['order'] = $order;
+        $this->data['orderItems'] = $orderItems;
+
+        include __DIR__ . '/../views/pages/orders/order_detail.php';
+        exit;
     }
+
+    // // Thêm đơn hàng mới
+    // public function add(): void
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //         $data = [
+    //             'user_id' => intval($_POST['user_id'] ?? 0),
+    //             'order_date' => $_POST['order_date'] ?? date('Y-m-d H:i:s'),
+    //             'total' => floatval($_POST['total'] ?? 0),
+    //             'status' => $_POST['status'] ?? 'pending',
+    //             'note' => $_POST['note'] ?? null,
+    //         ];
+
+    //         $success = $this->model->insert($data);
+    //         set_flash($success ? 'success' : 'error', $success ? 'Thêm đơn hàng thành công!' : 'Thêm đơn hàng thất bại!');
+    //         redirect('index.php?page=order');
+    //     }
+    // }
+
+    // // Sửa đơn hàng theo ID
+    // public function edit(): void
+    // {
+    //     $id = intval($_GET['id'] ?? ($_POST['id'] ?? 0));
+    //     if ($id <= 0) {
+    //         set_flash('error', 'ID đơn hàng không hợp lệ!');
+    //         redirect('index.php?page=order');
+    //     }
+
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //         $data = [
+    //             'user_id' => intval($_POST['user_id'] ?? 0),
+    //             'order_date' => $_POST['order_date'] ?? date('Y-m-d H:i:s'),
+    //             'total' => floatval($_POST['total'] ?? 0),
+    //             'status' => $_POST['status'] ?? 'pending',
+    //             'note' => $_POST['note'] ?? null,
+    //         ];
+
+    //         $success = $this->model->update($id, $data);
+    //         set_flash($success ? 'success' : 'error', $success ? 'Cập nhật đơn hàng thành công!' : 'Cập nhật đơn hàng thất bại!');
+    //         redirect('index.php?page=order');
+    //     }
+
+    //     $order = $this->model->get_by_id($id);
+    //     if (!$order) {
+    //         set_flash('error', 'Đơn hàng không tồn tại!');
+    //         redirect('index.php?page=order');
+    //     }
+
+    //     $this->data['order'] = $order;
+    // }
 
     // Xóa mềm đơn hàng
     public function soft_delete(): void

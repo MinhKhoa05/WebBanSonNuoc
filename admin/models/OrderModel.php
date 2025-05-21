@@ -9,6 +9,15 @@ class OrderModel extends BaseModel
     }
 
     /**
+     * Lấy tất cả bản ghi (chưa bị xóa mềm)
+     */
+    public function get_all(): array
+    {
+        $sql = "SELECT o.*, u.name AS user_name FROM {$this->table} o JOIN users u ON u.id = o.user_id ORDER BY order_date DESC, {$this->primaryKey} ASC";
+        return pdo_query($sql);
+    }
+
+    /**
      * Lấy đơn hàng theo người dùng
      */
     public function get_by_user(int $user_id): array
@@ -33,6 +42,11 @@ class OrderModel extends BaseModel
     {
         $sql = "UPDATE {$this->table} SET status = ? WHERE {$this->primaryKey} = ?";
         return pdo_execute($sql, $status, $id);
+    }
+
+    public function get_order_details($order_id) : array {
+        $sql = "SELECT od.*, p.name FROM order_details od JOIN products p ON p.id = od.product_id WHERE od.order_id = ?";
+        return pdo_query_one($sql, $order_id);
     }
 
     /**

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 20, 2025 lúc 09:46 PM
+-- Thời gian đã tạo: Th5 21, 2025 lúc 08:21 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -37,15 +37,6 @@ CREATE TABLE `articles` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc đóng vai cho view `best_selling_products`
--- (See below for the actual view)
---
-CREATE TABLE `best_selling_products` (
-);
 
 -- --------------------------------------------------------
 
@@ -242,8 +233,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `slug`, `author_id`, `category`, `status`, `thumbnail`, `created_at`, `updated_at`) VALUES
-(2, 'jksdbnol', '<p>ẹkhbo3l4in</p>', 'jksdbnol', NULL, 'blog', 'published', '', '2025-05-20 12:26:49', '2025-05-20 14:44:47'),
-(3, 'Sơn uy tính nhất ', '<p><strong>XIn chào</strong></p>', 'son-uy-tinh-nhat', NULL, 'news', 'draft', '1747744795_dulux-logo.png', '2025-05-20 12:39:55', '2025-05-20 14:44:50'),
+(2, 'Cách chọn sơn nước phù hợp cho ngôi nhà của bạn', '<p>Sơn nước là một trong những vật liệu quan trọng giúp bảo vệ và làm đẹp cho ngôi nhà của bạn. Việc chọn loại sơn phù hợp không chỉ giúp ngôi nhà bền đẹp theo thời gian mà còn đảm bảo an toàn cho sức khỏe gia đình.</p><h3>1. Chọn sơn theo khu vực sử dụng</h3><p>Sơn nội thất nên có mùi nhẹ, dễ lau chùi và không độc hại. Sơn ngoại thất cần có khả năng chống thấm, chống nắng và chịu được thời tiết khắc nghiệt như mưa, gió, nắng nóng.</p><h3>2. Chọn theo loại bề mặt</h3><p>Mỗi bề mặt tường khác nhau sẽ phù hợp với loại sơn riêng. Ví dụ, tường xi măng, tường gỗ hay kim loại cần loại sơn có thành phần khác nhau để tăng độ bám dính và độ bền.</p><h3>3. Lựa chọn thương hiệu uy tín</h3><p>Nên chọn những thương hiệu sơn nổi tiếng, có chính sách bảo hành rõ ràng như Dulux, Jotun, Nippon… để đảm bảo chất lượng và dịch vụ hỗ trợ sau bán hàng.</p><h3>4. Màu sắc và kiểu dáng</h3><p>Màu sắc của sơn nên phù hợp với phong cách thiết kế và sở thích cá nhân. Nên chọn những gam màu trung tính, dễ phối hợp và tạo cảm giác dễ chịu.</p>', 'cach-chon-son-nuoc-phu-hop-cho-ngoi-nha-cua-ban', NULL, 'blog', 'published', '1747807604_toa-logo.png', '2025-05-20 12:26:49', '2025-05-21 01:08:52'),
 (4, 'Hướng Dẫn Sử Dụng Sơn Nước Hiệu Quả Cho Công Trình Của Bạn', '<p>Sơn nước là lựa chọn phổ biến để trang trí và bảo vệ bề mặt tường nội thất lẫn ngoại thất. Tuy nhiên, để sơn đạt độ bám dính tốt, màu sắc đẹp và bền lâu, bạn cần thực hiện đúng kỹ thuật. Dưới đây là hướng dẫn từng bước:</p><h3>???? Bước 1: Chuẩn Bị Bề Mặt</h3><p><strong>Làm sạch:</strong> Loại bỏ bụi bẩn, dầu mỡ, rêu mốc và lớp sơn cũ bong tróc bằng bàn chải hoặc máy mài.</p><p><strong>Xử lý nấm mốc (nếu có):</strong> Dùng dung dịch chống rêu mốc để xử lý triệt để.</p><p><strong>Trám trét:</strong> Sử dụng bột trét (bả) tường để làm phẳng bề mặt.</p><p><strong>Chờ khô:</strong> Bề mặt cần khô hoàn toàn, độ ẩm dưới 16% mới tiến hành sơn.</p><h3>???? Bước 2: Lăn Lót Sơn</h3><p><strong>Sơn lót kháng kiềm:</strong> Giúp chống ẩm và tăng độ bám cho lớp sơn phủ.</p><p><strong>Thi công:</strong> Dùng cọ, con lăn hoặc súng phun. Lăn đều tay, tránh tạo vệt.</p><p><strong>Chờ khô:</strong> Thường mất khoảng 2–4 giờ (tùy hãng sơn và thời tiết).</p><h3>???? Bước 3: Sơn Phủ Hoàn Thiện</h3><p><strong>Chọn màu:</strong> Tùy theo phong cách nội thất và ánh sáng, nên chọn màu sơn phù hợp.</p><p><strong>Lăn từ 2 lớp trở lên:</strong> Đảm bảo độ che phủ và bền màu.</p><p><strong>Thời gian giữa 2 lớp:</strong> Nên cách nhau ít nhất 2 giờ.</p><h3>✅ Lưu Ý Khi Sử Dụng</h3><p>Không thi công khi trời mưa, độ ẩm cao, hoặc tường còn ẩm ướt.</p><p>Khuấy đều sơn trước khi sử dụng.</p><p>Đọc kỹ hướng dẫn của nhà sản xuất in trên bao bì.</p><p>Dụng cụ thi công nên được rửa sạch bằng nước sau khi dùng.</p><h3>???? Kết Luận</h3><p>Sơn nước không chỉ làm đẹp mà còn bảo vệ công trình của bạn khỏi thời tiết và ẩm mốc. Việc chuẩn bị kỹ lưỡng và thi công đúng quy trình sẽ giúp bạn đạt được bề mặt sơn đẹp, mịn và bền theo thời gian.</p>', 'huong-dan-su-dung-son-nuoc-hieu-qua-cho-cong-trinh-cua-ban', NULL, 'blog', 'published', '1747763409_goi-y-chon-hang-son-vua-re-vua-chat-luong-2.jpg', '2025-05-20 17:50:09', '2025-05-20 13:56:20');
 
 -- --------------------------------------------------------
@@ -339,15 +329,6 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `address`, `rol
 (6, 'Hồ Nguyễn Minh Khoa', '$2y$10$otquYARg2scQP6H9G2NetukAYNB1IiT3Uik7yRfh1MtSVxzwCemkm', 'mkhoa639@gmail.com', '0373441697', NULL, '', 0, '2025-04-17 03:02:06', '2025-04-17 03:02:06'),
 (8, 'Khoa', '$2y$10$4Fs59MkA.TDPCn32jK0x1O3JB2Gc1H5qiDDAbQgAjBMzdw.qHSEuK', '52300038@student.tdtu.edu.vn', '0373441691', NULL, '', 0, '2025-04-17 03:31:12', '2025-04-17 03:31:12'),
 (11, 'ahihi', '$2y$10$PnkpGZGMe56cYNhKjVZDoOL9iqeYYEPUZLo0iXAjFaSZL6ah1Eca.', '27014814@sfcollege.edu', '0373441699', NULL, '', 0, '2025-05-17 16:21:53', '2025-05-17 16:21:53');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc cho view `best_selling_products`
---
-DROP TABLE IF EXISTS `best_selling_products`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `best_selling_products`  AS SELECT `p`.`id` AS `id`, `p`.`name` AS `name`, `p`.`description` AS `description`, `p`.`price` AS `price`, `p`.`discount` AS `discount`, `p`.`stock` AS `stock`, `p`.`status` AS `status`, `p`.`thumbnail` AS `thumbnail`, `p`.`category_id` AS `category_id`, round(avg(`r`.`rating`),1) AS `rating`, count(`od`.`product_id`) AS `total_sold`, count(`r`.`id`) AS `reviews`, `p`.`created_at` AS `created_at`, `p`.`updated_at` AS `updated_at` FROM ((`products` `p` left join `order_details` `od` on(`p`.`id` = `od`.`product_id`)) left join `reviews` `r` on(`p`.`id` = `r`.`product_id`)) WHERE `p`.`is_deleted` = 0 GROUP BY `p`.`id` ORDER BY count(`od`.`product_id`) DESC ;
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -532,7 +513,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `products`

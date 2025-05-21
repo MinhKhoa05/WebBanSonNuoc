@@ -92,157 +92,72 @@
         </div>
     </div>
 
-    <!-- Recent Orders -->
-    <div class="mb-4">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Đơn hàng gần đây</h6>
-                <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end shadow animated--fade-in">
-                        <a class="dropdown-item" href="#">Tất cả đơn hàng</a>
-                        <a class="dropdown-item" href="#">Xuất báo cáo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Mã đơn</th>
-                                <th>Khách hàng</th>
-                                <th>Ngày đặt</th>
-                                <th>Trạng thái</th>
-                                <th>Tổng tiền</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#ORD-2023</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>05/04/2025</td>
-                                <td><span class="badge bg-success">Hoàn thành</span></td>
-                                <td>3,560,000 đ</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-2022</td>
-                                <td>Trần Thị B</td>
-                                <td>04/04/2025</td>
-                                <td><span class="badge bg-warning text-dark">Đang giao</span></td>
-                                <td>2,800,000 đ</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-2021</td>
-                                <td>Lê Văn C</td>
-                                <td>04/04/2025</td>
-                                <td><span class="badge bg-info">Đã xác nhận</span></td>
-                                <td>1,720,000 đ</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-2020</td>
-                                <td>Phạm Thị D</td>
-                                <td>03/04/2025</td>
-                                <td><span class="badge bg-danger">Đã hủy</span></td>
-                                <td>4,150,000 đ</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-2019</td>
-                                <td>Hoàng Văn E</td>
-                                <td>02/04/2025</td>
-                                <td><span class="badge bg-success">Hoàn thành</span></td>
-                                <td>2,340,000 đ</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    <!-- chart -->
+    <div class="cardRevenue card shadow mb-4">
+        <div class="cardRevenue-header card-header py-3 d-flex justify-content-between align-items-center">
+            <h2 class="m-0 font-weight-bold">Biểu đồ doanh thu</h2>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-primary active" id="dayBtn">Theo ngày</button>
+                <button type="button" class="btn btn-outline-primary" id="monthBtn">Theo tháng</button>
             </div>
         </div>
-
-        <!-- chart -->
-        <div class="cardRevenue card shadow mb-4">
-            <div class="cardRevenue-header card-header py-3 d-flex justify-content-between align-items-center">
-                <h2 class="m-0 font-weight-bold">Biểu đồ doanh thu</h2>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-primary active" id="dayBtn">Theo ngày</button>
-                    <button type="button" class="btn btn-outline-primary" id="monthBtn">Theo tháng</button>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="row mb-4">
-                    <div class="col-xl-6 col-md-6">
-                        <div class="card shadow h-100 py-2 summary-card border-revenue">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-revenue text-uppercase mb-1">
-                                            Tổng doanh thu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalRevenue">
-                                            150,000,000 VNĐ</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-xl-6 col-md-6">
+                    <div class="card shadow h-100 py-2 summary-card border-revenue">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-revenue text-uppercase mb-1">
+                                        Tổng doanh thu</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalRevenue">
+                                        150,000,000 VNĐ</div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6">
-                        <div class="card shadow h-100 py-2 summary-card border-growth">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-growth text-uppercase mb-1">
-                                            Tăng trưởng</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="growth">12.5%</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                    </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="chart-revenue-container">
-                    <canvas id="revenueChart"></canvas>
-                </div>
-
-                <div class="table-responsive mt-4">
-                    <table class="table table-bordered table-hover" id="dataTable">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Thời gian</th>
-                                <th>Doanh thu (VNĐ)</th>
-                                <th>Thay đổi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="revenueTable">
-                            <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
-                        </tbody>
-                    </table>
+                <div class="col-xl-6 col-md-6">
+                    <div class="card shadow h-100 py-2 summary-card border-growth">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-growth text-uppercase mb-1">
+                                        Tăng trưởng</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="growth">12.5%</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="chart-revenue-container">
+                <canvas id="revenueChart"></canvas>
+            </div>
+
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered table-hover" id="dataTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Doanh thu (VNĐ)</th>
+                            <th>Thay đổi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="revenueTable">
+                        <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </div>
     </div>
 
     <!-- Top Selling Products -->
