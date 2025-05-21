@@ -5,7 +5,7 @@ class OrderModel extends BaseModel
 {
     public function __construct()
     {
-        parent::__construct('orders');
+        parent::__construct('orders', 'id');
     }
 
     /**
@@ -15,6 +15,17 @@ class OrderModel extends BaseModel
     {
         $sql = "SELECT o.*, u.name AS user_name FROM {$this->table} o JOIN users u ON u.id = o.user_id ORDER BY order_date DESC, {$this->primaryKey} ASC";
         return pdo_query($sql);
+    }
+
+    /**
+     * Lấy một bản ghi theo ID (chưa bị xóa mềm)
+     */
+    public function get_by_id(int $id): ?array {
+        $sql = "SELECT o.*, u.name AS user_name
+            FROM orders o
+            LEFT JOIN users u ON u.id = o.user_id
+            WHERE o.id = ?";
+        return pdo_query_one($sql, $id);
     }
 
     /**
@@ -44,9 +55,12 @@ class OrderModel extends BaseModel
         return pdo_execute($sql, $status, $id);
     }
 
-    public function get_order_details($order_id) : array {
-        $sql = "SELECT od.*, p.name FROM order_details od JOIN products p ON p.id = od.product_id WHERE od.order_id = ?";
-        return pdo_query_one($sql, $order_id);
+    public function get_order_details($order_id): array
+    {
+        $sql = "SELECT od.*, p.name AS product_name, p.price AS price FROM order_details od
+        JOIN products p ON p.id = od.product_id
+        WHERE od.order_id = ?";
+        return pdo_query($sql, $order_id);
     }
 
     /**

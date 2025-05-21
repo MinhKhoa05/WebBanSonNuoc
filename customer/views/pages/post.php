@@ -404,23 +404,23 @@
             <div class="container">
                 <h1>Tin Tức & Hướng Dẫn Sử Dụng Sơn</h1>
                 <p class="subtitle">Khám phá các bài viết chuyên sâu và hướng dẫn chi tiết về sơn</p>
-                <div class="search-bar">
+                <!-- <div class="search-bar">
                     <input type="text" class="search-input" placeholder="Tìm kiếm bài viết...">
                     <button class="search-btn"><i class="fas fa-search"></i></button>
-                </div>
+                </div> -->
             </div>
         </div>
     </header>
 
     <div class="container">
-        <div class="categories">
+        <!-- <div class="categories">
             <button class="category-btn active">Tất cả</button>
             <button class="category-btn">Hướng dẫn sử dụng</button>
             <button class="category-btn">Kỹ thuật sơn</button>
             <button class="category-btn">Xu hướng màu sắc</button>
             <button class="category-btn">Dự án tham khảo</button>
             <button class="category-btn">Mẹo vặt</button>
-        </div>
+        </div> -->
 
         <div class="main-content">
             <div class="posts-container">

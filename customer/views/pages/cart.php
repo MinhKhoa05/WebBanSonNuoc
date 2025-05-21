@@ -125,7 +125,6 @@ $cart = cart_select_by_user($user_id);
                                         id="total"><?= number_format($total, 0, ',', '.') ?>₫</span>
                                 </div>
                                 <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary">Cập nhật giỏ hàng</button>
                                     <a href="index.php?page=payment" class="btn btn-success">Thanh toán</a>
                                 </div>
                             </div>

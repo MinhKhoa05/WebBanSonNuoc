@@ -18,7 +18,7 @@
 </div>
 
 <!-- Price Filter -->
-<div class="card card-price border-0 shadow-sm mt-4">
+<!-- <div class="card card-price border-0 shadow-sm mt-4">
     <div class="card-header bg-primary text-white">
         <h5 class="mb-0">Lọc theo giá</h5>
     </div>
@@ -34,4 +34,4 @@
         </div>
         <button id="applyPriceFilter" class="btn btn-sm btn-primary w-100 mt-2">Áp dụng</button>
     </div>
-</div>
+</div> -->

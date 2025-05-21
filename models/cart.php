@@ -20,10 +20,9 @@ function cart_insert($user_id, $product_id, $quantity)
     pdo_execute($sql, $user_id, $product_id, $quantity, $quantity);
 }
 
-function cart_update($id, $user_id, $product_id, $quantity, $added_at)
+function cart_update($user_id, $product_id, $quantity)
 {
-    $sql = "UPDATE carts SET user_id = ?, product_id = ?, quantity = ?, added_at = ? WHERE id = ?";
-    pdo_execute($sql, $user_id, $product_id, $quantity, $added_at, $id);
+    cart_insert($user_id, $product_id, $quantity);
 }
 
 function cart_delete($userId, $productId) {

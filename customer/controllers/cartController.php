@@ -88,7 +88,20 @@ switch ($action) {
         } else {
             die('Dữ liệu không hợp lệ');
         }
-        // break;
+    case 'update':
+        $product_id = $_POST['product_id'] ?? 0;
+        $quantity = $_POST['quantity'] ?? 1;
+
+        $user_id = $_SESSION['user_id'] ?? null;
+
+        if ($product_id > 0 && $quantity > 0) {
+            cart_update($user_id, $product_id, $quantity);
+            header('Location: ../../index.php?page=cart'); // hoặc back về sản phẩm
+            exit;
+        } else {
+            die('Dữ liệu không hợp lệ');
+        }
+
 
     // thêm các action như update, remove nếu cần
 }

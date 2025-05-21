@@ -85,12 +85,9 @@ switch ($page) {
         $controller = new OrderController();
 
         switch ($action) {
-            case 'view':
-                $id = $_POST['id'] ?? null; // lấy id từ form POST
-                $controller->view($id);
-                return;
-
-            // các action khác ...
+            case 'update_status':
+                $controller->update_status();
+                break;
             default:
                 $controller->index();
                 break;
