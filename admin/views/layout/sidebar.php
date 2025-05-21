@@ -36,26 +36,26 @@
                     <i class="fas fa-shopping-cart me-2"></i> Đơn hàng
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-tags me-2"></i> Khuyến mãi
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a href="index.php?page=post" class="nav-link">
                     <i class="fas fa-newspaper me-2"></i> Bài đăng
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-chart-line me-2"></i> Báo cáo
                 </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-cog me-2"></i> Cài đặt
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>

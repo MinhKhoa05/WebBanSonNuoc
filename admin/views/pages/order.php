@@ -167,9 +167,18 @@ $statusColors = [
                                                                 </tr>
                                                             <?php endforeach; ?>
                                                             <tr class="border-top">
-                                                                <td colspan="3" class="text-end fw-bold">Tổng cộng:</td>
-                                                                <td class="text-end pe-3 fw-bold fs-5 text-primary"><?= number_format($order['total'], 0, ',', '.') ?> ₫ (30.000đ phí vận chuyển)</td>
-                                                            </tr>
+    <td colspan="3" class="text-end fw-bold">Tổng tiền sản phẩm:</td>
+    <td class="text-end pe-3 fw-bold"><?= number_format($order['total'] - 30000, 0, ',', '.') ?> ₫</td>
+</tr>
+<tr>
+    <td colspan="3" class="text-end fw-bold">Phí vận chuyển:</td>
+    <td class="text-end pe-3 fw-bold"><?= number_format(30000, 0, ',', '.') ?> ₫</td>
+</tr>
+<tr>
+    <td colspan="3" class="text-end fw-bold fs-5 text-primary">Tổng cộng:</td>
+    <td class="text-end pe-3 fw-bold fs-5 text-primary"><?= number_format($order['total'], 0, ',', '.') ?> ₫</td>
+</tr>
+
                                                         <?php else: ?>
                                                             <tr>
                                                                 <td colspan="4" class="text-center text-muted py-3">Không có sản phẩm trong đơn hàng này.</td>

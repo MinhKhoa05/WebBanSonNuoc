@@ -96,6 +96,13 @@ switch ($page) {
         $data = $controller->get_data();
         break;
 
+    case 'customer':
+        require_once __DIR__ . '/controllers/UserController.php';
+        $controller = new UserController();
+        $controller->index();
+        $data = $controller->get_data();
+        break;
+
     case 'post':
         require_once __DIR__ . '/controllers/PostController.php';
         $controller = new PostController();
