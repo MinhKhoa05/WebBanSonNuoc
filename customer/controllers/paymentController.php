@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Lưu chi tiết đơn hàng
         foreach ($cart_items as $item) {
             $product = product_select_by_id($item['product_id']);
-            order_detail_insert($order_id, $item['product_id'], $product['name'], $product['price'], $item['quantity'], $product['price'] * $item['quantity']);
+            order_detail_insert($order_id, $item['product_id'], $item['quantity'], $product['price']);
         }
 
         // Có thể lưu thông tin giao hàng vào bảng riêng nếu cần
