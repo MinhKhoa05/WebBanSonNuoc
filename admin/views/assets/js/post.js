@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (result.isConfirmed) {
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = 'index.php?page=post&action=soft_delete';
+                form.action = 'index.php?page=post&action=delete';
                 const input = document.createElement('input');
                 input.type = 'hidden';
                 input.name = 'id';

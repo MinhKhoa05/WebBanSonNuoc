@@ -479,7 +479,7 @@
             </div>
 
             <!-- Pagination -->
-            <div class="pagination">
+            <!-- <div class="pagination">
                 <button class="page-btn"><i class="fas fa-angle-left"></i></button>
                 <button class="page-btn active">1</button>
                 <button class="page-btn">2</button>
@@ -487,7 +487,7 @@
                 <button class="page-btn">...</button>
                 <button class="page-btn">7</button>
                 <button class="page-btn"><i class="fas fa-angle-right"></i></button>
-            </div>
+            </div> -->
         </div>
     </div>
 

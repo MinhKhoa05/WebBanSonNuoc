@@ -86,14 +86,14 @@ class PostController
         $this->data['post'] = $post;
     }
 
-    public function soft_delete(): void
+    public function delete(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = intval($_POST['id'] ?? 0);
             if ($id <= 0) {
                 set_flash('error', 'ID bài viết không hợp lệ!');
             } else {
-                $success = $this->model->soft_delete($id);
+                $success = $this->model->delete($id);
                 set_flash($success ? 'success' : 'error', $success ? 'Xóa bài viết thành công!' : 'Xóa bài viết thất bại!');
             }
         }

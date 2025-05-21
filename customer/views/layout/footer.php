@@ -2,7 +2,7 @@
     <div class="container py-5">
         <div class="row g-4">
             <!-- Thông tin công ty -->
-            <div class="col-md-4">
+            <div class="col">
                 <h4 class="fw-bold mb-3">🎨 ColorHomes Paint</h4>
                 <p class="text-white-50">Mang màu sắc đến với mọi không gian sống. Sơn chất lượng, bảo vệ bền lâu.</p>
                 <ul class="list-unstyled text-white-50 small">
@@ -13,7 +13,7 @@
             </div>
 
             <!-- Liên kết -->
-            <div class="col-6 col-md-2">
+            <div class="col">
                 <h6 class="fw-semibold text-uppercase mb-3">Liên kết</h6>
                 <ul class="list-unstyled">
                     <li><a href="#" class="footer-link">Trang chủ</a></li>
@@ -25,7 +25,7 @@
             </div>
 
             <!-- Sản phẩm -->
-            <div class="col-6 col-md-3">
+            <!-- <div class="col-6 col-md-3">
                 <h6 class="fw-semibold text-uppercase mb-3">Sản phẩm</h6>
                 <ul class="list-unstyled">
                     <li><a href="#" class="footer-link">Sơn nội thất</a></li>
@@ -34,10 +34,10 @@
                     <li><a href="#" class="footer-link">Sơn đặc biệt</a></li>
                     <li><a href="#" class="footer-link">Dụng cụ sơn</a></li>
                 </ul>
-            </div>
+            </div> -->
 
             <!-- Newsletter -->
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <h6 class="fw-semibold text-uppercase mb-3">Đăng ký nhận tin</h6>
                 <p class="text-white-50 small">Cập nhật ưu đãi & sản phẩm mới mỗi tuần.</p>
                 <form class="d-flex">
@@ -50,7 +50,7 @@
                     <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <hr class="border-light my-4">

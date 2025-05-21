@@ -98,11 +98,8 @@ switch ($page) {
             case 'edit':
                 $controller->edit();
                 break;
-            case 'delete':
-                $controller->soft_delete();
-                break;
-            case 'toggle':
-                // $controller->toggle_status();
+            case 'soft_delete':
+                $controller->delete();
                 break;
             default:
                 $controller->index();
