@@ -114,7 +114,7 @@ switch ($page) {
             case 'edit':
                 $controller->edit();
                 break;
-            case 'soft_delete':
+            case 'delete':
                 $controller->delete();
                 break;
             default:
