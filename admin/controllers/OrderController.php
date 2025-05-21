@@ -16,23 +16,38 @@ class OrderController
         $this->model = new OrderModel();
     }
 
+    // Hiển thị danh sách đơn hàng
     public function index(): void
     {
-        // Lấy tất cả đơn hàng
         $orders = $this->model->get_all();
-
-        // Với mỗi đơn, lấy chi tiết sản phẩm và gán vào key 'items'
-        foreach ($orders as &$order) {
-            $orderId = $order['id'] ?? 0;
-            if ($orderId > 0) {
-                $order['items'] = $this->model->get_order_details($orderId);
-            } else {
-                $order['items'] = [];
-            }
-        }
-        unset($order); // tránh tham chiếu ngoài ý muốn
-
         $this->data['orders'] = $orders;
+    }
+
+    // Xem chi tiết đơn hàng
+    public function view($id): void
+    {
+        if (!$id) {
+            header('Location: index.php?page=order');
+            exit;
+        }
+
+        // Lấy thông tin đơn hàng theo id
+        $order = $this->model->get_by_id($id);
+        if (!$order) {
+            set_flash('error', 'Đơn hàng không tồn tại!');
+            header('Location: index.php?page=order');
+            exit;
+        }
+
+        // Lấy danh sách sản phẩm trong đơn
+        $orderItems = $this->model->get_order_details($id);
+
+        // Truyền dữ liệu ra view
+        $this->data['order'] = $order;
+        $this->data['orderItems'] = $orderItems;
+        
+        // Chỉ định view hiển thị thay vì include trực tiếp
+        $this->data['view'] = 'orders/order_detail';
     }
 
     // Xóa mềm đơn hàng

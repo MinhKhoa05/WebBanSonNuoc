@@ -56,7 +56,11 @@ function order_search(string $column, string $keyword)
 
 function order_get_by_user_id($user_id)
 {
-    $sql = "SELECT * FROM orders WHERE user_id = ?";
+    $sql = "SELECT o.*, u.name as user_name 
+            FROM orders o 
+            LEFT JOIN users u ON o.user_id = u.id 
+            WHERE o.user_id = ? 
+            ORDER BY o.order_date DESC";
     return pdo_query($sql, $user_id);
 }
 
@@ -70,5 +74,29 @@ function update_status($id, $status)
 {
     $sql = "UPDATE orders SET status = ? WHERE id = ?";
     pdo_execute($sql, $status, $id);
+}
+
+function order_get_details($order_id) {
+    // Get order information
+    $sql = "SELECT o.*, u.name as user_name, u.phone, u.email
+            FROM orders o
+            LEFT JOIN users u ON o.user_id = u.id
+            WHERE o.id = ?";
+            
+    $order = pdo_query_one($sql, $order_id);
+    
+    if (!$order) {
+        return null;
+    }
+    
+    // Get order items
+    $sql = "SELECT oi.*, p.name, p.image
+            FROM order_items oi
+            LEFT JOIN products p ON oi.product_id = p.id
+            WHERE oi.order_id = ?";
+            
+    $order['items'] = pdo_query($sql, $order_id);
+    
+    return $order;
 }
 ?>
