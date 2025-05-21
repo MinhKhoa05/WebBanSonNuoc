@@ -86,9 +86,9 @@ switch ($page) {
 
         switch ($action) {
             case 'view':
-                $id = $_POST['id'] ?? null; // lấy id từ form POST
+                $id = $_GET['id'] ?? null; // Lấy id từ URL parameter
                 $controller->view($id);
-                return;
+                break;
 
             // các action khác ...
             default:

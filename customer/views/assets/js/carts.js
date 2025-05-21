@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Lấy giá từ input ẩn .product-price
             const priceInput = item.querySelector('.product-price');
             const price = parseCurrency(priceInput.value);
-            
+
             // Lấy số lượng từ input
             const quantityInput = item.querySelector('.quantity-input');
             let quantity = parseInt(quantityInput.value);
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Tính tổng cho từng sản phẩm
             const itemTotal = price * quantity;
-            
+
             // Cập nhật thành tiền cho sản phẩm
             const itemTotalEl = item.querySelector('.item-total');
             if (itemTotalEl) {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const quantityInput = item.querySelector('.quantity-input');
         if (quantityInput) {
             // Sự kiện 'input' để cập nhật ngay khi người dùng thay đổi giá trị
-            quantityInput.addEventListener('input', function() {
+            quantityInput.addEventListener('input', function () {
                 calculateTotal();
             });
         }

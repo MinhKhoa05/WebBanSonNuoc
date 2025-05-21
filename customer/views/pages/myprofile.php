@@ -50,7 +50,7 @@ $user = user_get_by_id($_SESSION['user_id']);
                     <a href="#" class="list-group-item list-group-item-action">
                         <i class="fas fa-user me-2"></i> Thông tin tài khoản
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="index.php?page=myorders" class="list-group-item list-group-item-action">
                         <i class="fas fa-clipboard-list me-2"></i> Đơn hàng của tôi
                         <span class="badge bg-primary rounded-pill float-end">4</span>
                     </a>

@@ -49,6 +49,9 @@ $pageParam = $parsedUrl['path'] ?? '';
         case 'payment':
             include 'customer/views/pages/payment.php';
             break;
+        case 'myorders':
+            include 'customer/views/pages/myorders.php';
+            break;
         case 'thankyou':
             include 'customer/views/pages/thankyou.php';
             break;

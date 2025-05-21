@@ -18,11 +18,20 @@ class OrderModel extends BaseModel
     }
 
     /**
+     * Lấy đơn hàng theo ID
+     */
+    public function get_by_id(int $id): array
+    {
+        $sql = "SELECT o.*, u.name AS user_name FROM {$this->table} o JOIN users u ON u.id = o.user_id WHERE o.{$this->primaryKey} = ?";
+        return pdo_query_one($sql, $id);
+    }
+
+    /**
      * Lấy đơn hàng theo người dùng
      */
     public function get_by_user(int $user_id): array
     {
-        $sql = "SELECT * FROM {$this->table} WHERE user_id = ? AND is_deleted = 0 ORDER BY order_date DESC";
+        $sql = "SELECT * FROM {$this->table} WHERE user_id = ? ORDER BY order_date DESC";
         return pdo_query($sql, $user_id);
     }
 
@@ -31,7 +40,7 @@ class OrderModel extends BaseModel
      */
     public function get_by_status(string $status): array
     {
-        $sql = "SELECT * FROM {$this->table} WHERE status = ? AND is_deleted = 0 ORDER BY order_date DESC";
+        $sql = "SELECT * FROM {$this->table} WHERE status = ? AND ORDER BY order_date DESC";
         return pdo_query($sql, $status);
     }
 
@@ -44,9 +53,13 @@ class OrderModel extends BaseModel
         return pdo_execute($sql, $status, $id);
     }
 
-    public function get_order_details($order_id) : array {
-        $sql = "SELECT od.*, p.name FROM order_details od JOIN products p ON p.id = od.product_id WHERE od.order_id = ?";
-        return pdo_query_one($sql, $order_id);
+    /**
+     * Lấy chi tiết đơn hàng
+     */
+    public function get_order_details($order_id): array
+    {
+        $sql = "SELECT od.*, p.name as product_name FROM order_details od JOIN products p ON p.id = od.product_id WHERE od.order_id = ?";
+        return pdo_query($sql, $order_id);
     }
 
     /**
@@ -59,7 +72,7 @@ class OrderModel extends BaseModel
             throw new Exception("Cột tìm kiếm không hợp lệ.");
         }
 
-        $sql = "SELECT * FROM {$this->table} WHERE $column LIKE ? AND is_deleted = 0";
+        $sql = "SELECT * FROM {$this->table} WHERE $column LIKE ?";
         return pdo_query($sql, '%' . $keyword . '%');
     }
 
@@ -68,7 +81,7 @@ class OrderModel extends BaseModel
      */
     public function count_all(): int
     {
-        $sql = "SELECT COUNT(*) FROM {$this->table} WHERE is_deleted = 0";
+        $sql = "SELECT COUNT(*) FROM {$this->table}";
         return pdo_query_value($sql);
     }
 
@@ -77,7 +90,7 @@ class OrderModel extends BaseModel
      */
     public function get_revenue(): float
     {
-        $sql = "SELECT SUM(total) FROM {$this->table} WHERE status = 'completed' AND is_deleted = 0";
+        $sql = "SELECT SUM(total) FROM {$this->table} WHERE status = 'completed' AND";
         return (float) pdo_query_value($sql);
     }
 }
