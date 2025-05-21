@@ -13,8 +13,11 @@ function order_detail_select_by_id($id)
     return pdo_query_one($sql, $id);
 }
 
-function order_detail_select_by_order_id($order_id){
-    $sql = "SELECT * FROM order_details WHERE order_id = ?";
+function order_detail_select_by_order_id($order_id)
+{
+    $sql = "SELECT od.*, p.name AS product_name, p.price AS price FROM order_details od
+        JOIN products p ON p.id = od.product_id
+        WHERE od.order_id = ?";
     return pdo_query($sql, $order_id);
 }
 

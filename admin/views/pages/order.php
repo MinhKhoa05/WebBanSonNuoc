@@ -6,7 +6,6 @@ $statusOptions = [
     'pending' => 'Chờ xử lý',
     'delivering' => 'Đang giao',
     'completed' => 'Hoàn thành',
-    'cancelled' => 'Đã hủy',
 ];
 
 // Các màu sắc tương ứng với trạng thái
@@ -14,7 +13,6 @@ $statusColors = [
     'pending' => 'warning',
     'delivering' => 'info',
     'completed' => 'success',
-    'cancelled' => 'danger',
     'default' => 'secondary'
 ];
 ?>
@@ -113,7 +111,7 @@ $statusColors = [
                                     <td class="text-end fw-bold"><?= number_format($order['total'], 0, ',', '.') ?> ₫</td>
                                     <td class="text-center pe-3">
                                         <button class="btn btn-sm btn-outline-primary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#orderDetail<?= $order['id'] ?>" aria-expanded="false" aria-controls="orderDetail<?= $order['id'] ?>" title="Xem chi tiết">
-                                            <i class="fas fa-eye"></i>
+                                            <i class="fas fa-eye"></i> Chi tiết
                                         </button>
                                     </td>
                                 </tr>
@@ -316,7 +314,6 @@ $statusColors = [
                 'pending': 'Chờ xử lý',
                 'delivering': 'Đang giao',
                 'completed': 'Hoàn thành',
-                'cancelled': 'Đã hủy'
             };
             
             if (confirm(`Bạn có chắc muốn thay đổi trạng thái từ "${statusMap[currentValue]}" sang "${statusMap[newValue]}"?`)) {
