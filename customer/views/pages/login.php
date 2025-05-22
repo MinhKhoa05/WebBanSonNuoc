@@ -32,11 +32,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-<<<<<<< Updated upstream
-            min-height: 585px;
-=======
             height: 100%; 
->>>>>>> Stashed changes
+
         }
         
         .image-overlay {
@@ -114,14 +111,12 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 3rem 2.5rem;
-<<<<<<< Updated upstream
-=======
             height: 100%;             
             overflow-y: auto;         
             display: flex;
             flex-direction: column;
             justify-content: center;  
->>>>>>> Stashed changes
+
         }
         
         .form-title {
@@ -274,18 +269,14 @@
         @media (max-width: 991.98px) {
             .image-panel {
                 min-height: 300px;
-<<<<<<< Updated upstream
-=======
-                
->>>>>>> Stashed changes
+
             }
             
             .form-panel {
                 padding: 2rem 1.5rem;
-<<<<<<< Updated upstream
-=======
+
                 height: auto;  
->>>>>>> Stashed changes
+
             }
             
             .welcome-content h3 {
@@ -361,12 +352,7 @@
                             <div class="form-group">
                                 <label for="password" class="form-label">Mật khẩu</label>
                                 <div class="input-group">
-<<<<<<< Updated upstream
-                                    <span class="input-group-text">
-                                        <i class="bi bi-lock"></i>
-                                    </span>
-                                    <input type="password" class="form-control" name="password" placeholder="enter your password" required>
-=======
+
                                      <span class="input-group-text">
                                         <i class="bi bi-lock"></i>
                                     </span>
@@ -375,7 +361,7 @@
                                     <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword">
                                         <i class="bi bi-eye"></i>
                                     </button>
->>>>>>> Stashed changes
+
                                 </div>
                             </div>
                             
@@ -386,11 +372,9 @@
                                         Ghi nhớ đăng nhập
                                     </label>
                                 </div>
-<<<<<<< Updated upstream
-                                <a href="#" class="forgot-password">Quên mật khẩu?</a>
-=======
+
                                 <a href="/WebBanSonNuoc/index.php?page=forgotPassword" class="forgot-password">Quên/đổi mật khẩu?</a>
->>>>>>> Stashed changes
+
                             </div>
                             
                             <button type="submit" class="btn btn-login text-white w-100 mb-3">
@@ -445,8 +429,8 @@
             btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang đăng nhập...';
             btn.disabled = true;
         });
-<<<<<<< Updated upstream
-=======
+
+
         //HIỆN MẬT KHẨU
         document.getElementById('toggleLoginPassword').addEventListener('click', function() {
         const passwordField = document.querySelector('input[name="password"]');
@@ -460,7 +444,6 @@
             icon.className = 'bi bi-eye';
         }
     });
->>>>>>> Stashed changes
     </script>
 </body>
 </html>

@@ -18,11 +18,8 @@
             background-image: url('customer/views/assets/images/Hình.jpg');
             background-size: cover;
             background-position: center;
-<<<<<<< Updated upstream
-            min-height: 856px;
-=======
+
             height: 100%;
->>>>>>> Stashed changes
             margin-top: 60px;  
         }
         .image-overlay {
@@ -67,15 +64,13 @@
             backdrop-filter: blur(10px);
             padding: 3rem 2.5rem;
             margin-top: 60px;  
-<<<<<<< Updated upstream
-            
-=======
+
             height: 100%;             
             overflow-y: auto;         
             display: flex;
             flex-direction: column;
             justify-content: center;  
->>>>>>> Stashed changes
+
         }
         .form-title {
             text-align: center;
@@ -151,13 +146,12 @@
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
                                     <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" required>
-<<<<<<< Updated upstream
-=======
+
                                     <!--Hiện mật khẩu nè-->
                                     <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword">
                                         <i class="bi bi-eye"></i>
                                     </button>
->>>>>>> Stashed changes
+
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -165,14 +159,13 @@
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
                                     <input type="password" class="form-control" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
-<<<<<<< Updated upstream
-=======
+
                                 
                                     <!--Hiện mật khẩu nè-->
                                     <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword2">
                                         <i class="bi bi-eye"></i>
                                     </button>
->>>>>>> Stashed changes
+
                                 </div>
                             </div>
                             <div class="form-check mb-3">
