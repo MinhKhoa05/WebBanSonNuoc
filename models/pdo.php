@@ -5,7 +5,7 @@
  */
 function pdo_get_connection() {
     $host = 'localhost';
-    $dbname = 'web_ban_son_nuoc';
+    $dbname = 'bansonnuoc';
     $username = 'root';
     $password = '';
     
