@@ -381,14 +381,14 @@
                             
                             <div class="signup-link">
                                 <p class="mb-0">Chưa có tài khoản? 
-                                    <a href="index.php?page=sign-up">Đăng ký ngay</a>
+                                    <a href="index.php?page=sign-in">Đăng ký ngay</a>
                                 </p>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

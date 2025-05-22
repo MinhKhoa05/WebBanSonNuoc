@@ -164,7 +164,7 @@
                             </div>
                         <?php endif; ?>
                         <div class="mt-4 text-center">
-                            <p>Bạn đã có tài khoản? <a href="login.php" class="text-primary text-decoration-none fw-semibold">Đăng nhập</a></p>
+                            <p>Bạn đã có tài khoản? <a href="index.php?page=login" class="text-primary text-decoration-none fw-semibold">Đăng nhập</a></p>
                         </div>
                     </div>
                 </div>
