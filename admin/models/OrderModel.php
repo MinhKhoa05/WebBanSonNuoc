@@ -9,7 +9,7 @@ class OrderModel extends BaseModel
     }
 
     /**
-     * Lấy tất cả bản ghi (chưa bị xóa mềm)
+     * Lấy tất cả bản ghi
      */
     public function get_all(): array
     {
@@ -18,7 +18,7 @@ class OrderModel extends BaseModel
     }
 
     /**
-     * Lấy một bản ghi theo ID (chưa bị xóa mềm)
+     * Lấy một bản ghi theo ID
      */
     public function get_by_id(int $id): ?array {
         $sql = "SELECT o.*, u.name AS user_name
@@ -33,7 +33,7 @@ class OrderModel extends BaseModel
      */
     public function get_by_user(int $user_id): array
     {
-        $sql = "SELECT * FROM {$this->table} WHERE user_id = ? AND is_deleted = 0 ORDER BY order_date DESC";
+        $sql = "SELECT * FROM {$this->table} WHERE user_id = ? ORDER BY order_date DESC";
         return pdo_query($sql, $user_id);
     }
 
@@ -42,7 +42,7 @@ class OrderModel extends BaseModel
      */
     public function get_by_status(string $status): array
     {
-        $sql = "SELECT * FROM {$this->table} WHERE status = ? AND is_deleted = 0 ORDER BY order_date DESC";
+        $sql = "SELECT * FROM {$this->table} WHERE status = ? ORDER BY order_date DESC";
         return pdo_query($sql, $status);
     }
 
@@ -73,7 +73,7 @@ class OrderModel extends BaseModel
             throw new Exception("Cột tìm kiếm không hợp lệ.");
         }
 
-        $sql = "SELECT * FROM {$this->table} WHERE $column LIKE ? AND is_deleted = 0";
+        $sql = "SELECT * FROM {$this->table} WHERE $column LIKE ?";
         return pdo_query($sql, '%' . $keyword . '%');
     }
 
@@ -82,7 +82,7 @@ class OrderModel extends BaseModel
      */
     public function count_all(): int
     {
-        $sql = "SELECT COUNT(*) FROM {$this->table} WHERE is_deleted = 0";
+        $sql = "SELECT COUNT(*) FROM {$this->table}";
         return pdo_query_value($sql);
     }
 
@@ -91,7 +91,65 @@ class OrderModel extends BaseModel
      */
     public function get_revenue(): float
     {
-        $sql = "SELECT SUM(total) FROM {$this->table} WHERE status = 'completed' AND is_deleted = 0";
+        $sql = "SELECT SUM(total) FROM {$this->table} WHERE status = 'completed'";
         return (float) pdo_query_value($sql);
+    }
+
+    /**
+     * Đếm tổng số đơn hàng
+     */
+    public function count(): int
+    {
+        $sql = "SELECT COUNT(*) FROM {$this->table}";
+        return pdo_query_value($sql);
+    }
+
+    /**
+     * Tính tổng doanh thu
+     */
+    public function getTotalRevenue(): float
+    {
+        $sql = "SELECT COALESCE(SUM(total_amount), 0) 
+                FROM {$this->table} 
+                WHERE status = 'completed'";
+        return pdo_query_value($sql);
+    }
+
+    /**
+     * Lấy danh sách đơn hàng gần đây
+     */
+    public function getRecentOrders(int $limit = 5): array
+    {
+        $sql = "SELECT o.*, u.name as customer_name 
+                FROM {$this->table} o
+                LEFT JOIN users u ON o.user_id = u.id
+                ORDER BY o.order_date DESC 
+                LIMIT " . (int)$limit;
+        return pdo_query($sql);
+    }
+
+    /**
+     * Lấy tổng số đơn hàng
+     */
+    public function getTotalOrders(): int
+    {
+        $sql = "SELECT COUNT(*) FROM {$this->table}";
+        return pdo_query_value($sql);
+    }
+
+    /**
+     * Lấy doanh thu theo tháng
+     */
+    public function getMonthlyRevenue(): array
+    {
+        $sql = "SELECT 
+                    DATE_FORMAT(created_at, '%Y-%m') as month,
+                    SUM(total_amount) as revenue
+                FROM {$this->table}
+                WHERE status = 'completed'
+                GROUP BY DATE_FORMAT(created_at, '%Y-%m')
+                ORDER BY month DESC
+                LIMIT 12";
+        return pdo_query($sql);
     }
 }

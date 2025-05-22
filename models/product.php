@@ -96,4 +96,97 @@ function product_filter($categoryId = null, $maxPrice = null, $status = null, $s
 
     return pdo_query($sql, ...$params);
 }
+
+class Product {
+    private $db;
+    private $id;
+    private $name;
+    private $description;
+    private $price;
+    private $stock;
+    private $category_id;
+    private $image;
+    private $created_at;
+    private $updated_at;
+
+    public function __construct() {
+        $this->db = Database::getInstance()->getConnection();
+    }
+
+    // Get total products count
+    public function getTotalProducts() {
+        $query = "SELECT COUNT(*) as total FROM products";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    }
+
+    // Get out of stock products count
+    public function getOutOfStockCount() {
+        $query = "SELECT COUNT(*) as total FROM products WHERE stock <= 0";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    }
+
+    // Get top selling products
+    public function getTopSellingProducts($limit = 4) {
+        $query = "SELECT p.*, 
+                        COUNT(od.product_id) as total_sold,
+                        SUM(od.quantity * od.price) as total_revenue
+                 FROM products p
+                 LEFT JOIN order_details od ON p.id = od.product_id
+                 GROUP BY p.id
+                 ORDER BY total_sold DESC
+                 LIMIT :limit";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get product by ID
+    public function getProductById($id) {
+        $query = "SELECT * FROM products WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Create new product
+    public function createProduct($data) {
+        $query = "INSERT INTO products (name, description, price, stock, category_id, image, created_at) 
+                 VALUES (:name, :description, :price, :stock, :category_id, :image, NOW())";
+        $stmt = $this->db->prepare($query);
+        return $stmt->execute($data);
+    }
+
+    // Update product
+    public function updateProduct($id, $data) {
+        $query = "UPDATE products 
+                 SET name = :name, 
+                     description = :description, 
+                     price = :price, 
+                     stock = :stock, 
+                     category_id = :category_id, 
+                     image = :image, 
+                     updated_at = NOW() 
+                 WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $data['id'] = $id;
+        return $stmt->execute($data);
+    }
+
+    // Delete product
+    public function deleteProduct($id) {
+        $query = "DELETE FROM products WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+}
 ?>

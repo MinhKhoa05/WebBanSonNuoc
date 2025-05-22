@@ -1,12 +1,21 @@
 <?php
-require_once 'config.php';
-
 /**
  * Mở kết nối đến CSDL sử dụng PDO
  * @return PDO đối tượng kết nối PDO
  */
 function pdo_get_connection() {
-    return config_connect(); // Gọi hàm config_connect từ file config.php
+    $host = 'localhost';
+    $dbname = 'web_ban_son_nuoc';
+    $username = 'root';
+    $password = '';
+    
+    try {
+        $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } catch(PDOException $e) {
+        throw new Exception("Connection failed: " . $e->getMessage());
+    }
 }
 
 /**
@@ -19,14 +28,10 @@ function pdo_execute($sql, ...$args) {
     try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
-        $stmt->execute($args); // Thực thi câu lệnh với các tham số
+        $stmt->execute($args);
         return $stmt->rowCount();
-    } catch (PDOException $e) {
-        echo "SQL: $sql<br>";
-        echo "Parameters: " . implode(', ', $args) . "<br>";
-        throw $e;
-    } finally {
-        unset($conn);
+    } catch(PDOException $e) {
+        throw new Exception("Query failed: " . $e->getMessage());
     }
 }
 
@@ -42,12 +47,9 @@ function pdo_query($sql, ...$args) {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($args);
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $rows;
-    } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch(PDOException $e) {
+        throw new Exception("Query failed: " . $e->getMessage());
     }
 }
 
@@ -63,12 +65,9 @@ function pdo_query_one($sql, ...$args) {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row ?: null;
-    } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch(PDOException $e) {
+        throw new Exception("Query failed: " . $e->getMessage());
     }
 }
 
@@ -84,12 +83,9 @@ function pdo_query_value($sql, ...$args) {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row ? array_values($row)[0] : null;
-    } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
+        return $stmt->fetchColumn();
+    } catch(PDOException $e) {
+        throw new Exception("Query failed: " . $e->getMessage());
     }
 }
 ?>

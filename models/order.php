@@ -99,4 +99,45 @@ function order_get_details($order_id) {
     
     return $order;
 }
+
+class Order {
+    private $db;
+
+    public function __construct() {
+        require_once 'Database.php';
+        $this->db = new Database();
+    }
+
+    public function getTotalOrders() {
+        $query = "SELECT COUNT(*) as total FROM orders";
+        $result = $this->db->query($query);
+        $row = $result->fetch_assoc();
+        return $row['total'];
+    }
+
+    public function getTotalRevenue() {
+        $query = "SELECT SUM(total_amount) as total FROM orders WHERE status = 'completed'";
+        $result = $this->db->query($query);
+        $row = $result->fetch_assoc();
+        return $row['total'] ?? 0;
+    }
+
+    public function getRecentOrders($limit = 5) {
+        $query = "SELECT o.*, c.name as customer_name 
+                 FROM orders o 
+                 LEFT JOIN customers c ON o.customer_id = c.id 
+                 ORDER BY o.created_at DESC 
+                 LIMIT ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        $orders = [];
+        while ($row = $result->fetch_assoc()) {
+            $orders[] = $row;
+        }
+        return $orders;
+    }
+}
 ?>

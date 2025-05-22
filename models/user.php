@@ -56,4 +56,76 @@ function user_login($email, $password)
 
     return null;
 }
+
+class User {
+    private $db;
+    
+    public function __construct() {
+        $this->db = Database::getInstance();
+    }
+    
+    public function getAdminByEmail($email) {
+        $sql = "SELECT * FROM users WHERE email = ? AND role = 'admin' LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function createAdmin($data) {
+        $sql = "INSERT INTO users (fullname, email, password, role, created_at) 
+                VALUES (?, ?, ?, 'admin', NOW())";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            $data['fullname'],
+            $data['email'],
+            password_hash($data['password'], PASSWORD_DEFAULT)
+        ]);
+    }
+    
+    public function updateAdmin($id, $data) {
+        $sql = "UPDATE users SET 
+                fullname = ?,
+                email = ?,
+                updated_at = NOW()
+                WHERE id = ? AND role = 'admin'";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            $data['fullname'],
+            $data['email'],
+            $id
+        ]);
+    }
+    
+    public function changePassword($id, $newPassword) {
+        $sql = "UPDATE users SET 
+                password = ?,
+                updated_at = NOW()
+                WHERE id = ? AND role = 'admin'";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            password_hash($newPassword, PASSWORD_DEFAULT),
+            $id
+        ]);
+    }
+    
+    public function getAllAdmins() {
+        $sql = "SELECT * FROM users WHERE role = 'admin' ORDER BY created_at DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getAdminById($id) {
+        $sql = "SELECT * FROM users WHERE id = ? AND role = 'admin' LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function deleteAdmin($id) {
+        $sql = "DELETE FROM users WHERE id = ? AND role = 'admin'";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$id]);
+    }
+}
 ?>

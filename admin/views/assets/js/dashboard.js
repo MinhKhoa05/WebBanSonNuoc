@@ -226,3 +226,263 @@ document.getElementById('monthBtn').addEventListener('click', function() {
 
 // Khởi tạo ban đầu với chế độ hiển thị theo ngày
 switchMode('day');
+
+// Dashboard functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize charts
+    initRevenueChart();
+    initProductChart();
+    
+    // Load initial data
+    loadDashboardData();
+    
+    // Event listeners
+    document.getElementById('dateRange').addEventListener('change', handleDateRangeChange);
+    document.getElementById('refreshBtn').addEventListener('click', loadDashboardData);
+    document.getElementById('exportBtn').addEventListener('click', exportDashboardData);
+    
+    // Chart period controls
+    document.querySelectorAll('.chart-controls button').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.chart-controls button').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            updateCharts(this.dataset.period);
+        });
+    });
+});
+
+// Initialize Revenue Chart
+function initRevenueChart() {
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    window.revenueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Doanh thu',
+                data: [],
+                borderColor: '#4e73df',
+                backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    callbacks: {
+                        label: function(context) {
+                            return `Doanh thu: ${formatCurrency(context.raw)}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return formatCurrency(value);
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Initialize Product Chart
+function initProductChart() {
+    const ctx = document.getElementById('productPieChart').getContext('2d');
+    window.productChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: [],
+            datasets: [{
+                data: [],
+                backgroundColor: [
+                    '#4e73df',
+                    '#1cc88a',
+                    '#36b9cc',
+                    '#f6c23e',
+                    '#e74a3b'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+}
+
+// Load Dashboard Data
+async function loadDashboardData() {
+    try {
+        // Show loading state
+        showLoading();
+        
+        // Fetch data from API
+        const response = await fetch('/api/dashboard/data');
+        const data = await response.json();
+        
+        // Update dashboard components
+        updateStats(data.stats);
+        updateRevenueChart(data.revenue);
+        updateProductChart(data.products);
+        updateRecentOrders(data.recentOrders);
+        updateInventoryStatus(data.inventory);
+        
+        // Hide loading state
+        hideLoading();
+    } catch (error) {
+        console.error('Error loading dashboard data:', error);
+        showError('Không thể tải dữ liệu. Vui lòng thử lại sau.');
+    }
+}
+
+// Update Stats
+function updateStats(stats) {
+    document.getElementById('totalRevenue').textContent = formatCurrency(stats.revenue);
+    document.getElementById('totalOrders').textContent = stats.orders;
+    document.getElementById('totalCustomers').textContent = stats.customers;
+    document.getElementById('totalProducts').textContent = stats.products;
+}
+
+// Update Revenue Chart
+function updateRevenueChart(data) {
+    window.revenueChart.data.labels = data.labels;
+    window.revenueChart.data.datasets[0].data = data.values;
+    window.revenueChart.update();
+}
+
+// Update Product Chart
+function updateProductChart(data) {
+    window.productChart.data.labels = data.labels;
+    window.productChart.data.datasets[0].data = data.values;
+    window.productChart.update();
+    
+    // Update product list
+    const productList = document.querySelector('.top-products-list');
+    productList.innerHTML = data.products.map(product => `
+        <div class="product-item">
+            <div class="product-image">
+                <i class="fas fa-paint-roller"></i>
+            </div>
+            <div class="product-info">
+                <div class="product-name">${product.name}</div>
+                <div class="product-category">${product.category}</div>
+            </div>
+            <div class="product-stats">
+                <div class="product-sales">${product.sales} đã bán</div>
+                <div class="product-revenue">${formatCurrency(product.revenue)}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Update Recent Orders
+function updateRecentOrders(orders) {
+    const tbody = document.getElementById('recentOrders');
+    tbody.innerHTML = orders.map(order => `
+        <tr>
+            <td>#${order.id}</td>
+            <td>${order.customer}</td>
+            <td>${formatCurrency(order.total)}</td>
+            <td><span class="status-badge ${order.status.toLowerCase()}">${order.status}</span></td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary" onclick="viewOrder(${order.id})">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// Update Inventory Status
+function updateInventoryStatus(inventory) {
+    const tbody = document.getElementById('inventoryStatus');
+    tbody.innerHTML = inventory.map(item => `
+        <tr>
+            <td>${item.name}</td>
+            <td>${item.stock}</td>
+            <td>${item.sold}</td>
+            <td>
+                <span class="status-badge ${getInventoryStatusClass(item.stock)}">
+                    ${getInventoryStatusText(item.stock)}
+                </span>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// Handle Date Range Change
+function handleDateRangeChange(event) {
+    const dateRange = event.target.value;
+    if (dateRange === 'custom') {
+        showDateRangePicker();
+    } else {
+        loadDashboardData();
+    }
+}
+
+// Export Dashboard Data
+function exportDashboardData() {
+    // Implement export functionality
+    console.log('Exporting dashboard data...');
+}
+
+// Utility Functions
+function formatCurrency(value) {
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(value);
+}
+
+function getInventoryStatusClass(stock) {
+    if (stock <= 0) return 'cancelled';
+    if (stock < 10) return 'pending';
+    return 'completed';
+}
+
+function getInventoryStatusText(stock) {
+    if (stock <= 0) return 'Hết hàng';
+    if (stock < 10) return 'Sắp hết';
+    return 'Còn hàng';
+}
+
+function showLoading() {
+    // Implement loading state
+}
+
+function hideLoading() {
+    // Hide loading state
+}
+
+function showError(message) {
+    // Implement error display
+    console.error(message);
+}
+
+function showDateRangePicker() {
+    // Implement date range picker
+}
+
+function viewOrder(orderId) {
+    // Implement order view
+    console.log('Viewing order:', orderId);
+}

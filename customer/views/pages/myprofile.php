@@ -4,7 +4,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once __DIR__ . '/../../../models/user.php';
+require_once __DIR__ . '/../../../models/order.php';
 $user = user_get_by_id($_SESSION['user_id']);
+$recent_orders = order_get_by_user_id($_SESSION['user_id']);
 
 ?>
 
@@ -47,13 +49,13 @@ $user = user_get_by_id($_SESSION['user_id']);
                 </div>
 
                 <div class="list-group shadow-sm mb-4">
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <!-- <a href="#" class="list-group-item list-group-item-action">
                         <i class="fas fa-user me-2"></i> Thông tin tài khoản
                     </a>
                     <a href="index.php?page=myorders" class="list-group-item list-group-item-action">
-                        <i class="fas fa-clipboard-list me-2"></i> Đơn hàng của tôi
-                        <span class="badge bg-primary rounded-pill float-end">4</span>
-                    </a>
+                        <i class="fas fa-clipboard-list me-2"></i> Đơn hàng của tôi -->
+                        <!-- <span class="badge bg-primary rounded-pill float-end"></span> -->
+                    <!-- </a>
                     <a href="#" class="list-group-item list-group-item-action">
                         <i class="fas fa-map-marker-alt me-2"></i> Địa chỉ giao hàng
                     </a>
@@ -67,7 +69,7 @@ $user = user_get_by_id($_SESSION['user_id']);
                     <a href="#" class="list-group-item list-group-item-action">
                         <i class="fas fa-gift me-2"></i> Phiếu giảm giá
                         <span class="badge bg-primary rounded-pill float-end">2</span>
-                    </a>
+                    </a> -->
                     <a href="#" class="list-group-item list-group-item-action">
                         <i class="fas fa-lock me-2"></i> Đổi mật khẩu
                     </a>
@@ -91,7 +93,7 @@ $user = user_get_by_id($_SESSION['user_id']);
             <!-- Main Profile Content -->
             <div class="col-lg-9">
                 <!-- Profile Overview -->
-                <div class="card shadow-sm mb-4">
+                <!-- <div class="card shadow-sm mb-4">
                     <div class="card-header bg-white py-3">
                         <h5 class="mb-0">Tổng quan tài khoản</h5>
                     </div>
@@ -135,7 +137,7 @@ $user = user_get_by_id($_SESSION['user_id']);
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Personal Information -->
                 <div class="card shadow-sm mb-4">
@@ -171,7 +173,7 @@ $user = user_get_by_id($_SESSION['user_id']);
                 <div class="card shadow-sm mb-4">
                     <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Đơn hàng gần đây</h5>
-                        <a href="#" class="btn btn-sm btn-outline-primary">
+                        <a href="index.php?page=myorders" class="btn btn-sm btn-outline-primary">
                             Xem tất cả
                         </a>
                     </div>
@@ -182,53 +184,110 @@ $user = user_get_by_id($_SESSION['user_id']);
                                     <tr>
                                         <th scope="col">Mã đơn hàng</th>
                                         <th scope="col">Ngày đặt</th>
-                                        <th scope="col">Sản phẩm</th>
+                                        <th scope="col">Người nhận</th>
                                         <th scope="col">Tổng tiền</th>
                                         <th scope="col">Trạng thái</th>
                                         <th scope="col">Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach ($recent_orders as $order): ?>
                                     <tr>
-                                        <td>#ORD23045</td>
-                                        <td>05/04/2025</td>
-                                        <td>Sơn lót ngoại thất, Sơn phủ ngoại thất</td>
-                                        <td>3.450.000 ₫</td>
-                                        <td><span class="badge bg-success">Đã giao hàng</span></td>
+                                        <td>#<?= htmlspecialchars($order['id']) ?></td>
+                                        <td><?= date('d/m/Y', strtotime($order['order_date'])) ?></td>
                                         <td>
-                                            <button class="btn btn-sm btn-outline-secondary">Chi tiết</button>
+                                            <div class="small">
+                                                <div class="fw-bold"><?= htmlspecialchars($order['user_name']) ?></div>
+                                                <div class="text-muted"><?= isset($order['phone']) ? htmlspecialchars($order['phone']) : 'N/A' ?></div>
+                                            </div>
+                                        </td>
+                                        <td><?= number_format($order['total'], 0, ',', '.') ?> ₫</td>
+                                        <td>
+                                            <?php
+                                            $status_class = '';
+                                            switch($order['status']) {
+                                                case 'pending':
+                                                    $status_class = 'bg-warning';
+                                                    $status_text = 'Chờ xác nhận';
+                                                    break;
+                                                case 'processing':
+                                                    $status_class = 'bg-info';
+                                                    $status_text = 'Đang xử lý';
+                                                    break;
+                                                case 'shipped':
+                                                    $status_class = 'bg-primary';
+                                                    $status_text = 'Đang giao hàng';
+                                                    break;
+                                                case 'delivered':
+                                                    $status_class = 'bg-success';
+                                                    $status_text = 'Đã giao hàng';
+                                                    break;
+                                                case 'cancelled':
+                                                    $status_class = 'bg-danger';
+                                                    $status_text = 'Đã hủy';
+                                                    break;
+                                                default:
+                                                    $status_class = 'bg-secondary';
+                                                    $status_text = 'Không xác định';
+                                            }
+                                            ?>
+                                            <span class="badge <?= $status_class ?>"><?= $status_text ?></span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#orderModal<?= $order['id'] ?>">
+                                                Chi tiết
+                                            </button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>#ORD23037</td>
-                                        <td>28/03/2025</td>
-                                        <td>Sơn nội thất cao cấp, Sơn chống thấm</td>
-                                        <td>2.800.000 ₫</td>
-                                        <td><span class="badge bg-info">Đang giao hàng</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline-secondary">Chi tiết</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD23021</td>
-                                        <td>15/03/2025</td>
-                                        <td>Sơn epoxy sàn nhà xưởng</td>
-                                        <td>4.200.000 ₫</td>
-                                        <td><span class="badge bg-success">Đã giao hàng</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline-secondary">Chi tiết</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD23012</td>
-                                        <td>02/03/2025</td>
-                                        <td>Sơn màu đặc biệt, Cọ sơn, Rulô</td>
-                                        <td>1.850.000 ₫</td>
-                                        <td><span class="badge bg-success">Đã giao hàng</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline-secondary">Chi tiết</button>
-                                        </td>
-                                    </tr>
+
+                                    <!-- Order Detail Modal -->
+                                    <div class="modal fade" id="orderModal<?= $order['id'] ?>" tabindex="-1" aria-labelledby="orderModalLabel<?= $order['id'] ?>" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="orderModalLabel<?= $order['id'] ?>">Chi tiết đơn hàng #<?= $order['id'] ?></h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row mb-4">
+                                                        <div class="col-md-6">
+                                                            <p class="mb-2 text-muted">Mã đơn hàng</p>
+                                                            <p class="mb-3 fw-bold">#<?= htmlspecialchars($order['id']) ?></p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p class="mb-2 text-muted">Ngày đặt hàng</p>
+                                                            <p class="mb-3 fw-bold"><?= date('d/m/Y H:i', strtotime($order['order_date'])) ?></p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p class="mb-2 text-muted">Trạng thái đơn hàng</p>
+                                                            <p class="mb-3">
+                                                                <span class="badge <?= $status_class ?>"><?= $status_text ?></span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p class="mb-2 text-muted">Phương thức thanh toán</p>
+                                                            <p class="mb-3 fw-bold"><?= htmlspecialchars($order['payment_method']) ?></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <h6 class="mb-3">Thông tin giao hàng</h6>
+                                                    <p class="mb-1"><?= htmlspecialchars($order['user_name']) ?></p>
+                                                    <p class="mb-1"><?= isset($order['phone']) ? htmlspecialchars($order['phone']) : 'N/A' ?></p>
+                                                    <p class="mb-1"><?= htmlspecialchars($order['address']) ?></p>
+                                                    
+                                                    <?php if (!empty($order['note'])): ?>
+                                                    <hr>
+                                                    <h6 class="mb-3">Ghi chú</h6>
+                                                    <p class="mb-0"><?= nl2br(htmlspecialchars($order['note'])) ?></p>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -280,7 +339,7 @@ $user = user_get_by_id($_SESSION['user_id']);
         </div>
     </div>
     <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
 </body>
 
 </html>

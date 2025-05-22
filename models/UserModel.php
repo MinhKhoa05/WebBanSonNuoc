@@ -1,5 +1,5 @@
 <?php
-require_once 'BaseModel.php';
+require_once __DIR__ . '/BaseModel.php';
 
 class UserModel extends BaseModel
 {
@@ -55,4 +55,4 @@ class UserModel extends BaseModel
         $sql = "SELECT * FROM {$this->table} WHERE email = ?";
         return pdo_query_one($sql, $email);
     }
-}
+} 

@@ -158,4 +158,30 @@ class ProductModel extends BaseModel
         $sql = "SELECT * FROM {$this->table} WHERE is_deleted = 1";
         return pdo_query($sql);
     }
+
+    /**
+     * Lấy danh sách sản phẩm bán chạy
+     */
+    public function getTopSellingProducts(int $limit = 4): array
+    {
+        $sql = "SELECT p.*, c.name as category_name,
+                COUNT(od.product_id) as total_sold,
+                SUM(od.quantity * p.price) as total_revenue
+                FROM products p
+                LEFT JOIN order_details od ON p.id = od.product_id
+                LEFT JOIN categories c ON p.category_id = c.id
+                GROUP BY p.id
+                ORDER BY total_sold DESC
+                LIMIT " . (int)$limit;
+        return pdo_query($sql);
+    }
+
+    /**
+     * Lấy số lượng sản phẩm hết hàng
+     */
+    public function getOutOfStockCount(): int
+    {
+        $sql = "SELECT COUNT(*) FROM products WHERE stock = 0";
+        return pdo_query_value($sql);
+    }
 }
