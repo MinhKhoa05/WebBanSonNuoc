@@ -5,7 +5,7 @@
     }
 
     #banner-section .carousel-item img {
-        height: 400px;
+        height: 550px;
         /* Chiều cao cố định cho banner */
         object-fit: cover;
         /* Đảm bảo hình ảnh giữ tỷ lệ */
@@ -44,6 +44,18 @@
         height: 600px;
         overflow: hidden;
     }
+
+    @media (max-width: 767.98px) {
+    #banner-section .carousel-item {
+        height: 200px; /* Giảm chiều cao carousel trên mobile */
+    }
+    #banner-section-1 .banner-small {
+        height: 100px; /* Giảm chiều cao banner nhỏ */
+    }
+    #banner-section-1 .banner-large {
+        height: 200px; /* Giảm chiều cao banner lớn */
+    }
+}
 </style>
 
 <!-- Banner Section -->
@@ -72,7 +84,7 @@
             <!-- Slide 2 -->
             <div class="carousel-item">
                 <a href="">
-                    <img src="customer/views/assets/images/background.png" class="d-block w-100" alt="Banner 2">
+                    <img src="customer/views/assets/images/banner-cr.png" class="d-block w-100" alt="Banner 2">
                 </a>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Mua sơn tặng ghế</h5>
@@ -83,7 +95,7 @@
             <!-- Slide 3 -->
             <div class="carousel-item">
                 <a href="">
-                    <img src="customer/views/assets/images/background.png" class="d-block w-100" alt="Banner 3">
+                    <img src="customer/views/assets/images/Banner nana.jpg" class="d-block w-100" alt="Banner 3">
                 </a>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Ambiance 5in1</h5>
