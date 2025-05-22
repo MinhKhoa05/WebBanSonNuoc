@@ -32,7 +32,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            min-height: 585px;
+            height: 100%; 
+
         }
         
         .image-overlay {
@@ -110,6 +111,12 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 3rem 2.5rem;
+            height: 100%;             
+            overflow-y: auto;         
+            display: flex;
+            flex-direction: column;
+            justify-content: center;  
+
         }
         
         .form-title {
@@ -262,10 +269,14 @@
         @media (max-width: 991.98px) {
             .image-panel {
                 min-height: 300px;
+
             }
             
             .form-panel {
                 padding: 2rem 1.5rem;
+
+                height: auto;  
+
             }
             
             .welcome-content h3 {
@@ -341,10 +352,16 @@
                             <div class="form-group">
                                 <label for="password" class="form-label">Mật khẩu</label>
                                 <div class="input-group">
-                                    <span class="input-group-text">
+
+                                     <span class="input-group-text">
                                         <i class="bi bi-lock"></i>
                                     </span>
                                     <input type="password" class="form-control" name="password" placeholder="enter your password" required>
+                                    <!-- Thêm nút hiện mật khẩu -->
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+
                                 </div>
                             </div>
                             
@@ -355,7 +372,9 @@
                                         Ghi nhớ đăng nhập
                                     </label>
                                 </div>
-                                <a href="#" class="forgot-password">Quên mật khẩu?</a>
+
+                                <a href="/WebBanSonNuoc/index.php?page=forgotPassword" class="forgot-password">Quên/đổi mật khẩu?</a>
+
                             </div>
                             
                             <button type="submit" class="btn btn-login text-white w-100 mb-3">
@@ -381,14 +400,14 @@
                             
                             <div class="signup-link">
                                 <p class="mb-0">Chưa có tài khoản? 
-                                    <a href="index.php?page=sign-up">Đăng ký ngay</a>
+                                    <a href="index.php?page=sign-in">Đăng ký ngay</a>
                                 </p>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -410,6 +429,21 @@
             btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang đăng nhập...';
             btn.disabled = true;
         });
+
+
+        //HIỆN MẬT KHẨU
+        document.getElementById('toggleLoginPassword').addEventListener('click', function() {
+        const passwordField = document.querySelector('input[name="password"]');
+        const icon = this.querySelector('i');
+        
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            icon.className = 'bi bi-eye-slash';
+        } else {
+            passwordField.type = 'password';
+            icon.className = 'bi bi-eye';
+        }
+    });
     </script>
 </body>
 </html>

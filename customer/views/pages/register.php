@@ -18,7 +18,8 @@
             background-image: url('customer/views/assets/images/Hình.jpg');
             background-size: cover;
             background-position: center;
-            min-height: 856px;
+
+            height: 100%;
             margin-top: 60px;  
         }
         .image-overlay {
@@ -63,7 +64,13 @@
             backdrop-filter: blur(10px);
             padding: 3rem 2.5rem;
             margin-top: 60px;  
-            
+
+            height: 100%;             
+            overflow-y: auto;         
+            display: flex;
+            flex-direction: column;
+            justify-content: center;  
+
         }
         .form-title {
             text-align: center;
@@ -139,6 +146,12 @@
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
                                     <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" required>
+
+                                    <!--Hiện mật khẩu nè-->
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -146,6 +159,13 @@
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
                                     <input type="password" class="form-control" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
+
+                                
+                                    <!--Hiện mật khẩu nè-->
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword2">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+
                                 </div>
                             </div>
                             <div class="form-check mb-3">
@@ -164,7 +184,7 @@
                             </div>
                         <?php endif; ?>
                         <div class="mt-4 text-center">
-                            <p>Bạn đã có tài khoản? <a href="login.php" class="text-primary text-decoration-none fw-semibold">Đăng nhập</a></p>
+                            <p>Bạn đã có tài khoản? <a href="index.php?page=login" class="text-primary text-decoration-none fw-semibold">Đăng nhập</a></p>
                         </div>
                     </div>
                 </div>
@@ -172,5 +192,32 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('toggleLoginPassword').addEventListener('click', function() {
+            const passwordField = document.querySelector('input[name="password"]');
+            const icon = this.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.className = 'bi bi-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                icon.className = 'bi bi-eye';
+            }
+        });
+
+        document.getElementById('toggleLoginPassword2').addEventListener('click', function() {
+        const passwordField = document.querySelector('input[name="confirm_password"]');
+        const icon = this.querySelector('i');
+        
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            icon.className = 'bi bi-eye-slash';
+        } else {
+            passwordField.type = 'password';
+            icon.className = 'bi bi-eye';
+        }
+    });
+    </script>
 </body>
 </html>
