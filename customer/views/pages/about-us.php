@@ -16,7 +16,7 @@
     }
 
     .hero-section {
-        background: url('customer/views/assets/images/backgg.jpeg') no-repeat center center;
+        background: url('customer/views/assets/images/Background.png') no-repeat center center;
         background-size: cover;
         position: relative;
     }
@@ -57,7 +57,7 @@
         <div class="container lazy-load">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="customer/views/assets/images/hop-tac.jpg" alt="Câu chuyện của chúng tôi" class="img-fluid rounded shadow">
+                    <img src="customer/views/assets/images/Background.png" alt="Câu chuyện của chúng tôi" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6">
                     <div class="ms-lg-4">
@@ -199,11 +199,12 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="card border-0 shadow h-100">
-                        <img src="customer/views/assets/images/debi.jpeg" class="card-img-top" alt="CEO">
+                        <img src="customer/views/assets/images/Debirun.jpg" class="card-img-top" alt="CEO">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-1">Nguyễn Văn A</h5>
                             <p class="text-muted small mb-3">Tổng Giám đốc</p>
-                            <p class="card-text small text-muted">Hơn 25 năm kinh nghiệm trong ngành sơn và vật liệu xây dựng.</p>
+                            <p class="card-text small text-muted">Hơn 25 năm kinh nghiệm trong ngành sơn và vật liệu xây
+                                dựng.</p>
                         </div>
                         <div class="card-footer bg-white border-0 text-center">
                             <a href="#" class="btn btn-sm btn-light mx-1"><i class="bi bi-linkedin"></i></a>

@@ -1,6 +1,12 @@
 <?php
 $customers = $data['users'] ?? [];
+$banner = $data['customer_banner'] ?? '';
 ?>
+<?php if (!empty($banner)): ?>
+    <div class="alert alert-info mb-4">
+        <?= $banner ?>
+    </div>
+<?php endif; ?>
 
 <div class="row" id="customerManagement">
     <div class="col-12">

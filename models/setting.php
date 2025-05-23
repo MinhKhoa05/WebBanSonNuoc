@@ -2,7 +2,7 @@
 require_once 'pdo.php';
 
 function setting_get_all() {
-    $sql = "SELECT * FROM settings";
+    $sql = "SELECT * FROM setting";
     $settings = pdo_query($sql);
     $result = [];
     foreach ($settings as $setting) {
@@ -12,17 +12,17 @@ function setting_get_all() {
 }
 
 function setting_get($key) {
-    $sql = "SELECT value FROM settings WHERE `key` = ?";
+    $sql = "SELECT value FROM setting WHERE `key` = ?";
     return pdo_query_value($sql, $key);
 }
 
 function setting_update($key, $value) {
-    $sql = "UPDATE settings SET value = ? WHERE `key` = ?";
+    $sql = "UPDATE setting SET value = ? WHERE `key` = ?";
     return pdo_execute($sql, $value, $key);
 }
 
 function setting_insert($key, $value) {
-    $sql = "INSERT INTO settings (`key`, value) VALUES (?, ?)";
+    $sql = "INSERT INTO setting (`key`, value) VALUES (?, ?)";
     return pdo_execute($sql, $key, $value);
 }
 
@@ -67,4 +67,12 @@ function upload_file($file, $target_dir = 'uploads/') {
     }
     
     return false;
+}
+
+function setting_get_banners($prefix = 'customer_banner_', $count = 8) {
+    $banners = [];
+    for ($i = 1; $i <= $count; $i++) {
+        $banners[] = setting_get($prefix . $i) ?: '';
+    }
+    return $banners;
 } 

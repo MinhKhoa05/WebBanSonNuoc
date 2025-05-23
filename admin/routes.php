@@ -125,6 +125,17 @@ switch ($page) {
         $data = $controller->get_data();
         break;
 
+    case 'setting':
+        require_once __DIR__ . '/controllers/SettingController.php';
+        $controller = new SettingController();
+        if (isset($_GET['action']) && $_GET['action'] === 'updateBanner') {
+            $controller->updateBanner();
+        } else {
+            $controller->index();
+        }
+        $data = $controller->get_data();
+        break;
+        
     case 'dashboard':
     default:
         $page = 'dashboard';

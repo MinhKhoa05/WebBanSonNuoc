@@ -51,11 +51,11 @@
                     <i class="fas fa-chart-line me-2"></i> Báo cáo
                 </a>
             </li> -->
-            <!-- <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item">
+                <a href="index.php?page=setting" class="nav-link">
                     <i class="fas fa-cog me-2"></i> Cài đặt
                 </a>
-            </li> -->
+            </li>
         </ul>
     </div>
 </div>

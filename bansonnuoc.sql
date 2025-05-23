@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 21, 2025 lúc 08:21 AM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: May 23, 2025 at 10:09 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `bansonnuoc`
+-- Database: `bansonnuoc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `articles`
+-- Table structure for table `articles`
 --
 
 CREATE TABLE `articles` (
@@ -41,7 +41,7 @@ CREATE TABLE `articles` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `brands`
+-- Table structure for table `brands`
 --
 
 CREATE TABLE `brands` (
@@ -54,7 +54,7 @@ CREATE TABLE `brands` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `brands`
+-- Dumping data for table `brands`
 --
 
 INSERT INTO `brands` (`id`, `name`, `description`, `thumbnail`, `is_featured`, `created_at`) VALUES
@@ -68,7 +68,7 @@ INSERT INTO `brands` (`id`, `name`, `description`, `thumbnail`, `is_featured`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `carts`
+-- Table structure for table `carts`
 --
 
 CREATE TABLE `carts` (
@@ -80,7 +80,7 @@ CREATE TABLE `carts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `carts`
+-- Dumping data for table `carts`
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `added_at`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `added_at`) VALU
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -99,19 +99,20 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `created_at`) VALUES
 (1, 'Sơn Dulux', '2025-04-10 03:25:23'),
 (2, 'Sơn Jotun', '2025-04-10 03:25:23'),
 (3, 'Sơn Maxilite', '2025-04-10 03:25:23'),
-(14, 'Sơn Nippon', '2025-05-20 16:19:11');
+(14, 'Sơn Nippon', '2025-05-20 16:19:11'),
+(16, 'Sơn TOA', '2025-05-23 16:25:23');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `discount_types`
+-- Table structure for table `discount_types`
 --
 
 CREATE TABLE `discount_types` (
@@ -123,7 +124,7 @@ CREATE TABLE `discount_types` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `feedback`
+-- Table structure for table `feedback`
 --
 
 CREATE TABLE `feedback` (
@@ -137,7 +138,7 @@ CREATE TABLE `feedback` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `gallery`
+-- Table structure for table `gallery`
 --
 
 CREATE TABLE `gallery` (
@@ -149,7 +150,7 @@ CREATE TABLE `gallery` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -162,7 +163,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `order_date`, `note`, `total`, `status`) VALUES
@@ -171,12 +172,26 @@ INSERT INTO `orders` (`id`, `user_id`, `order_date`, `note`, `total`, `status`) 
 (8, 11, '2025-05-12 18:45:00', NULL, 500000.00, 'completed'),
 (9, 6, '2025-05-13 10:00:00', 'Kiểm tra kỹ hàng trước khi giao', 1200000.00, 'pending'),
 (10, 8, '2025-05-14 16:30:00', 'Giao hàng ngoài giờ hành chính', 1750000.00, 'delivering'),
-(11, 6, '2025-05-20 20:36:06', NULL, 2850000.00, 'pending');
+(11, 6, '2025-05-20 20:36:06', NULL, 2850000.00, 'pending'),
+(12, 12, '2025-05-21 10:45:28', NULL, 1140000.00, 'delivering'),
+(13, 12, '2025-05-22 17:14:22', NULL, 610000.00, 'pending'),
+(14, 12, '2025-05-22 17:26:24', '', 640000.00, 'pending'),
+(15, 12, '2025-05-22 17:26:41', '', 640000.00, 'pending'),
+(16, 12, '2025-05-22 17:26:52', '', 640000.00, 'pending'),
+(17, 12, '2025-05-22 17:29:30', '', 1140000.00, 'pending'),
+(18, 12, '2025-05-22 17:30:46', '', 1640000.00, 'pending'),
+(19, 12, '2025-05-22 17:34:49', '', 1640000.00, 'pending'),
+(20, 12, '2025-05-22 17:42:16', '', 2140000.00, 'pending'),
+(21, 12, '2025-05-22 17:44:53', '', 2140000.00, 'pending'),
+(22, 12, '2025-05-22 17:52:15', '', 2140000.00, 'pending'),
+(23, 12, '2025-05-22 17:54:44', '', 2140000.00, 'pending'),
+(24, 12, '2025-05-22 17:56:30', '', 2140000.00, 'pending'),
+(25, 12, '2025-05-22 18:17:55', NULL, 2140000.00, 'pending');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_details`
+-- Table structure for table `order_details`
 --
 
 CREATE TABLE `order_details` (
@@ -188,17 +203,22 @@ CREATE TABLE `order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `order_details`
+-- Dumping data for table `order_details`
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `subtotal`) VALUES
 (1, 11, 4, 0, 580000.00),
-(2, 11, 6, 0, 500000.00);
+(2, 11, 6, 0, 500000.00),
+(3, 12, 5, 0, 610000.00),
+(4, 12, 6, 0, 500000.00),
+(5, 13, 4, 0, 580000.00),
+(6, 25, 5, 1, 610000.00),
+(7, 25, 6, 3, 500000.00);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `payments`
+-- Table structure for table `payments`
 --
 
 CREATE TABLE `payments` (
@@ -212,7 +232,7 @@ CREATE TABLE `payments` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -229,7 +249,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `posts`
+-- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `slug`, `author_id`, `category`, `status`, `thumbnail`, `created_at`, `updated_at`) VALUES
@@ -239,14 +259,14 @@ INSERT INTO `posts` (`id`, `title`, `content`, `slug`, `author_id`, `category`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` text DEFAULT NULL,
-  `price` decimal(10,2) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
   `discount` tinyint(4) DEFAULT 0,
   `stock` smallint(6) DEFAULT 0,
   `category_id` int(11) NOT NULL,
@@ -259,22 +279,34 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `stock`, `category_id`, `brand_id`, `thumbnail`, `is_deleted`, `view`, `created_at`, `updated_at`) VALUES
-(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000.00, 27, 60, 1, 1, 'Son-4.jpg', 0, 0, '2025-04-10 04:21:29', '2025-05-20 17:41:28'),
-(4, 'Sơn Dulux EasyClean', 'Chống bám bẩn vượt trội, lau chùi dễ dàng.', 580000.00, 20, 120, 1, 2, 'Son-3.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 17:09:48'),
-(5, 'Sơn Jotun Majestic', 'Sơn nội thất mịn cao cấp, không chứa chì.', 610000.00, 12, 90, 2, NULL, 'Son-5.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 16:08:08'),
-(6, 'Sơn Nippon Odour-less', 'Sơn không mùi, thân thiện môi trường.', 500000.00, 12, 11, 14, 3, 'Son-6.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 16:19:25'),
-(7, 'Sơn Kova K260', 'Sơn nước ngoài trời siêu bền màu.', 420000.00, 27, 70, 3, NULL, 'Son-2.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 17:16:17'),
-(16, 'Sơn Maxilite Total', 'Sơn mới, sản phẩm mới đc bán', 100000.00, 0, 30, 14, NULL, '1747497701_Son-3.jpg', 0, 1, '2025-05-17 12:40:12', '2025-05-20 17:16:28'),
-(20, 'dsfkbj', 'lldf', 100000.00, 0, 20, 3, NULL, '', 0, 0, '2025-05-17 13:40:29', '2025-05-20 14:56:11');
+(3, 'Sơn Dulux Inspire', 'Sơn nội thất có hương thơm nhẹ nhàng, dễ chịu.', 480000, 27, 60, 1, 1, 'Son-4.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-23 16:58:30'),
+(4, 'Sơn Dulux EasyClean', 'Chống bám bẩn vượt trội, lau chùi dễ dàng.', 580000, 20, 120, 1, 2, 'Son-3.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 17:09:48'),
+(5, 'Sơn Jotun Majestic', 'Sơn nội thất mịn cao cấp, không chứa chì.', 610000, 12, 90, 2, 2, 'Son-5.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-23 16:58:53'),
+(6, 'Sơn Nippon Odour-less', 'Sơn không mùi, thân thiện môi trường.', 500000, 12, 11, 14, 3, 'Son-6.jpg', 0, 1, '2025-04-10 04:21:29', '2025-05-20 16:19:25'),
+(16, 'Sơn Maxilite Total', 'Sơn mới, sản phẩm mới đc bán', 100000, 0, 30, 14, 3, '1747497701_Son-3.jpg', 0, 1, '2025-05-17 12:40:12', '2025-05-23 16:59:08'),
+(20, 'dsfkbj', 'lldf', 100000, 0, 20, 3, NULL, '', 1, 0, '2025-05-17 13:40:29', '2025-05-23 16:52:50'),
+(23, 'Sơn TOA NanoShield', 'Sơn ngoại thất', 500000, 0, 20, 16, 6, '1748017817_TOA_nano.png', 0, 1, '2025-05-23 16:30:17', '2025-05-23 16:30:17'),
+(24, 'Sơn TOA Extra Wet Primer', 'Sơn ngoại thất', 400000, 0, 20, 16, 6, '1748017940_TOA_extra.png', 0, 1, '2025-05-23 16:32:20', '2025-05-23 16:32:20'),
+(25, 'Sơn TOA 7 in 1', 'Sơn ngoại thất', 600000, 0, 20, 16, 6, '1748017974_TOA_7in1.png', 0, 1, '2025-05-23 16:32:54', '2025-05-23 16:32:54'),
+(26, 'TOA 4 Seasons Super Contact Sealer', 'Sơn ngoại thất', 450000, 0, 30, 16, 6, '1748018064_timthumb17-400x400.png', 0, 1, '2025-05-23 16:34:24', '2025-05-23 16:34:24'),
+(27, 'Sơn lót nội thất cao cấp SuperSealer', 'Sơn lót nội thất', 500000, 0, 24, 1, 1, '1748018496_DUL033-400x400.png', 0, 1, '2025-05-23 16:41:36', '2025-05-23 16:41:36'),
+(28, 'Sơn Lót Ngoại Thất Dulux Weathershield Chống Kiềm', 'Sơn Lót Ngoại Thất', 490000, 0, 23, 1, 1, '1748018586_DUL001-600x600.png', 0, 1, '2025-05-23 16:43:06', '2025-05-23 16:43:06'),
+(29, 'Majestic Đẹp Hoàn Hảo Mờ', 'Sơn nội thất Jotun', 560000, 0, 23, 2, 2, '1748018964_VNVI2019-majestic-true-beauty-matt-product-316x226-2019_tcm47-185030-600x600.jpg', 0, 1, '2025-05-23 16:49:24', '2025-05-23 16:49:24'),
+(30, 'Majestic Đẹp Hoàn Hảo Bóng', 'Sơn nội thất Jotun', 490000, 0, 34, 2, 2, '1748019053_VNVI2019-majestic-true-beauty-sheen-product-316x226-2019_tcm47-185037-600x600.jpg', 0, 1, '2025-05-23 16:50:53', '2025-05-23 16:50:53'),
+(31, 'Majestic Đẹp & Chăm Sóc Hoàn Hảo', 'Sơn nội thất Jotun', 450000, 0, 34, 2, 2, '1748019116_VNVI-majestic-perfect-beauty-and-care-product-316x226_tcm47-144703-600x600.jpg', 0, 1, '2025-05-23 16:51:56', '2025-05-23 16:51:56'),
+(32, 'Sơn Nước Trong Nhà Maxilite Total', 'Sơn nội thất Maxilite', 560000, 0, 34, 3, 4, '1748019244_Maxi008-600x600.png', 0, 1, '2025-05-23 16:54:04', '2025-05-23 16:58:03'),
+(33, 'Sơn Nước Trong Nhà Maxilite Smooth', 'Sơn nội thất Maxilite', 560000, 0, 23, 3, 4, '1748019324_Maxi010-600x600.png', 0, 1, '2025-05-23 16:55:24', '2025-05-23 16:55:24'),
+(34, 'Sơn Nước Trong Nhà Maxilite Hi-Cover', 'Sơn nội thất Maxilite', 560000, 0, 34, 3, 4, '1748019370_Maxi009-600x600.png', 0, 1, '2025-05-23 16:56:10', '2025-05-23 16:56:10'),
+(35, 'Sơn Nước Ngoài Trời Maxilite Ultima - Bề Mặt Mờ', 'Sơn ngoại thất Maxilite', 560000, 0, 34, 3, 4, '1748019413_Maxi005-600x600.png', 0, 1, '2025-05-23 16:56:53', '2025-05-23 16:56:53');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `promotions`
+-- Table structure for table `promotions`
 --
 
 CREATE TABLE `promotions` (
@@ -290,7 +322,7 @@ CREATE TABLE `promotions` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `reviews`
+-- Table structure for table `reviews`
 --
 
 CREATE TABLE `reviews` (
@@ -305,7 +337,35 @@ CREATE TABLE `reviews` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `setting`
+--
+
+CREATE TABLE `setting` (
+  `id` int(11) NOT NULL,
+  `key` varchar(255) NOT NULL,
+  `value` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `setting`
+--
+
+INSERT INTO `setting` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
+(5, 'customer_banner_1', 'banner_1_6830ce0c61d6a.jpg', '2025-05-23 15:16:27', '2025-05-23 19:44:47'),
+(6, 'customer_banner_2', 'banner_2_6830ce0c63040.png', '2025-05-23 15:16:27', '2025-05-23 19:44:47'),
+(7, 'customer_banner_3', 'banner_3_6830ce0c63d78.jpg', '2025-05-23 15:16:27', '2025-05-23 19:44:47'),
+(8, 'customer_banner_4', 'banner_4_6830ce0c6a09b.jpg', '2025-05-23 15:16:27', '2025-05-23 19:44:47'),
+(9, 'customer_banner_5', 'banner_5_6830ce0c6b42e.jpg', '2025-05-23 15:16:27', '2025-05-23 19:44:47'),
+(10, 'customer_banner_6', 'banner_6_6830ce0c6c8a3.jpg', '2025-05-23 15:16:27', '2025-05-23 19:44:47'),
+(11, 'customer_banner_7', 'banner_7_6830d02f24466.jpg', '2025-05-23 18:31:35', '2025-05-23 19:44:47'),
+(12, 'customer_banner_8', 'banner_8_6830d02f2811a.jpg', '2025-05-23 18:31:35', '2025-05-23 19:44:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -322,33 +382,34 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `address`, `role`, `is_deleted`, `created_at`, `updated_at`) VALUES
 (6, 'Hồ Nguyễn Minh Khoa', '$2y$10$otquYARg2scQP6H9G2NetukAYNB1IiT3Uik7yRfh1MtSVxzwCemkm', 'mkhoa639@gmail.com', '0373441697', NULL, '', 0, '2025-04-17 03:02:06', '2025-04-17 03:02:06'),
 (8, 'Khoa', '$2y$10$4Fs59MkA.TDPCn32jK0x1O3JB2Gc1H5qiDDAbQgAjBMzdw.qHSEuK', '52300038@student.tdtu.edu.vn', '0373441691', NULL, '', 0, '2025-04-17 03:31:12', '2025-04-17 03:31:12'),
-(11, 'ahihi', '$2y$10$PnkpGZGMe56cYNhKjVZDoOL9iqeYYEPUZLo0iXAjFaSZL6ah1Eca.', '27014814@sfcollege.edu', '0373441699', NULL, '', 0, '2025-05-17 16:21:53', '2025-05-17 16:21:53');
+(11, 'ahihi', '$2y$10$PnkpGZGMe56cYNhKjVZDoOL9iqeYYEPUZLo0iXAjFaSZL6ah1Eca.', '27014814@sfcollege.edu', '0373441699', NULL, '', 0, '2025-05-17 16:21:53', '2025-05-17 16:21:53'),
+(12, 'Phạm Tiến Lực', '$2y$10$s4aFW5/XJS0AuxTdZK.FP.EYxWQ5To0xvCA28/K.Ct4dBYrJBjg9q', 'tienluc14052005@gmail.com', '0971578966', NULL, 'admin', 0, '2025-05-21 06:31:07', '2025-05-22 18:09:56');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `articles`
+-- Indexes for table `articles`
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`),
   ADD KEY `author_id` (`author_id`);
 
 --
--- Chỉ mục cho bảng `brands`
+-- Indexes for table `brands`
 --
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `carts`
+-- Indexes for table `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`),
@@ -356,41 +417,41 @@ ALTER TABLE `carts`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Chỉ mục cho bảng `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Chỉ mục cho bảng `discount_types`
+-- Indexes for table `discount_types`
 --
 ALTER TABLE `discount_types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `feedback`
+-- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Chỉ mục cho bảng `gallery`
+-- Indexes for table `gallery`
 --
 ALTER TABLE `gallery`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Chỉ mục cho bảng `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Chỉ mục cho bảng `order_details`
+-- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`),
@@ -398,21 +459,21 @@ ALTER TABLE `order_details`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Chỉ mục cho bảng `payments`
+-- Indexes for table `payments`
 --
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`);
 
 --
--- Chỉ mục cho bảng `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `author_id` (`author_id`);
 
 --
--- Chỉ mục cho bảng `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
@@ -421,7 +482,7 @@ ALTER TABLE `products`
   ADD KEY `fk_products_brand` (`brand_id`);
 
 --
--- Chỉ mục cho bảng `promotions`
+-- Indexes for table `promotions`
 --
 ALTER TABLE `promotions`
   ADD PRIMARY KEY (`id`),
@@ -429,7 +490,7 @@ ALTER TABLE `promotions`
   ADD KEY `discount_type_id` (`discount_type_id`);
 
 --
--- Chỉ mục cho bảng `reviews`
+-- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`),
@@ -437,7 +498,14 @@ ALTER TABLE `reviews`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `setting`
+--
+ALTER TABLE `setting`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `key` (`key`);
+
+--
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -446,169 +514,175 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `phone` (`phone`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `articles`
+-- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `brands`
+-- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT cho bảng `carts`
+-- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT cho bảng `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT cho bảng `discount_types`
+-- AUTO_INCREMENT for table `discount_types`
 --
 ALTER TABLE `discount_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `feedback`
+-- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `gallery`
+-- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT cho bảng `order_details`
+-- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `payments`
+-- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `posts`
+-- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT cho bảng `promotions`
+-- AUTO_INCREMENT for table `promotions`
 --
 ALTER TABLE `promotions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `reviews`
+-- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `setting`
+--
+ALTER TABLE `setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `articles`
+-- Constraints for table `articles`
 --
 ALTER TABLE `articles`
   ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `carts`
+-- Constraints for table `carts`
 --
 ALTER TABLE `carts`
   ADD CONSTRAINT `carts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `carts_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `feedback`
+-- Constraints for table `feedback`
 --
 ALTER TABLE `feedback`
   ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `gallery`
+-- Constraints for table `gallery`
 --
 ALTER TABLE `gallery`
   ADD CONSTRAINT `gallery_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `order_details`
+-- Constraints for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `payments`
+-- Constraints for table `payments`
 --
 ALTER TABLE `payments`
   ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `posts`
+-- Constraints for table `posts`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `fk_products_brand` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `promotions`
+-- Constraints for table `promotions`
 --
 ALTER TABLE `promotions`
   ADD CONSTRAINT `promotions_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `promotions_ibfk_2` FOREIGN KEY (`discount_type_id`) REFERENCES `discount_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `reviews`
+-- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,

@@ -8,7 +8,7 @@
                 <ul class="list-unstyled text-white-50 small">
                     <li><i class="fas fa-map-marker-alt me-2"></i> Tân Phong, Quận 7, TP. HCM</li>
                     <li><i class="fas fa-phone me-2"></i> 0177 744 444</li>
-                    <li><i class="fas fa-envelope me-2"></i> AkumaInfo@colorhomespaint.com</li>
+                    <li><i class="fas fa-envelope me-2"></i> HatkumaInfo@paintmaster.com</li>
                 </ul>
             </div>
 
@@ -60,11 +60,6 @@
                 <a href="#" class="footer-link me-3">Chính sách</a>
                 <a href="#" class="footer-link">Điều khoản</a>
             </div>
-            <div style="display: flex; justify-content: center; gap: 30px;">
-                <span>HỒ NGUYỄN MINH KHOA - 52300038</span>
-                <span>NGUYỄN VĂN PHÁT - 52300049</span>
-                <span>PHẠM TIẾN LỰC – 52300042</span>
-            </div>              
         </div>
     </div>
 </footer>

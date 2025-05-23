@@ -56,10 +56,10 @@ if (!$product) {
                         <i class="fa-solid fa-cart-plus me-2"></i> Thêm vào giỏ hàng
                         </button>
 
-                        <a href="#" class="btn btn-success w-100 d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-success w-100 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#zaloModal">
                             <img src="https://stc-zaloprofile.zdn.vn/pc/v1/images/zalo_sharelogo.png" alt="Zalo" style="width: 24px; height: 24px; margin-right: 8px;">
                             Tư vấn qua Zalo
-                        </a>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -73,6 +73,22 @@ if (!$product) {
             </div>
         </div>
 
+    </div>
+
+    <!-- Modal QR Zalo -->
+    <div class="modal fade" id="zaloModal" tabindex="-1" aria-labelledby="zaloModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+          <div class="modal-header">
+            <h5 class="modal-title w-100" id="zaloModalLabel">Quét mã QR Zalo để tư vấn</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+          </div>
+          <div class="modal-body">
+            <img src="customer/views/assets/images/zalome.jpg" alt="QR Zalo" style="max-width: 250px; width: 100%;">
+            <p class="mt-2">Mở Zalo, chọn quét mã QR để kết nối với shop!</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="customer/views/assets/js/product-details.js"></script>

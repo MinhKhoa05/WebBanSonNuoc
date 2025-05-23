@@ -1,11 +1,31 @@
-<!-- banner section -->
+<?php
+// $customer_banners = [banner1, banner2, banner3, banner4, banner5, banner6, banner7, banner8];
+
+var_dump($customer_banners);
+
+function render_banner($banner) {
+    if (preg_match('/\\.(jpg|jpeg|png|gif)$/i', $banner)) {
+        // Nếu là URL tuyệt đối (http...) hoặc bắt đầu bằng /
+        if (preg_match('/^(http|https):\\/\\//', $banner) || strpos($banner, '/') === 0) {
+            $src = $banner;
+        } else {
+            // Mặc định lấy từ thư mục uploads/
+            $src = 'uploads/' . $banner;
+        }
+        echo '<img src="' . htmlspecialchars($src) . '" class="d-block w-100" alt="Banner">';
+    } else {
+        // Nếu là HTML hoặc text, in ra luôn
+        echo $banner;
+    }
+}
+?>
 <style>
     #banner-section {
         margin-bottom: 20px;
     }
 
     #banner-section .carousel-item img {
-        height: 550px;
+        height: 400px;
         /* Chiều cao cố định cho banner */
         object-fit: cover;
         /* Đảm bảo hình ảnh giữ tỷ lệ */
@@ -45,20 +65,15 @@
         overflow: hidden;
     }
 
-    @media (max-width: 767.98px) {
-    #banner-section .carousel-item {
-        height: 200px; /* Giảm chiều cao carousel trên mobile */
+    #banner-section-2 .banner-medium img {
+        height: 400px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 5px;
     }
-    #banner-section-1 .banner-small {
-        height: 100px; /* Giảm chiều cao banner nhỏ */
-    }
-    #banner-section-1 .banner-large {
-        height: 200px; /* Giảm chiều cao banner lớn */
-    }
-}
 </style>
 
-<!-- Banner Section -->
+<!-- Main Banner Carousel Section -->
 <section id="banner-section" class="mb-4">
     <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
         <!-- Indicators -->
@@ -72,35 +87,15 @@
         <div class="carousel-inner">
             <!-- Slide 1 -->
             <div class="carousel-item active">
-                <a href="">
-                    <img src="customer/views/assets/images/background.png" class="d-block w-100" alt="Banner 1">
-                </a>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>PaintMart - Siêu thị sơn số 1 Việt Nam</h5>
-                    <p>Phối màu sơn nhà 3D miễn phí - 5 gam màu sơn đẹp nhất.</p>
-                </div>
+                <?php render_banner($customer_banners[0] ?? ''); ?>
             </div>
-
             <!-- Slide 2 -->
             <div class="carousel-item">
-                <a href="">
-                    <img src="customer/views/assets/images/banner-cr.png" class="d-block w-100" alt="Banner 2">
-                </a>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Mua sơn tặng ghế</h5>
-                    <p>Giảm giá 50% và nhận ngay bộ 4 ghế khi mua sơn Jotun.</p>
-                </div>
+                <?php render_banner($customer_banners[1] ?? ''); ?>
             </div>
-
             <!-- Slide 3 -->
             <div class="carousel-item">
-                <a href="">
-                    <img src="customer/views/assets/images/Banner nana.jpg" class="d-block w-100" alt="Banner 3">
-                </a>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Ambiance 5in1</h5>
-                    <p>Sơn sáng - Quá xịn, giảm giá lên đến 44%.</p>
-                </div>
+                <?php render_banner($customer_banners[2] ?? ''); ?>
             </div>
         </div>
 
@@ -116,43 +111,34 @@
     </div>
 </section>
 
+<!-- Secondary Banner Section -->
 <section id="banner-section-1" class="mb-4">
     <div class="container lazy-load">
         <div class="row g-3">
             <!-- Banner nhỏ bên trái -->
             <div class="col-md-3 d-flex flex-column justify-content-between">
                 <div class="banner-small">
-                    <a href="">
-                        <img src="customer/views/assets/images/livingroom.jpg" class="img-fluid rounded" alt="Banner Left 1">
-                    </a>
+                    <?php render_banner($customer_banners[3] ?? ''); ?>
                 </div>
                 <div class="banner-small mt-3">
-                    <a href="">
-                        <img src="customer/views/assets/images/timthumb.jpg" class="img-fluid rounded" alt="Banner Left 2">
-                    </a>
+                    <?php render_banner($customer_banners[4] ?? ''); ?>
                 </div>
             </div>
 
             <!-- Banner lớn ở giữa -->
             <div class="col-md-6">
                 <div class="banner-large">
-                    <a href="">
-                        <img src="customer/views/assets/images/company.jpg" class="img-fluid rounded" alt="Banner Center">
-                    </a>
+                    <?php render_banner($customer_banners[5] ?? ''); ?>
                 </div>
             </div>
 
             <!-- Banner nhỏ bên phải -->
             <div class="col-md-3 d-flex flex-column justify-content-between">
                 <div class="banner-small">
-                    <a href="">
-                        <img src="customer/views/assets/images/paintcan.jpg" class="img-fluid rounded" alt="Banner Right 1">
-                    </a>
+                    <?php render_banner($customer_banners[6] ?? ''); ?>
                 </div>
                 <div class="banner-small mt-3">
-                    <a href="">
-                        <img src="customer/views/assets/images/livingroom2.jpg" class="img-fluid rounded" alt="Banner Right 2">
-                    </a>
+                    <?php render_banner($customer_banners[7] ?? ''); ?>
                 </div>
             </div>
         </div>

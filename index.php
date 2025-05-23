@@ -91,12 +91,6 @@ $pageParam = $parsedUrl['path'] ?? '';
         case 'product-all':
             include 'customer/views/pages/product-all.php';
             break;
-
-        case 'forgotPassword': // Thêm case này
-            include 'customer/views/middlewares/redirectIfAuthen.php'; // Tùy chọn, nếu muốn ngăn người đã đăng nhập
-            include 'customer/views/pages/forgotPassword.php';
-            break;
-
         default:
             include 'customer/views/pages/home.php';
             break;
