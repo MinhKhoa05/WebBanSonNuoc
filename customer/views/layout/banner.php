@@ -123,12 +123,12 @@
             <div class="col-md-3 d-flex flex-column justify-content-between">
                 <div class="banner-small">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Left 1">
+                        <img src="customer/views/assets/images/livingroom.jpg" class="img-fluid rounded" alt="Banner Left 1">
                     </a>
                 </div>
                 <div class="banner-small mt-3">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Left 2">
+                        <img src="customer/views/assets/images/timthumb.jpg" class="img-fluid rounded" alt="Banner Left 2">
                     </a>
                 </div>
             </div>
@@ -137,7 +137,7 @@
             <div class="col-md-6">
                 <div class="banner-large">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Center">
+                        <img src="customer/views/assets/images/company.jpg" class="img-fluid rounded" alt="Banner Center">
                     </a>
                 </div>
             </div>
@@ -146,12 +146,12 @@
             <div class="col-md-3 d-flex flex-column justify-content-between">
                 <div class="banner-small">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Right 1">
+                        <img src="customer/views/assets/images/paintcan.jpg" class="img-fluid rounded" alt="Banner Right 1">
                     </a>
                 </div>
                 <div class="banner-small mt-3">
                     <a href="">
-                        <img src="customer/views/assets/images/background.png" class="img-fluid rounded" alt="Banner Right 2">
+                        <img src="customer/views/assets/images/livingroom2.jpg" class="img-fluid rounded" alt="Banner Right 2">
                     </a>
                 </div>
             </div>
