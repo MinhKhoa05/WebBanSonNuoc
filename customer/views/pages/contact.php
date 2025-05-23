@@ -89,7 +89,7 @@
                     <div class="card-body p-4">
                         <h3 class="mb-4">Vị Trí Của Chúng Tôi</h3>
                         <div class="mb-4 rounded">
-                            <img src="/api/placeholder/600/400" alt="Bản đồ vị trí cửa hàng" class="img-fluid rounded">
+                            <img src="customer/views/assets/images/map.png" alt="Bản đồ vị trí cửa hàng" class="img-fluid rounded">
                         </div>
                         <div class="mt-4">
                             <h4>Giờ Làm Việc</h4>
