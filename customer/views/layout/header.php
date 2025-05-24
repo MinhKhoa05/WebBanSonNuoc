@@ -37,7 +37,7 @@ $userName = $isLoggedIn ? $_SESSION['user_name'] : '';
                 <li class="nav-item"><a class="nav-link" href="/WebBanSonNuoc/index.php">Trang chủ</a></li>
                 <li class="nav-item"><a class="nav-link" href="/WebBanSonNuoc/bai-viet">Bài viết</a></li>
                 <li class="nav-item"><a class="nav-link" href="/WebBanSonNuoc/index.php?page=about-us">Về chúng tôi</a></li>
-                <li class="nav-item"><a class="nav-link" href="/WebBanSonNuoc/index.php?page=contact">Liên hệ</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="/WebBanSonNuoc/index.php?page=contact">Liên hệ</a></li> -->
             </ul>
 
             <div class="d-flex align-items-center">

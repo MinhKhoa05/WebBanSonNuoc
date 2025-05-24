@@ -57,6 +57,11 @@ function user_login($email, $password)
     return null;
 }
 
+function user_update_profile($id, $name, $phone, $address) {
+    $sql = "UPDATE users SET name = ?, phone = ?, address = ? WHERE id = ?";
+    pdo_execute($sql, $name, $phone, $address, $id);
+}
+
 class User {
     private $db;
     

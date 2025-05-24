@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../../models/order.php';
 $user = user_get_by_id($_SESSION['user_id']);
 $recent_orders = order_get_by_user_id($_SESSION['user_id']);
 
+$is_edit = isset($_GET['edit']) && $_GET['edit'] == 1;
 ?>
 
 <body class="bg-light mt-5">
@@ -143,29 +144,58 @@ $recent_orders = order_get_by_user_id($_SESSION['user_id']);
                 <div class="card shadow-sm mb-4">
                     <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Thông tin cá nhân</h5>
-                        <button class="btn btn-sm btn-outline-primary">
-                            <i class="fas fa-edit me-1"></i> Chỉnh sửa
-                        </button>
+                        <?php if (!$is_edit): ?>
+                            <a href="?page=myprofile&edit=1" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-edit me-1"></i> Chỉnh sửa
+                            </a>
+                        <?php endif; ?>
                     </div>
                     <div class="card-body">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <p class="mb-2 text-muted small">Họ và tên</p>
-                                <p class="mb-3 fw-bold"><?= htmlspecialchars($user['name']) ?></p>
+                        <?php if ($is_edit): ?>
+                            <form method="post" action="customer/controllers/profileController.php">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="mb-2 text-muted small">Họ và tên</label>
+                                        <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($user['name']) ?>" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="mb-2 text-muted small">Email</label>
+                                        <input type="email" class="form-control" value="<?= htmlspecialchars($user['email']) ?>" disabled>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="mb-2 text-muted small">Số điện thoại</label>
+                                        <input type="text" name="phone" class="form-control" value="<?= htmlspecialchars($user['phone']) ?>" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="mb-2 text-muted small">Địa chỉ</label>
+                                        <input type="text" name="address" class="form-control" value="<?= htmlspecialchars($user['address'] ?? '') ?>">
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button type="submit" name="save_profile" class="btn btn-primary">Lưu</button>
+                                    <a href="?page=myprofile" class="btn btn-secondary">Hủy</a>
+                                </div>
+                            </form>
+                        <?php else: ?>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <p class="mb-2 text-muted small">Họ và tên</p>
+                                    <p class="mb-3 fw-bold"><?= htmlspecialchars($user['name']) ?></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-2 text-muted small">Email</p>
+                                    <p class="mb-3 fw-bold"><?= htmlspecialchars($user['email']) ?></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-2 text-muted small">Số điện thoại</p>
+                                    <p class="mb-3 fw-bold"><?= htmlspecialchars($user['phone']) ?></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-2 text-muted small">Địa chỉ</p>
+                                    <p class="mb-3 fw-bold"><?= htmlspecialchars($user['address'] ?? '') ?></p>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <p class="mb-2 text-muted small">Email</p>
-                                <p class="mb-3 fw-bold"><?= htmlspecialchars($user['email']) ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-2 text-muted small">Số điện thoại</p>
-                                <p class="mb-3 fw-bold"><?= htmlspecialchars($user['phone']) ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-2 text-muted small">Ngày tham gia</p>
-                                <p class="mb-3 fw-bold"><?= htmlspecialchars($user['created_at']) ?></p>
-                            </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -264,16 +294,12 @@ $recent_orders = order_get_by_user_id($_SESSION['user_id']);
                                                                 <span class="badge <?= $status_class ?>"><?= $status_text ?></span>
                                                             </p>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <p class="mb-2 text-muted">Phương thức thanh toán</p>
-                                                            <p class="mb-3 fw-bold"><?= htmlspecialchars($order['payment_method']) ?></p>
-                                                        </div>
                                                     </div>
 
                                                     <h6 class="mb-3">Thông tin giao hàng</h6>
                                                     <p class="mb-1"><?= htmlspecialchars($order['user_name']) ?></p>
                                                     <p class="mb-1"><?= isset($order['phone']) ? htmlspecialchars($order['phone']) : 'N/A' ?></p>
-                                                    <p class="mb-1"><?= htmlspecialchars($order['address']) ?></p>
+                                                    <p class="mb-1"><?= htmlspecialchars($order['address'] ?? 'N/A') ?></p>
                                                     
                                                     <?php if (!empty($order['note'])): ?>
                                                     <hr>
