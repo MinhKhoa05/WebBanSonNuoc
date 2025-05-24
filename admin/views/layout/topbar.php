@@ -2,7 +2,7 @@
     <div class="col">
         <div class="d-flex justify-content-between align-items-center">
             <div class="search-container">
-                <input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Search">
+                <!-- <input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Search"> -->
             </div>
             <div class="d-flex align-items-center">
                 <div class="dropdown d-inline-block me-2">
@@ -22,11 +22,11 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="adminDropdown">
                         <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
-                        <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="customer/controllers/userController.php?action=logout">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="login.php">Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>

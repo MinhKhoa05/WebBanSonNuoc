@@ -1,4 +1,14 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Kiểm tra đăng nhập
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require_once 'routes.php';
 ?>
 
@@ -14,9 +24,7 @@ require_once 'routes.php';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-
 
     <link rel="stylesheet" href="views/assets/css/admin.css" />
 
@@ -66,7 +74,7 @@ require_once 'routes.php';
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     Swal.fire({
-      icon: '<?= $_SESSION['flash_message']['type'] ?>', // success, error, warning, info
+      icon: '<?= $_SESSION['flash_message']['type'] ?>',
       title: 'Thông báo',
       text: '<?= addslashes($_SESSION['flash_message']['text']) ?>',
       timer: 2500,

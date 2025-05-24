@@ -8,6 +8,18 @@ class UserModel extends BaseModel
         parent::__construct('users', 'id');
     }
 
+    public function admin_login($email, $password)
+    {
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $user = pdo_query_one($sql, $email);
+
+        if ($user && password_verify($password, $user['password']) && $user['role'] === 'admin') {
+            return $user;
+        }
+
+        return null;
+    }
+
     /**
      * Đếm tổng số người dùng
      */
